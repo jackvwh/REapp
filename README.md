@@ -1,2 +1,2 @@
 # REapp
-Application for someone
+Application for people with abstinence
