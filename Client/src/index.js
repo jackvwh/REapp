@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import UserProfile from "./UserProfilepages/UserProfile";
+import UserProfile from "./pages/userProfile.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

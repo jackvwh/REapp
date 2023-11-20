@@ -9,7 +9,7 @@ function UserProfileDetails() {
     interests: '',
     hobbies: '',
     about: '',
-    afhaengighed: '', 
+    dependences: '', 
   });
 
   const handleInputChange = (e) => {
@@ -19,14 +19,14 @@ function UserProfileDetails() {
 
   const handleAfhaengighedChange = (e) => {
     const { value } = e.target;
-    setUserData({ ...userData, afhaengighed: value });
+    setUserData({ ...userData, dependences: value });
   };
 
   return (
     <div>
-      <h2>User Details</h2>
+      <h2>Brugerprofil</h2>
       <form>
-        <label>Full Name:</label>
+        <label>Fuldnavn:</label>
         <input
           type="text"
           name="fullName"
@@ -42,7 +42,7 @@ function UserProfileDetails() {
           onChange={handleInputChange}
         />
 
-        <label>Age:</label>
+        <label>Alder:</label>
         <input
           type="text"
           name="age"
@@ -50,7 +50,7 @@ function UserProfileDetails() {
           onChange={handleInputChange}
         />
 
-        <label>Interests:</label>
+        <label>Interesser & hobby:</label>
         <input
           type="text"
           name="interests"
@@ -58,15 +58,8 @@ function UserProfileDetails() {
           onChange={handleInputChange}
         />
 
-        <label>Hobbies:</label>
-        <input
-          type="text"
-          name="hobbies"
-          value={userData.hobbies}
-          onChange={handleInputChange}
-        />
 
-        <label>About Yourself:</label>
+        <label>Om:</label>
         <textarea
           name="about"
           value={userData.about}

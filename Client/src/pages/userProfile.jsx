@@ -1,14 +1,13 @@
 // UserProfilePage.jsx
-import React from 'react';
-import UserProfileDetails from '../components/userProfileDetails';
-import UserProfileHeader from '../components/userProfileHeader';
+import React from "react";
+import UserProfileDetails from "../components/userProfileDetails.jsx";
+import UserProfileHeader from "../components/userProfileHeader.jsx";
 
 function UserProfile() {
   return (
     <div>
       <UserProfileHeader />
-        <UserProfileDetails />
-    
+      <UserProfileDetails />
     </div>
   );
 }
