@@ -41,6 +41,12 @@ const textareaStyle = {
   boxSizing: 'border-box',
 };
 
+const radioLabelStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '5px',
+};
+
 const radioStyle = {
   marginRight: '5px',
 };
@@ -67,16 +73,30 @@ function UserProfileDetails() {
     setUserData({ ...userData, dependences: value });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUserData({ ...userData, image: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div style={containerStyle}>
       <h2 style={h2Style}>Brugerprofil</h2>
       <form>
         <label style={labelStyle}>Billede</label>
-        <img
-          src={userData.image}
-          alt="user"
-          style={imgStyle}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          style={inputStyle}
         />
+        <img src={userData.image} alt="user" style={imgStyle} />
 
         <label style={labelStyle}>Navn:</label>
         <input
@@ -123,41 +143,53 @@ function UserProfileDetails() {
         />
 
         <label style={labelStyle}>Afhængighed:</label>
-        <input
-          type="radio"
-          name="afhaengighed"
-          value="Alkohol"
-          checked={userData.afhaengighed === 'Option 1'}
-          onChange={handleAfhaengighedChange}
-          style={radioStyle}
-        />
+        <label style={radioLabelStyle}>
+          <input
+            type="radio"
+            name="afhaengighed"
+            value="Alkohol"
+            checked={userData.dependences === 'Alkohol'}
+            onChange={handleAfhaengighedChange}
+            style={radioStyle}
+          />
+          Alkohol
+        </label>
 
-        <input
-          type="radio"
-          name="afhaengighed"
-          value="Cigaretter"
-          checked={userData.afhaengighed === 'Option 2'}
-          onChange={handleAfhaengighedChange}
-          style={radioStyle}
-        />
+        <label style={radioLabelStyle}>
+          <input
+            type="radio"
+            name="afhaengighed"
+            value="Cigaretter"
+            checked={userData.dependences === 'Cigaretter'}
+            onChange={handleAfhaengighedChange}
+            style={radioStyle}
+          />
+          Cigaretter
+        </label>
 
-        <input
-          type="radio"
-          name="afhaengighed"
-          value="kaffein"
-          checked={userData.afhaengighed === 'Option 3'}
-          onChange={handleAfhaengighedChange}
-          style={radioStyle}
-        />
+        <label style={radioLabelStyle}>
+          <input
+            type="radio"
+            name="afhaengighed"
+            value="kaffein"
+            checked={userData.dependences === 'kaffein'}
+            onChange={handleAfhaengighedChange}
+            style={radioStyle}
+          />
+          Kaffein
+        </label>
 
-        <input
-          type="radio"
-          name="afhaengighed"
-          value="lim"
-          checked={userData.afhaengighed === 'Option 3'}
-          onChange={handleAfhaengighedChange}
-          style={radioStyle}
-        />
+        <label style={radioLabelStyle}>
+          <input
+            type="radio"
+            name="afhaengighed"
+            value="lim"
+            checked={userData.dependences === 'lim'}
+            onChange={handleAfhaengighedChange}
+            style={radioStyle}
+          />
+          Lim
+        </label>
       </form>
     </div>
   );
