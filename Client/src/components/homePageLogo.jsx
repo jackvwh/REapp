@@ -3,9 +3,9 @@ import "../stylesheets/homepage.css";
 
 function HomePageLogo() {
     return (
-        <div>
+        <div className="reapp-logo-container">
             <header>
-                <h1>REapp</h1>
+                <h1 className="reapp-logo">REapp</h1>
             </header>
         </div>
         )
