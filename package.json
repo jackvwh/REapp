@@ -2,18 +2,21 @@
   "name": "reapp",
   "version": "1.0.0",
   "description": "Application for people with abstinence",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jackvwh/REapp.git"
+    "devfront": "cd Client && npm start",
+    "devback": "cd Server && npm run dev",
+    "devAll": "concurrently \"npm run devfront\" \"npm run devback\"",
+    "build": "cd Client && npm run build",
+    "postinstall": "cd Server && npm i && cd ../Client && npm i"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jackvwh/REapp/issues"
+
+  "devDependencies": {
+    "prettier": "^3.1.0"
   },
-  "homepage": "https://github.com/jackvwh/REapp#readme"
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
