@@ -1,13 +1,14 @@
 import React from "react";
+import LoginModal from "../components/loginModal";
 import "../stylesheets/homepage.css";
 
 function HomePageLogIn() {
   return (
     <div className="create-user-container">
       <h2>Tilmeld dig nu</h2>
-      <div className="log-in-form">
+      <div className="sign-up-form">
         <section>
-          <form id="log-in-form">
+          <form id="sign-up-form">
             <input
               className="input-field"
               type="email"
@@ -40,11 +41,8 @@ function HomePageLogIn() {
               />
             </div>
           </form>
+          <LoginModal />
         </section>
-        <div className="log-in-container">
-          <h3>Har du allerede en bruger?</h3>
-          <button className="button-30">Log ind</button>
-        </div>
       </div>
     </div>
   );

@@ -1,19 +1,21 @@
 import React from "react";
 import HomePageLogo from "../components/homePageLogo";
 import HomePagePicture from "../components/homePagePicture";
-import HomePageLogIn from "../components/homePageLogIn";
+import HomePageCreateUser from "../components/homePageCreateUser";
 
 import "../stylesheets/homepage.css";
 
 function HomePage() {
   return (
-    <div>
+    <>
+      <main>
       <div className="title-and-login-container">
         <HomePageLogo />
-        <HomePageLogIn />
+        <HomePageCreateUser/>
       </div>
-      <HomePagePicture />
-    </div>
+        <HomePagePicture />
+      </main>
+    </>
   );
 }
 
