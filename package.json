@@ -1,28 +1,22 @@
 {
   "name": "reapp",
   "version": "1.0.0",
-  "description": "Application for someone",
-  "main": "server/server.js",
+  "description": "Application for people with abstinence",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo \"Error: no start specified\" && exit 1"
+    "devfront": "cd Client && npm start",
+    "devback": "cd Server && npm run dev",
+    "devAll": "concurrently \"npm run devfront\" \"npm run devback\"",
+    "build": "cd Client && npm run build",
+    "postinstall": "cd Server && npm i && cd ../Client && npm i"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mysql2": "^3.6.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+
   "devDependencies": {
-    "cypress": "^13.5.1",
-    "dotenv": "^16.3.1",
-    "live-server": "^1.2.2",
-    "nodemon": "^3.0.1",
     "prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }
-
-
