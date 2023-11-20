@@ -68,7 +68,7 @@ function UserProfileDetails() {
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleAfhaengighedChange = (e) => {
+  const handleDependencesChange = (e) => {
     const { value } = e.target;
     setUserData({ ...userData, dependences: value });
   };
@@ -149,7 +149,7 @@ function UserProfileDetails() {
             name="afhaengighed"
             value="Alkohol"
             checked={userData.dependences === 'Alkohol'}
-            onChange={handleAfhaengighedChange}
+            onChange={handleDependencesChange}
             style={radioStyle}
           />
           Alkohol
@@ -161,7 +161,7 @@ function UserProfileDetails() {
             name="afhaengighed"
             value="Cigaretter"
             checked={userData.dependences === 'Cigaretter'}
-            onChange={handleAfhaengighedChange}
+            onChange={handleDependencesChange}
             style={radioStyle}
           />
           Cigaretter
@@ -173,7 +173,7 @@ function UserProfileDetails() {
             name="afhaengighed"
             value="kaffein"
             checked={userData.dependences === 'kaffein'}
-            onChange={handleAfhaengighedChange}
+            onChange={handleDependencesChange}
             style={radioStyle}
           />
           Kaffein
@@ -185,7 +185,7 @@ function UserProfileDetails() {
             name="afhaengighed"
             value="lim"
             checked={userData.dependences === 'lim'}
-            onChange={handleAfhaengighedChange}
+            onChange={handleDependencesChange}
             style={radioStyle}
           />
           Lim
