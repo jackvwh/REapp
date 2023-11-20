@@ -1,89 +1,71 @@
+/*----------Google Fonts----------*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+
 /*Home page picture*/
 .home-page-picture-container {
-    width: auto;
-    height: 900px;
-    overflow: hidden;
-    position: relative;
+  width: auto;
+  height: 900px;
+  overflow: hidden;
+  position: relative;
 }
 
 .home-page-picture {
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
 /*REapp logo container*/
 
 .reapp-logo-container {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-style: italic;
-    position: absolute;
-    z-index: 9999;
-    top: 50%;
-    left: 5%;
-    font-size: 10em;
-    color: white;
-    transform: translate(0%, -50%);
-    -webkit-text-stroke: 3px;
-    -webkit-text-stroke-color: black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-style: italic;
+  position: absolute;
+  z-index: 9999;
+  top: 400px;
+  left: 100px;
+  font-size: 10em;
+  color: white;
+  transform: translate(0%, -50%);
+  -webkit-text-stroke: 3px;
+  -webkit-text-stroke-color: black;
 }
 
 /*Log in container*/
-
-.log-in-container {
-    position: absolute;
-    width: 35%;
-    height: 60%;
-    border-radius: 20px;
-    z-index: 9999;
-    top: 50%;
-    right: 5%;
-    transform: translate(0%, -50%);
-    background-color: thistle;
-}
-
-.log-in-container > h2 {
-    margin: 4%;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 5em;
-}
-
-.log-in-form {
-    text-align: center;
-}
-
-.input-field {
-    width: 80%;
-    height: 50px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1.5em;
-    padding-left: 10px;
-    text-align: center;
-}
-
-/* Button CSS */
-.button-50 {
-  appearance: button;
-  background-color: #000;
-  border: 1px solid #000;
-  border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
-  font-size: 2.5em;
-  font-weight: 400;
-  line-height: 20px;
-  height: 65px;
-  width: 300px;
-  margin: 20px 5px 10px 0;
-  overflow: visible;
-  padding: 12px 40px;
+.create-user-container {
+  position: absolute;
   text-align: center;
+  width: 750px;
+  height: 600px;
+  border-radius: 20px;
+  z-index: 9999;
+  top: 450px;
+  right: 5%;
+  transform: translate(0%, -50%);
+  background-color: #ADC4CE;
+}
+
+.create-user-container > h2 {
+  margin: 20px;
+  margin-top: 40px;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  /*--------------------*/
+  background-color: #EEE0C9;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow:
+    #fff 4px 4px 0 0,
+    #000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: black;
+  cursor: default;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 3em;
+  line-height: 20px;
+  overflow: visible;
+  padding: 25px;
+  width: 450px;
   text-transform: none;
   touch-action: manipulation;
   user-select: none;
@@ -92,26 +74,80 @@
   white-space: nowrap;
 }
 
-.button-50:focus {
+.log-in-form {
+  text-align: center;
+}
+
+.input-field {
+  width: 80%;
+  height: 50px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.5em;
+  padding-left: 10px;
+  text-align: center;
+}
+
+.create-user-button-container {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+/* Button CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395a;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
   text-decoration: none;
+  transition:
+    box-shadow 0.15s,
+    transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
 }
 
-.button-50:hover {
-  text-decoration: none;
+.button-30:focus {
+  box-shadow:
+    #d6d6e7 0 0 0 1.5px inset,
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
 }
 
-.button-50:active {
-  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
-  outline: 0;
+.button-30:hover {
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
 }
 
-.button-50:not([disabled]):active {
-  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
-  transform: translate(2px, 2px);
-}
-
-@media (min-width: 768px) {
-  .button-50 {
-    padding: 12px 50px;
-  }
+.button-30:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
 }

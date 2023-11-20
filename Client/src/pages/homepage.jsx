@@ -8,11 +8,11 @@ import "../stylesheets/homepage.css";
 function HomePage() {
   return (
     <div>
-        <div className="title-and-login-container">
-            <HomePageLogo />
-            <HomePageLogIn />
-        </div>
-        <HomePagePicture />
+      <div className="title-and-login-container">
+        <HomePageLogo />
+        <HomePageLogIn />
+      </div>
+      <HomePagePicture />
     </div>
   );
 }
