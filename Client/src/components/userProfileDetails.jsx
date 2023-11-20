@@ -146,7 +146,7 @@ function UserProfileDetails() {
         <label style={radioLabelStyle}>
           <input
             type="radio"
-            name="afhaengighed"
+            name="dependences"
             value="Alkohol"
             checked={userData.dependences === 'Alkohol'}
             onChange={handleDependencesChange}
@@ -158,7 +158,7 @@ function UserProfileDetails() {
         <label style={radioLabelStyle}>
           <input
             type="radio"
-            name="afhaengighed"
+            name="dependences"
             value="Cigaretter"
             checked={userData.dependences === 'Cigaretter'}
             onChange={handleDependencesChange}
@@ -170,7 +170,7 @@ function UserProfileDetails() {
         <label style={radioLabelStyle}>
           <input
             type="radio"
-            name="afhaengighed"
+            name="dependences"
             value="kaffein"
             checked={userData.dependences === 'kaffein'}
             onChange={handleDependencesChange}
@@ -182,7 +182,7 @@ function UserProfileDetails() {
         <label style={radioLabelStyle}>
           <input
             type="radio"
-            name="afhaengighed"
+            name="dependences"
             value="lim"
             checked={userData.dependences === 'lim'}
             onChange={handleDependencesChange}
