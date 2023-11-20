@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
+    image: '',
     fullName: '',
     email: '',
     age: '',
@@ -26,7 +27,15 @@ function UserProfileDetails() {
     <div>
       <h2>Brugerprofil</h2>
       <form>
-        <label>Fuldnavn:</label>
+
+      <label>Billede</label>
+        <img
+          src={userData.image}
+          alt="user"
+          style={{ width: '100px', height: '100px' }}
+        />
+
+        <label>Navn:</label>
         <input
           type="text"
           name="fullName"
