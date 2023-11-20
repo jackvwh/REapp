@@ -14,28 +14,36 @@ function LoginModal() {
 
   return (
     <div className="login-container">
-        <div className="login-button-container">
-            <p>Har du allerede en profil?</p>
-            <button onClick={openModal} className="button-30 login-button">Log ind</button>
-        </div>
+      <div className="login-button-container">
+        <p>Har du allerede en profil?</p>
+        <button onClick={openModal} className="button-30 login-button">
+          Log ind
+        </button>
+      </div>
 
       {showModal && (
-          <div className="login-modal">
-        <div className="modal-container">
-          <div className="modal-header">
-            <h3>Log ind</h3>
-          </div>
-          <div className="modal-body">
-            <input type="text" name="login-username" id="login-username" />
-            <br />
-            <input type="password" name="login-password" id="login-password" />
-          </div>
-          <div className="modal-footer">
-            <button className="button-30" onClick={closeModal}>Luk</button>
+        <div className="login-modal">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h3>Log ind</h3>
+            </div>
+            <div className="modal-body">
+              <input type="text" name="login-username" id="login-username" />
+              <br />
+              <input
+                type="password"
+                name="login-password"
+                id="login-password"
+              />
+            </div>
+            <div className="modal-footer">
+              <button className="button-30" onClick={closeModal}>
+                Luk
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
     </div>
   );
 }
