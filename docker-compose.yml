@@ -13,4 +13,4 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - .test/db_test/mysql_db:/var/lib/mysql
+      - ./Test/test_database/test_data/mysql_db:/var/lib/mysql
