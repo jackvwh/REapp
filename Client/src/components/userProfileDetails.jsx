@@ -23,6 +23,14 @@ function UserProfileDetails() {
     setIsModalOpen(false);
   };
 
+
+  const saveChanges = () => {
+    console.log('Saving changes:', userData);
+    closeModal(); 
+  };
+
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -152,6 +160,7 @@ function UserProfileDetails() {
                   Lim
                 </label>
               </form>
+              <button class = "button" onClick={saveChanges}>Save Changes</button>
               <button class = "button" onClick={closeModal}>Close</button>
             </div>
           </div>
