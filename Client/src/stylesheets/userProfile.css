@@ -28,6 +28,7 @@
     cursor: pointer;
   }
   
+  
   .containerStyle {
     max-width: 100%;
     margin: 50vh;
@@ -40,6 +41,10 @@
   
   .h2Style {
     color: #333; 
+    font-size: 3rem; 
+    margin-bottom: 3%;
+    width: 50%;
+  
   }
   
   .imgStyle {
@@ -53,6 +58,8 @@
     width: 15vw; 
     height: 30vh;
     margin-left: 50w;
+    border: 2px solid #ccc; /* Border color */
+    border-radius: 8px;
   }
   
   .labelStyle {
@@ -68,6 +75,21 @@
     box-sizing: border-box;
   }
   
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+
+    .grid-item {
+      border: 2px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    
+    
 
 
   

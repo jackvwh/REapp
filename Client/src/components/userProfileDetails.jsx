@@ -113,18 +113,39 @@ function UserProfileDetails() {
 
       {/* Display mode */}
       <div className="display-mode">
-        <h2>User Profile</h2>
-        <img class="imgTest" src="/test.png" alt="user" />
-        <p>Navn: Abed {userData.fullName}</p>
-        <p>Email: abdu4069@stud.kea.dk: {userData.email}</p>
-        <p>Alder: 23 {userData.age}</p>
-        <p>Interesser & Hobbies: Programmering{userData.interests}</p>
-        <p>Om: Jeg er Datamatiker studerene{userData.about}</p>
-        <button className="button" onClick={openModal}>
-          Edit Profile
-        </button>
+        <h2 className="h2Style">Brugerprofil</h2>
+        <div className="grid-container">
+    <div className="grid-item">
+      <img className="imgTest" src="/test.png" alt="user" />
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Navn:</p>
+      <p>{userData.fullName}</p>
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Email:</p>
+      <p>{userData.email}</p>
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Alder:</p>
+      <p>{userData.age}</p>
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Interesser & Hobbies:</p>
+      <p>{userData.interests}</p>
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Om:</p>
+      <p>{userData.about}</p>
+    </div>
+    <div>
+      <button className="button" onClick={openModal}>
+        Edit Profile
+      </button>
       </div>
     </div>
+  </div>
+</div>
   );
 }
 
