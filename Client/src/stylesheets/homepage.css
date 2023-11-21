@@ -1,185 +1,96 @@
 /*----------Google Fonts----------*/
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
 
-/*Home page picture*/
 .home-page-picture-container {
-  width: auto;
-  max-height: 900px;
-  overflow: hidden;
-  position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 55vh;
 }
 
 .home-page-picture {
-  width: 100%;
-  object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: top center;
 }
 
-/*REapp logo container*/
+.title-and-login-container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    top: 10vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 9999;
+}
 
 .reapp-logo-container {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   font-style: italic;
-  position: absolute;
-  z-index: 9999;
-  top: 30vh;
-  left: 10vh;
-  font-size: 10em;
+  font-size: 5vw;
   color: white;
-  transform: translate(0%, -50%);
-  -webkit-text-stroke: 3px;
+  -webkit-text-stroke: 0.2rem;
   -webkit-text-stroke-color: black;
 }
 
-/*sign up container*/
+.reapp-logo {
+  position: relative;
+  margin: 0%;
+  right: 7%;
+}
+
 .create-user-container {
-  position: absolute;
-  text-align: center;
-  width: 33%;
+  background-color: white;
   height: 40vh;
-  border-radius: 20px;
-  z-index: 9999;
-  top: 30vh;
-  right: 5vw;
-  transform: translate(0%, -50%);
-  background-color: #ADC4CE;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  padding: 1rem;
+  border-radius: 25px;
 }
 
 .create-user-container > h2 {
-  margin: 20px;
-  margin-top: 40px;
-  text-align: center;
-  font-family: 'Bebas Neue', sans-serif;
-  /*--------------------*/
-  background-color: #EEE0C9;
-  border: 1px solid #000;
-  border-radius: 5px;
-  box-shadow:
-    #fff 4px 4px 0 0,
-    #000 4px 4px 0 1px;
-  box-sizing: border-box;
-  color: black;
-  cursor: default;
-  display: inline-block;
-  font-weight: 400;
-  font-size: 3em;
-  line-height: 20px;
-  overflow: visible;
-  padding: 25px;
-  width: 450px;
-  text-transform: none;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
-}
-
-.sign-up-form {
-  text-align: center;
+  font-size: 2vw;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .input-field {
-  width: 80%;
-  height: 50px;
-  margin: 10px;
-  border-radius: 10px;
-  border: none;
-  font-size: 1.5em;
-  padding-left: 10px;
-  text-align: center;
+  width: 25vw;
+  height: 3vh;
+  font-size: 1vw;
+  margin-top: 1vh;
+  margin-bottom: 1%;
+  padding: 1%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-.create-user-button-container {
-  margin-top: 20px;
-}
-
-/* Button CSS */
-.button-30 {
-  font-family: Arial, Helvetica, sans-serif;
-  align-items: center;
-  appearance: none;
-  background-color: #fcfcfd;
-  border-radius: 4px;
-  border-width: 0;
-  box-shadow:
-    rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-    #d6d6e7 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #36395a;
-  cursor: pointer;
-  display: inline-flex;
-  height: 48px;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition:
-    box-shadow 0.15s,
-    transform 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow, transform;
-  font-size: 1.5em;
-}
-
-.button-30:focus {
-  box-shadow:
-    #d6d6e7 0 0 0 1.5px inset,
-    rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-    #d6d6e7 0 -3px 0 inset;
-}
-
-.button-30:hover {
-  box-shadow:
-    rgba(45, 35, 66, 0.4) 0 4px 8px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-    #d6d6e7 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-
-.button-30:active {
-  box-shadow: #d6d6e7 0 3px 7px inset;
-  transform: translateY(2px);
-}
-
-.login-container {
-  position: relative;
-  z-index: 9999;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.login-button-container > p {
-  font-size: 2em;
-  font-family: 'Bebas Neue', sans-serif;
-  margin: 0%;
-  margin-bottom: 10px;
+.create-user-button {
+  top: 1vh;
+  height: 5vh;
 }
 
 .login-button-container {
   position: relative;
-  top: 90px;
+  transform: translate(0vw, 1vw);
 }
 
-.login-modal {
+.modal-container {
   position: absolute;
-  top: -368px;
-  text-align: center;
-  width: 750px;
-  height: 600px;
-  border-radius: 20px;
+  background-color:aquamarine;
+  top: 0;
+  left: 40vw;
+  width: 30vw;
+  height: 42.1vh;
+  border-radius: 25px;
+  transform: translate(66.7%, 0.01%);
+  justify-content: center;
+  align-items: center;
+  background-color: #36395A;
   z-index: 9999;
-  background-color: white;
   animation: fade-in 0.5s;
 }
 
@@ -190,4 +101,72 @@
   100% {
     opacity: 1;
   }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+  font-size: 3rem;
+  color: white;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.login-button, .close-login-modal-button {
+  font-size: 2vw;
+  width: 20vw;
+  height: 5vh;
+}
+
+/* CSS button */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
 }

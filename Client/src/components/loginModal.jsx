@@ -22,22 +22,31 @@ function LoginModal() {
       </div>
 
       {showModal && (
-        <div className="login-modal">
+        <div>
           <div className="modal-container">
             <div className="modal-header">
               <h3>Log ind</h3>
             </div>
             <div className="modal-body">
-              <input type="text" name="login-username" id="login-username" />
+              <input
+                className="input-field"
+                type="text"
+                name="login-username"
+                id="login-username"
+                placeholder="Brugernavn"
+              />
               <br />
               <input
+                className="input-field"
                 type="password"
                 name="login-password"
                 id="login-password"
+                placeholder="Adgangskode"
               />
             </div>
+            <button className="button-30 login-button">Log ind</button>
             <div className="modal-footer">
-              <button className="button-30" onClick={closeModal}>
+              <button className="button-30 close-login-modal-button" onClick={closeModal}>
                 Luk
               </button>
             </div>
