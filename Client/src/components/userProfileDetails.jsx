@@ -10,7 +10,6 @@ function UserProfileDetails() {
     interests: '',
     hobbies: '',
     about: '',
-    dependences: '',
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,22 +22,9 @@ function UserProfileDetails() {
     setIsModalOpen(false);
   };
 
-
-  const saveChanges = () => {
-    console.log('Saving changes:', userData);
-    closeModal(); 
-  };
-
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-  };
-
-  const handleDependencesChange = (e) => {
-    const { value } = e.target;
-    setUserData({ ...userData, dependences: value });
   };
 
   const handleImageChange = (e) => {
@@ -53,10 +39,13 @@ function UserProfileDetails() {
     }
   };
 
+  const saveChanges = () => {
+    console.log('Saving changes:', userData);
+    closeModal(); 
+  };
+
   return (
     <div>
-      <button class = "button" onClick={openModal}>Edit Profile</button>
-
       {isModalOpen && (
         <div className="modal-container">
           <div className="modal-content">
@@ -69,7 +58,7 @@ function UserProfileDetails() {
                   accept="image/*"
                   onChange={handleImageChange}
                 />
-                <img src={userData.image} alt="user" className="imgStyle" />
+                <img src={userData.image} alt="" className="imgStyle" />
 
                 <label className="labelStyle">Navn:</label>
                 <input
@@ -110,65 +99,35 @@ function UserProfileDetails() {
                   onChange={handleInputChange}
                   className="textAreaStyle"
                 />
-
-                <label className="labelStyle">Afhængighed:</label>
-                <label className="radioLabelStyle">
-                  <input
-                    type="radio"
-                    name="dependences"
-                    value="Alkohol"
-                    checked={userData.dependences === 'Alkohol'}
-                    onChange={handleDependencesChange}
-                    className="radioStyle"
-                  />
-                  Alkohol
-                </label>
-
-                <label className="radioLabelStyle">
-                  <input
-                    type="radio"
-                    name="dependences"
-                    value="Cigaretter"
-                    checked={userData.dependences === 'Cigaretter'}
-                    onChange={handleDependencesChange}
-                    className="radioStyle"
-                  />
-                  Cigaretter
-                </label>
-
-                <label className="radioLabelStyle">
-                  <input
-                    type="radio"
-                    name="dependences"
-                    value="kaffein"
-                    checked={userData.dependences === 'kaffein'}
-                    onChange={handleDependencesChange}
-                    className="radioStyle"
-                  />
-                  Kaffein
-                </label>
-
-                <label className="radioLabelStyle">
-                  <input
-                    type="radio"
-                    name="dependences"
-                    value="lim"
-                    checked={userData.dependences === 'lim'}
-                    onChange={handleDependencesChange}
-                    className="radioStyle"
-                  />
-                  Lim
-                </label>
+                <button className="button" onClick={saveChanges}>
+                  Save Changes
+                </button>
+                <button className="button" onClick={closeModal}>
+                  Close
+                </button>
               </form>
-              <button class = "button" onClick={saveChanges}>Save Changes</button>
-              <button class = "button" onClick={closeModal}>Close</button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Display mode */}
+      <div className="display-mode">
+        <h2>User Profile</h2>
+        <img class="imgTest" src="/test.png" alt="user" />
+        <p>Navn: Abed {userData.fullName}</p>
+        <p>Email: abdu4069@stud.kea.dk: {userData.email}</p>
+        <p>Alder: 23 {userData.age}</p>
+        <p>Interesser & Hobbies: Programmering{userData.interests}</p>
+        <p>Om: Jeg er Datamatiker studerene{userData.about}</p>
+        <button className="button" onClick={openModal}>
+          Edit Profile
+        </button>
+      </div>
     </div>
   );
 }
 
 export default UserProfileDetails;
+
 
