@@ -6,7 +6,7 @@
   "scripts": {
     "devfront": "cd Client && npm start",
     "devback": "cd Server && npm run dev",
-    "devAll": "concurrently \"npm run devfront\" \"npm run devback\"",
+    "dev": "npm run devfront && npm run devback",
     "build": "cd Client && npm run build",
     "postinstall": "cd Server && npm i && cd ../Client && npm i"
   },
