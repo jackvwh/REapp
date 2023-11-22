@@ -10,6 +10,21 @@ function CreateUserForm() {
         <section>
           <form id="sign-up-form">
             <input
+              className="name-input-field"
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="Fornavn"
+            />
+            <input
+              className="name-input-field"
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Efternavn"
+            />
+            <br />
+            <input
               className="input-field"
               type="email"
               id="email"
@@ -33,8 +48,10 @@ function CreateUserForm() {
               placeholder="Adgangskode"
             />
             <br />
+            <label htmlFor="birthdate" className="birthdate-styling">Fødselsdag:</label>
+            <input className="birthdate-input-field" name="birthdate" type="date" />
             <div className="create-user-button-container">
-              <button className="button-30 create-user-button">
+              <button type="submit" className="button-30 create-user-button">
                 Opret bruger
               </button>
             </div>

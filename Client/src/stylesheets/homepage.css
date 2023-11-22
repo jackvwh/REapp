@@ -45,7 +45,7 @@
   color: #2B2A4C;
   border-radius: 1vw;
   width: 33vw;
-  height: 35vh;
+  height: 43vh;
   text-align: center;
 }
 
@@ -63,10 +63,39 @@
   border-style: none;
   padding-left: 1ch;
 }
+.name-input-field {
+  width: 8.8vw;
+  border-radius: 0.5vh;
+  border-style: none;
+  padding-left: 1ch;
+  height: 3vh;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  font-size: 1vw;
+}
+
+input[type="date"]{
+  position: relative;
+  top: 0.5vh;
+  background-color: white;
+  padding: 0.3vw;
+  font-family: "Roboto", sans-serif;
+  color: black;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator{
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
 
 .create-user-button-container {
   position: relative;
-  top: 1vh;
+  top: 1.5vh;
 }
 
 .create-user-button {
@@ -125,6 +154,14 @@
   margin-top: 0%;
   font-family: "Roboto", sans-serif;
 }
+
+.birthdate-styling {
+  position: relative;
+  font-size: 1vw;
+  top: 0.5vh;
+  margin-right: 0.5vw;
+}
+
 
 /* CSS button */
 .button-30 {
