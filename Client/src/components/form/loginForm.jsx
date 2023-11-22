@@ -44,9 +44,10 @@ function LoginModal() {
                   id="login-password"
                   placeholder="Adgangskode"
                 />
+                <br />
+            <button className="button-30 login-button">Log ind</button>
               </form>
             </div>
-            <button className="button-30 login-button">Log ind</button>
             <div className="modal-footer">
               <button
                 className="button-30 close-login-modal-button"
