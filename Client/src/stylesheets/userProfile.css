@@ -28,16 +28,22 @@
     cursor: pointer;
   }
   
-  
-  .containerStyle {
-    max-width: 100%;
-    margin: 50vh;
-    margin-top: 5%;
-    padding: 2rem; 
-    border: 0.5rem solid #f1f0f0; 
-    border-radius: 2rem; 
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); 
+
+
+  .modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: rgb(255, 255, 255);
+    max-width: 80%; 
+    max-height: 80%; 
+    overflow: auto; 
+    border: 0.1rem solid #ddd; 
+    padding: 3rem; 
   }
+  
   
   .h2Style {
     color: #333; 
@@ -77,19 +83,43 @@
   
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 23px;
+    grid-row-gap: 24px;
     }
+    
+.item1,
+.item2,
+.item3,
+.item4,
+.item5,
+.item6,
+.item7 {
+  border: 0.1rem solid #ddd;
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  background-color: #ffffff;
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 1rem; /* Add some space between items */
+}
 
-    .grid-item {
-      border: 2px solid #ddd;
-      padding: 10px;
-      border-radius: 8px;
-    }
+.item2:hover,
+.item3:hover,
+.item4:hover,
+.item5:hover,
+.item6:hover,
+.item7:hover {
+  transform: scale(1.05);
+}
+
     
     
+    
+  
+ 
+
+
 
 
   

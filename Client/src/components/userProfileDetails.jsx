@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../stylesheets/userProfile.css';
 
+
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
     image: '',
@@ -8,13 +9,10 @@ function UserProfileDetails() {
     firstName: '',
     lastName: '',
     email: '',
-    birthdate: '',
-    about: '',
+    birthdate: ''
   });
 
   const [interests, setInterests] = useState([]);
-
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -42,9 +40,14 @@ function UserProfileDetails() {
     }
   };
 
+  const handleInterestChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
+    setInterests(selectedOptions);
+  };
+
   const saveChanges = () => {
-    console.log('Saving changes:', userData);
-    closeModal(); 
+    console.log('Saving changes:', userData, interests);
+    closeModal();
   };
 
   return (
@@ -53,7 +56,7 @@ function UserProfileDetails() {
         <div className="modal-container">
           <div className="modal-content">
             <div className="containerStyle">
-              <h2 className="h2Style">Brugerprofil</h2>
+              <h2 className="h2Style">Rediger</h2>
               <form>
                 <label className="labelStyle">Billede</label>
                 <input
@@ -66,7 +69,7 @@ function UserProfileDetails() {
                 <label className="labelStyle">Brugernavn:</label>
                 <input
                   type="text"
-                  name="UserName"
+                  name="userName"
                   value={userData.userName}
                   onChange={handleInputChange}
                 />
@@ -79,7 +82,7 @@ function UserProfileDetails() {
                   onChange={handleInputChange}
                 />
 
-                 <label className="labelStyle">Efternavn:</label>
+                <label className="labelStyle">Efternavn:</label>
                 <input
                   type="text"
                   name="lastName"
@@ -102,83 +105,85 @@ function UserProfileDetails() {
                   value={userData.birthdate}
                   onChange={handleInputChange}
                 />
-
+                 
                 <label className="labelStyle">Interesser:</label>
-                <select
-                name="interests"
-                value={userData.interests}
-                onChange={handleInputChange}
->
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                </select>
+                <div className="interests-container">
+                  <select
+                    name="interests"
+                    value={interests}
+                    onChange={handleInterestChange}
+                    
+                  >
+                    <option value="Fodbold">Fodbold</option>
+                    <option value="Hockey">Hockey</option>
+                    <option value="Volley">Volley</option>
+                  </select>
 
+                  <label className="labelStyle">Valgte interesser:</label>
+                  <div className="selected-interests-box">
+                    <div className="selected-interests">
+                      {interests.length > 0 && interests.join(', ')}
+                    </div>
+                  </div>
+                </div>
 
-                <label className="labelStyle">Om:</label>
-                <textarea
-                  name="about"
-                  value={userData.about}
-                  onChange={handleInputChange}
-                  className="textAreaStyle"
-                />
-                <button className="button" onClick={saveChanges}>
-                  Save Changes
-                </button>
-                <button className="button" onClick={closeModal}>
-                  Close
-                </button>
+                <div>
+                  <button className="button" onClick={saveChanges}>
+                    Save Changes
+                  </button>
+                  <button className="button" onClick={closeModal}>
+                    Close
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         </div>
       )}
 
-      {/* Display mode */}
+   
       <div className="display-mode">
         <h2 className="h2Style">Brugerprofil</h2>
         <div className="grid-container">
-    <div className="grid-item">
-      <img className="imgTest" src="/test.png" alt="user" />
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Brugernavn:</p>
-      <p>{userData.userName}</p>
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Førstenavn:</p>
-      <p>{userData.firstName}</p>
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Efternavn:</p>
-      <p>{userData.lastName}</p>
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Email:</p>
-      <p>{userData.email}</p>
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Alder:</p>
-      <p>{userData.birthdate}</p>
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Interesser:</p>
-      <p>{userData.interests}</p>
-    </div>
-    <div className="grid-item">
-      <p className="item-title">Om:</p>
-      <p>{userData.about}</p>
-    </div>
-    <div>
-      <button className="button" onClick={openModal}>
-        Edit Profile
-      </button>
+          <div className="item1">
+            <img className="imgTest" src="/test.png" alt="user" />
+          </div>
+          <div className="item2">
+            <p className="item-title">Brugernavn:</p>
+            <p>{userData.userName}</p>
+          </div>
+          <div className="item3">
+            <p className="item-title">Førstenavn:</p>
+            <p>{userData.firstName}</p>
+          </div>
+          <div className="item4">
+            <p className="item-title">Efternavn:</p>
+            <p>{userData.lastName}</p>
+          </div>
+          <div className="item5">
+            <p className="item-title">Email:</p>
+            <p>{userData.email}</p>
+          </div>
+          <div className="item6">
+            <p className="item-title">Alder:</p>
+            <p>{userData.birthdate}</p>
+          </div>
+          <div className="item7">
+            <p className="item-title">Interesser:</p>
+            <p>{interests.join(', ')}</p>
+          </div>
+          <div>
+            <button className="button" onClick={openModal}>
+              Edit Profile
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
   );
 }
 
 export default UserProfileDetails;
+
 
 

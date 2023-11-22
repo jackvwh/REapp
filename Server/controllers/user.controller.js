@@ -10,7 +10,7 @@
   class UserController {
     async updateUser(req, res) {
       const id = req.params.id;
-      const { image, userName, firstName,lastName, email, birthdate, interests,about } = req.body;
+      const { image, userName, firstName,lastName, email, birthdate, interests } = req.body;
   
       try {
         const updatedUser = await updateUser_db(
@@ -21,8 +21,7 @@
           lastName,
           email,
           birthdate,
-          interests,
-          about
+          interests
         );
         res.status(200).json(updatedUser);
       } catch (err) {
