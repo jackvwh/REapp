@@ -9,9 +9,11 @@ function UserProfileDetails() {
     lastName: '',
     email: '',
     birthdate: '',
-    interests: [],
     about: '',
   });
+
+  const [interests, setInterests] = useState([]);
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -103,11 +105,14 @@ function UserProfileDetails() {
 
                 <label className="labelStyle">Interesser:</label>
                 <select
-                  type="text"
-                  name="interests"
-                  value={userData.interests}
-                  onChange={handleInputChange}
-                />
+                name="interests"
+                value={userData.interests}
+                onChange={handleInputChange}
+>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                </select>
+
 
                 <label className="labelStyle">Om:</label>
                 <textarea
