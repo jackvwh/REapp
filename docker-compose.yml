@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: madeinchina
+      MYSQL_PASSWORD: madeinchina
+      MYSQL_DATABASE: db_test
+    ports:
+      - 3306:3306
+    volumes:
+      - ./Test/test_database/test_data/mysql_db:/var/lib/mysql
