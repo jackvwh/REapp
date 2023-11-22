@@ -10,17 +10,18 @@
   class UserController {
     async updateUser(req, res) {
       const id = req.params.id;
-      const { image, fullName, email, age, interests, hobbies, about } = req.body;
+      const { image, userName, firstName,lastName, email, birthdate, interests,about } = req.body;
   
       try {
         const updatedUser = await updateUser_db(
           id,
           image,
-          fullName,
+          userName,
+          firstName,
+          lastName,
           email,
-          age,
+          birthdate,
           interests,
-          hobbies,
           about
         );
         res.status(200).json(updatedUser);

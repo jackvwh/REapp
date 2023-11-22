@@ -4,11 +4,12 @@ import '../stylesheets/userProfile.css';
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
     image: '',
-    fullName: '',
+    userName: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    age: '',
-    interests: '',
-    hobbies: '',
+    birthdate: '',
+    interests: [],
     about: '',
   });
 
@@ -60,11 +61,27 @@ function UserProfileDetails() {
                 />
                 <img src={userData.image} alt="" className="imgStyle" />
 
-                <label className="labelStyle">Navn:</label>
+                <label className="labelStyle">Brugernavn:</label>
                 <input
                   type="text"
-                  name="fullName"
-                  value={userData.fullName}
+                  name="UserName"
+                  value={userData.userName}
+                  onChange={handleInputChange}
+                />
+
+                <label className="labelStyle">Førstenavn:</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={userData.firstName}
+                  onChange={handleInputChange}
+                />
+
+                 <label className="labelStyle">Efternavn:</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={userData.lastName}
                   onChange={handleInputChange}
                 />
 
@@ -78,14 +95,14 @@ function UserProfileDetails() {
 
                 <label className="labelStyle">Alder:</label>
                 <input
-                  type="text"
-                  name="age"
-                  value={userData.age}
+                  type="date"
+                  name="birthdate"
+                  value={userData.birthdate}
                   onChange={handleInputChange}
                 />
 
-                <label className="labelStyle">Interesser & hobby:</label>
-                <input
+                <label className="labelStyle">Interesser:</label>
+                <select
                   type="text"
                   name="interests"
                   value={userData.interests}
@@ -119,8 +136,16 @@ function UserProfileDetails() {
       <img className="imgTest" src="/test.png" alt="user" />
     </div>
     <div className="grid-item">
-      <p className="item-title">Navn:</p>
-      <p>{userData.fullName}</p>
+      <p className="item-title">Brugernavn:</p>
+      <p>{userData.userName}</p>
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Førstenavn:</p>
+      <p>{userData.firstName}</p>
+    </div>
+    <div className="grid-item">
+      <p className="item-title">Efternavn:</p>
+      <p>{userData.lastName}</p>
     </div>
     <div className="grid-item">
       <p className="item-title">Email:</p>
@@ -128,10 +153,10 @@ function UserProfileDetails() {
     </div>
     <div className="grid-item">
       <p className="item-title">Alder:</p>
-      <p>{userData.age}</p>
+      <p>{userData.birthdate}</p>
     </div>
     <div className="grid-item">
-      <p className="item-title">Interesser & Hobbies:</p>
+      <p className="item-title">Interesser:</p>
       <p>{userData.interests}</p>
     </div>
     <div className="grid-item">
