@@ -8,7 +8,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     volumes:
-      - ./test_database/test_data/test_data:/var/lib/mysql
+      - ./test_database/test_data/mysql_db:/var/lib/mysql
       - ./test_database/DDL_schema.sql:/docker-entrypoint-initdb.d/schema.sql
     environment:
       MYSQL_ROOT_PASSWORD: root
