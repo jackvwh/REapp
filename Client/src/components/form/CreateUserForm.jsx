@@ -1,8 +1,8 @@
 import React from "react";
-import LoginModal from "../components/loginModal";
-import "../stylesheets/homepage.css";
+import LoginModal from "./loginForm";
+import "../../stylesheets/homepage.css";
 
-function HomePageLogIn() {
+function CreateUserForm() {
   return (
     <div className="create-user-container">
       <h2>Tilmeld dig nu</h2>
@@ -46,4 +46,4 @@ function HomePageLogIn() {
   );
 }
 
-export default HomePageLogIn;
+export default CreateUserForm;

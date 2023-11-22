@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../stylesheets/homepage.css";
+import "../../stylesheets/homepage.css";
 
 function LoginModal() {
   const [showModal, setShowModal] = useState(false);
@@ -28,25 +28,30 @@ function LoginModal() {
               <h3>Log ind</h3>
             </div>
             <div className="modal-body">
-              <input
-                className="input-field"
-                type="text"
-                name="login-username"
-                id="login-username"
-                placeholder="Brugernavn"
-              />
-              <br />
-              <input
-                className="input-field"
-                type="password"
-                name="login-password"
-                id="login-password"
-                placeholder="Adgangskode"
-              />
+              <form id="login-form">
+                <input
+                  className="input-field"
+                  type="text"
+                  name="login-username"
+                  id="login-username"
+                  placeholder="Brugernavn"
+                />
+                <br />
+                <input
+                  className="input-field"
+                  type="password"
+                  name="login-password"
+                  id="login-password"
+                  placeholder="Adgangskode"
+                />
+              </form>
             </div>
             <button className="button-30 login-button">Log ind</button>
             <div className="modal-footer">
-              <button className="button-30 close-login-modal-button" onClick={closeModal}>
+              <button
+                className="button-30 close-login-modal-button"
+                onClick={closeModal}
+              >
                 Luk
               </button>
             </div>
