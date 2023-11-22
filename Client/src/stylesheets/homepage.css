@@ -1,144 +1,124 @@
 /*----------Google Fonts----------*/
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap");
 
 .home-page-picture-container {
-    display: flex;
-    overflow: hidden;
-    height: 55vh;
+  position: absolute;
+  overflow: hidden;
+  width: auto;
+  height: 50vh;
 }
 
 .home-page-picture {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    object-position: top center;
+  position: relative;
+  width: 100vw;
+  height:100vh;
+  overflow: hidden;
+  z-index: 998;
 }
 
 .title-and-login-container {
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100vw;
-    top: 10vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 9999;
+  position: absolute;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  align-items: center;
+  justify-items: center;
 }
 
 .reapp-logo-container {
-  font-family:Arial, Helvetica, sans-serif;
+  position: relative;
+  font-size: 10vh;
+  left: -5vw;
+  font-family: "Bebas Neue", cursive;
   font-style: italic;
-  font-size: 5vw;
   color: white;
-  -webkit-text-stroke: 0.2rem;
+  -webkit-text-stroke: 0.2vh;
   -webkit-text-stroke-color: black;
 }
 
-.reapp-logo {
-  position: relative;
-  margin: 0%;
-  right: 7%;
-}
-
 .create-user-container {
-  background-color: white;
-  height: 40vh;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  padding: 1rem;
-  border-radius: 25px;
+  position: relative;
+  font-size: 3vh;
+  font-family: "Roboto", sans-serif;
+  background-color: wheat;
+  color: white;
+  border-radius: 1vw;
+  width: 33vw;
+  height: 33vh;
+  text-align: center;
 }
 
 .create-user-container > h2 {
-  font-size: 2vw;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  margin: 1vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
 }
 
 .input-field {
-  width: 25vw;
+  width: 20vw;
   height: 3vh;
   font-size: 1vw;
-  margin-top: 1vh;
-  margin-bottom: 1%;
-  padding: 1%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border-radius: 0.5vh;
+  border-style: none;
+  padding-left: 1ch;
+}
+
+.create-user-button-container {
+  position: relative;
+  top: 1vh;
 }
 
 .create-user-button {
+  position: relative;
   top: 1vh;
-  height: 5vh;
+  font-size: 1.2vw;
+  padding: 1.2vw;
+  height: 3vh;
 }
 
 .login-button-container {
   position: relative;
-  transform: translate(0vw, 1vw);
+  top: 2vh;
 }
 
-.modal-container {
-  position: absolute;
-  background-color:aquamarine;
-  top: 0;
-  left: 40vw;
-  width: 30vw;
-  height: 42.1vh;
-  border-radius: 25px;
-  transform: translate(66.7%, 0.01%);
-  justify-content: center;
-  align-items: center;
-  background-color: #36395A;
-  z-index: 9999;
-  animation: fade-in 0.5s;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.modal-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-  width: 100%;
-  font-size: 3rem;
+.login-button-container > p {
+  position: relative;
+  top: 2vh;
+  font-size: 1.2vw;
+  margin: 0%;
+  height: 3vh;
   color: white;
 }
 
-.modal-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
+.login-button {
+  position: relative;
+  top: 1vh;
+  font-size: 0.5vw;
+  padding: 1vh;
+  height: 1vh;
 }
 
-.login-button, .close-login-modal-button {
-  font-size: 2vw;
-  width: 20vw;
-  height: 5vh;
+.close-login-modal-button {
+font-size: 1.2vw;
 }
 
 /* CSS button */
 .button-30 {
   align-items: center;
   appearance: none;
-  background-color: #FCFCFD;
+  background-color: #fcfcfd;
   border-radius: 4px;
   border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
   box-sizing: border-box;
-  color: #36395A;
+  color: #36395a;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  font-family: "JetBrains Mono", monospace;
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -148,25 +128,33 @@
   position: relative;
   text-align: left;
   text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
+  transition:
+    box-shadow 0.15s,
+    transform 0.15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 18px;
+  will-change: box-shadow, transform;
 }
 
 .button-30:focus {
-  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  box-shadow:
+    #d6d6e7 0 0 0 1.5px inset,
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
 }
 
 .button-30:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
 .button-30:active {
-  box-shadow: #D6D6E7 0 3px 7px inset;
+  box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }

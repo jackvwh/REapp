@@ -9,11 +9,11 @@ function HomePage() {
   return (
     <>
       <main>
+        <HomePagePicture />
       <div className="title-and-login-container">
         <HomePageLogo />
         <HomePageCreateUser/>
       </div>
-        <HomePagePicture />
       </main>
     </>
   );

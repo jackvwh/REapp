@@ -13,7 +13,7 @@ function LoginModal() {
   };
 
   return (
-    <div className="login-container">
+    <div>
       <div className="login-button-container">
         <p>Har du allerede en profil?</p>
         <button onClick={openModal} className="button-30 login-button">

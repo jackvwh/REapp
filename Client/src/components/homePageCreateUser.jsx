@@ -6,7 +6,7 @@ function HomePageLogIn() {
   return (
     <div className="create-user-container">
       <h2>Tilmeld dig nu</h2>
-      <div className="sign-up-form">
+      <div className="sign-up-container">
         <section>
           <form id="sign-up-form">
             <input
@@ -34,11 +34,9 @@ function HomePageLogIn() {
             />
             <br />
             <div className="create-user-button-container">
-              <input
-                className="button-30 create-user-button"
-                type="submit"
-                value="Opret profil"
-              />
+              <button className="button-30 create-user-button">
+                Opret bruger
+              </button>
             </div>
           </form>
           <LoginModal />
