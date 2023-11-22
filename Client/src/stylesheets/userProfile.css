@@ -83,19 +83,36 @@
   
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 23px;
-    grid-row-gap: 24px;
+    grid-template-rows:  auto, auto, auto,auto,auto,auto, auto;
+    grid-gap: 10px;
     }
     
-.item1,
-.item2,
-.item3,
-.item4,
-.item5,
-.item6,
-.item7 {
+    .item1{
+       grid-row-start: 1;
+    }
+    .item2{
+      grid-row-start: 2;
+    }
+    .item3{
+      grid-row-start: 3;
+    }
+    .item4{
+
+      grid-row-start: 4;
+    }
+    .item5{
+
+      grid-row-start: 5;
+    }
+    .item6{
+
+      grid-row-start: 6;
+    }
+    .item7 {
+      grid-row-start: 7;
+    }
+
+.itemStyle{
   border: 0.1rem solid #ddd;
   padding: 1.5rem;
   border-radius: 0.8rem;
@@ -103,6 +120,8 @@
   transition: transform 0.3s ease-in-out;
   margin-bottom: 1rem; /* Add some space between items */
 }
+
+
 
 .item2:hover,
 .item3:hover,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Select, {StylesConfig} from 'react-select';
+import Select  from 'react-select';
 import '../stylesheets/userProfile.css';
 
 
@@ -15,7 +15,7 @@ function UserProfileDetails() {
 
   const [interests, setInterests] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  let selectedOptions = []
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -48,14 +48,15 @@ function UserProfileDetails() {
       reader.readAsDataURL(file);
     }
   };
-
   const handleInterestChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
-    setInterests(selectedOptions);
+   console.log(e);
+     selectedOptions = Array.from(e, (option) => option.value);
+    
   };
 
   const saveChanges = () => {
     console.log('Saving changes:', userData, interests);
+    setInterests(selectedOptions);
     closeModal();
   };
 
@@ -117,7 +118,11 @@ function UserProfileDetails() {
                  
                 <label className="labelStyle">Interesser:</label>
                 <div className="interests-container">
-                <Select options={options} />
+                <Select 
+                options={options} 
+                isMulti
+                onChange={handleInterestChange}
+                />
                   <label className="labelStyle">Valgte interesser:</label>
                   <div className="selected-interests-box">
                     <div className="selected-interests">
@@ -144,30 +149,30 @@ function UserProfileDetails() {
       <div className="display-mode">
         <h2 className="h2Style">Brugerprofil</h2>
         <div className="grid-container">
-          <div className="item1">
+          <div className="item1 ">
             <img className="imgTest" src="/test.png" alt="user" />
           </div>
-          <div className="item2">
+          <div className="item2 itemStyle">
             <p className="item-title">Brugernavn:</p>
             <p>{userData.userName}</p>
           </div>
-          <div className="item3">
+          <div className="item3 itemStyle">
             <p className="item-title">Førstenavn:</p>
             <p>{userData.firstName}</p>
           </div>
-          <div className="item4">
+          <div className="item4 itemStyle">
             <p className="item-title">Efternavn:</p>
             <p>{userData.lastName}</p>
           </div>
-          <div className="item5">
+          <div className="item5 itemStyle">
             <p className="item-title">Email:</p>
             <p>{userData.email}</p>
           </div>
-          <div className="item6">
+          <div className="item6 itemStyle">
             <p className="item-title">Alder:</p>
             <p>{userData.birthdate}</p>
           </div>
-          <div className="item7">
+          <div className="item7 itemStyle">
             <p className="item-title">Interesser:</p>
             <p>{interests.join(', ')}</p>
           </div>
