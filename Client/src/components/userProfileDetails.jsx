@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select, {StylesConfig} from 'react-select';
 import '../stylesheets/userProfile.css';
 
 
@@ -27,6 +28,14 @@ function UserProfileDetails() {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
+
+  const options = [
+    { value: 'Fodbold', label: 'Fodbold' },
+    { value: 'Hockey', label: 'Hockey' },
+    { value: 'Volley', label: 'Volley' }
+  ]
+
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -108,17 +117,7 @@ function UserProfileDetails() {
                  
                 <label className="labelStyle">Interesser:</label>
                 <div className="interests-container">
-                  <select
-                    name="interests"
-                    value={interests}
-                    onChange={handleInterestChange}
-                    
-                  >
-                    <option value="Fodbold">Fodbold</option>
-                    <option value="Hockey">Hockey</option>
-                    <option value="Volley">Volley</option>
-                  </select>
-
+                <Select options={options} />
                   <label className="labelStyle">Valgte interesser:</label>
                   <div className="selected-interests-box">
                     <div className="selected-interests">
