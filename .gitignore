@@ -1,4 +1,4 @@
 /node_modules/
 .env
 .vscode/
-/Test/test_database/
+/test_database/
