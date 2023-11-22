@@ -1,4 +1,4 @@
-# AbstinenceConnect: A Social Platform for Abstinence Practitioners
+# Reapp: A Social Platform for Abstinence Practitioners
 
 ## Introduction
 
