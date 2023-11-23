@@ -1,7 +1,15 @@
-const express = require("express");
-const routes = const routes = require("./server/routes");
-const app = express();
-const PORT = process.env.PORT || 8080;
+import express from "express";
+import cors from "cors";
+import "dotenv/config.js";
+import router from "./api/router.js";
 
-require ('dotenv').config();
-console.log(process.env)
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(cors());
+app.use(router);
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
