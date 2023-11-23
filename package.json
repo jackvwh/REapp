@@ -4,9 +4,9 @@
   "description": "Application for people with abstinence",
   "type": "module",
   "scripts": {
-    "devfront": "cd Client && npm start",
-    "devback": "cd Server && npm run dev",
-    "dev": "npm run devfront && npm run devback",
+    "client": "cd Client && npm start",
+    "server": "cd Server && npm run dev",
+    "app": "npm run devfront && npm run devback",
     "build": "cd Client && npm run build",
     "postinstall": "cd Server && npm i && cd ../Client && npm i"
   },
