@@ -10,15 +10,15 @@
     "build": "cd Client && npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "format": "prettier --write '**/*.+(js|jsx|json|css|md)'",
     "postinstall": "cd Server && npm i && cd ../Client && npm i"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.5.1",
-    "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
@@ -40,8 +40,14 @@
     }
   },
   "lint-staged": {
-    "*.+(js|jsx)": ["eslint --fix", "git add"],
-    "*.+(json|css|md)": ["prettier --write", "git add"]
+    "*.+(js|jsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "prettier": {
     "trailingComma": "es5",
@@ -49,6 +55,7 @@
     "arrowParens": "avoid",
     "semi": true,
     "singleQuote": true,
-    "printWidth": 85
-  }  
+    "printWidth": 85,
+    "jsxBracketSameLine": true
+  }
 }
