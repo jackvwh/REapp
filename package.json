@@ -6,7 +6,7 @@
   "scripts": {
     "client": "cd Client && npm start",
     "server": "cd Server && npm run dev",
-    "app": "npm run devfront && npm run devback",
+    "app": "npm run client && npm run server",
     "build": "cd Client && npm run build",
     "postinstall": "cd Server && npm i && cd ../Client && npm i"
   },
