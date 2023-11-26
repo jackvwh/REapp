@@ -1,19 +1,18 @@
 
   import {
-    createUser_db,
-    deleteUser_db,
-    readUserById_db,
-    readAllUsers_db,
-    updateUser_db,
-  } from '../models/albums.models.js';
+    UserModels
+  } from '../Models/users.models.js';
   
   class UserController {
+    constructor() {
+      this.userModels = new UserModels();
+    }
     async updateUser(req, res) {
       const id = req.params.id;
       const { image, userName, firstName,lastName, email, birthdate, interests } = req.body;
   
       try {
-        const updatedUser = await updateUser_db(
+        const updatedUser = await this.UserModels.updateUser(
           id,
           image,
           userName,
@@ -30,11 +29,11 @@
       }
     }
   
-    deleteUser(req, res) {
+    async deleteUser(req, res) {
       const id = req.params.id;
   
       try {
-        const deletedUser = deleteUser_db(id);
+        const deletedUser = await this.UserModels.deleteUser(id);
         res.status(200).json(deletedUser);
       } catch (err) {
         console.error(err);
