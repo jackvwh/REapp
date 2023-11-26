@@ -1,4 +1,4 @@
-class REappUserController {
+class UserModels {
   async query(sql, params) {
     return new Promise((resolve, reject) => {
       connection.query(sql, params, (err, results) => {
@@ -50,4 +50,4 @@ class REappUserController {
   }
 }
 
-export default REappUserController;
+export default UserModels;

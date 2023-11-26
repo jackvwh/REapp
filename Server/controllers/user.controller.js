@@ -1,8 +1,8 @@
-import REappUserController from "../Models/user.model.js";
+import UserModel from "../Models/user.model.js";
 
 class UserController {
   constructor() {
-    this.UserController = new REappUserController();
+    this.UserController = new UserModel();
   }
 
   async createUser(req, res) {
