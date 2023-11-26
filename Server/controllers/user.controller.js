@@ -26,12 +26,14 @@ class UserController {
         email,
         birthdate,
         privilege,
-        signup_date,
+        signup_date
       );
       res.send(result);
     } catch (error) {
-      console.error('error creating user', error);
+      console.error("error creating user", error);
       throw error;
     }
   }
 }
+
+export default UserController;
