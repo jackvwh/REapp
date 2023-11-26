@@ -1,8 +1,8 @@
 import REappUserController from "../Models/user.model.js";
 
-class ArtistController {
+class UserController {
   constructor() {
-    this.ArtistController = new REappUserController();
+    this.UserController = new REappUserController();
   }
 
   async createUser(req, res) {
@@ -18,7 +18,7 @@ class ArtistController {
     } = req.body;
 
     try {
-      const result = await this.ArtistController.createUser(
+      const result = await this.UserController.createUser(
         username,
         password,
         first_name,
