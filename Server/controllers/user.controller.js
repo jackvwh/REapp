@@ -7,6 +7,37 @@
     constructor() {
       this.userModels = new UserModels();
     }
+
+    async createUser(req, res) {
+      const {
+        username,
+        password,
+        first_name,
+        last_name,
+        email,
+        birthdate,
+        privilege,
+        signup_date,
+      } = req.body;
+  
+      try {
+        const newUser = await this.UserModels.createUser(
+          username,
+          password,
+          first_name,
+          last_name,
+          email,
+          birthdate,
+          privilege,
+          signup_date
+        );
+        res.status(200).json(newUser);
+      } catch (error) {
+        console.error("error creating user", error);
+        res.status(500).json({ error: 'An error occurred while creating a user' });
+      }
+    }
+  
     async updateUser(req, res) {
       const id = req.params.id;
       const { image, userName,password, firstName,lastName, email, birthdate, interests } = req.body;
@@ -48,3 +79,4 @@
 
 
   
+

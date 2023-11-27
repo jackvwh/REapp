@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import HomePage from './pages/homepage.jsx';
 import reportWebVitals from './reportWebVitals';
 import UserProfile from "./pages/userProfile.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    < UserProfile/>
+    <UserProfile />
+    <HomePage />
   </React.StrictMode>
 );
 
