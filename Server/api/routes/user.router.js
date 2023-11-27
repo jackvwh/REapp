@@ -1,5 +1,5 @@
-import { Router } from "express";
+import { Router } from 'express';
 
 //import from Server/controllers/users.controller.js
 
-export default Router().get("/", users);
+export default Router().get('/', users);

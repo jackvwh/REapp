@@ -5,8 +5,8 @@ services:
     image: mysql
     restart: always
     volumes:
-      - ./test_database/test_data/mysql_db:/var/lib/mysql
-      - ./test_database/DDL_schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ../test_database/test_data/mysql_db:/var/lib/mysql
+      - ../test_database/DDL_schema.sql:/docker-entrypoint-initdb.d/schema.sql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user

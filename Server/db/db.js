@@ -1,11 +1,16 @@
-import mysql from "mysql2";
-import "dotenv/config";
+import mysql from 'mysql2';
+import 'dotenv/config';
 
 const dbconfig = {
+  // eslint-disable-next-line no-undef
   host: process.env.MYSQL_HOST,
+  // eslint-disable-next-line no-undef
   port: process.env.MYSQL_PORT,
+  // eslint-disable-next-line no-undef
   user: process.env.MYSQL_USER,
+  // eslint-disable-next-line no-undef
   password: process.env.MYSQL_PASSWORD,
+  // eslint-disable-next-line no-undef
   database: process.env.MYSQL_DATABASE,
   multipleStatements: true,
   waitForConnections: true,
@@ -17,6 +22,11 @@ const dbconfig = {
   keepAliveInitialDelay: 0,
 };
 
-const connection = mysql.createPool(dbconfig);
-
-export default connection;
+const mysqlConnection = mysql.createPool(dbconfig).getConnection(err => {
+  if (err) {
+    console.log('Error connecting to database', err);
+  } else {
+    console.log('Connected to database');
+  }
+});
+export default mysqlConnection;
