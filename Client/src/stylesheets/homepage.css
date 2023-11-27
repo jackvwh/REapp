@@ -1,5 +1,5 @@
 /*----------Google Fonts----------*/
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
 
 .home-page-picture-container {
   position: absolute;
@@ -30,7 +30,7 @@
   position: relative;
   font-size: 10vh;
   left: -5vw;
-  font-family: "Bebas Neue", cursive;
+  font-family: 'Bebas Neue', cursive;
   font-style: italic;
   color: white;
   -webkit-text-stroke: 0.15vh;
@@ -40,9 +40,9 @@
 .create-user-container {
   position: relative;
   font-size: 3vh;
-  font-family: "Roboto", sans-serif;
-  background-color: #87CEEB;
-  color: #2B2A4C;
+  font-family: 'Roboto', sans-serif;
+  background-color: #87ceeb;
+  color: #2b2a4c;
   border-radius: 1vw;
   width: 33vw;
   height: 43vh;
@@ -74,19 +74,19 @@
   font-size: 1vw;
 }
 
-input[type="date"]{
+input[type='date'] {
   position: relative;
   top: 0.5vh;
   background-color: white;
   padding: 0.3vw;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: black;
   font-size: 1rem;
   border: none;
   outline: none;
   border-radius: 5px;
 }
-::-webkit-calendar-picker-indicator{
+::-webkit-calendar-picker-indicator {
   background-color: #ffffff;
   padding: 5px;
   cursor: pointer;
@@ -117,7 +117,7 @@ input[type="date"]{
   font-size: 1.2vw;
   margin: 0%;
   height: 3vh;
-  color: #2B2A4C;
+  color: #2b2a4c;
 }
 
 .login-button {
@@ -152,7 +152,7 @@ input[type="date"]{
 .home-page-icon-text {
   font-size: 2vw;
   margin-top: 0%;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .birthdate-styling {
@@ -161,7 +161,6 @@ input[type="date"]{
   top: 0.5vh;
   margin-right: 0.5vw;
 }
-
 
 /* CSS button */
 .button-30 {
@@ -178,7 +177,7 @@ input[type="date"]{
   color: #36395a;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'JetBrains Mono', monospace;
   justify-content: center;
   line-height: 1;
   list-style: none;

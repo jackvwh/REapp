@@ -1,6 +1,6 @@
-import React from "react";
-import LoginModal from "./loginForm";
-import "../../stylesheets/homepage.css";
+import React from 'react';
+import LoginModal from './loginForm';
+import '../../stylesheets/homepage.css';
 
 function CreateUserForm() {
   return (
@@ -48,7 +48,9 @@ function CreateUserForm() {
               placeholder="Adgangskode"
             />
             <br />
-            <label htmlFor="birthdate" className="birthdate-styling">Fødselsdag:</label>
+            <label htmlFor="birthdate" className="birthdate-styling">
+              Fødselsdag:
+            </label>
             <input className="birthdate-input-field" name="birthdate" type="date" />
             <div className="create-user-button-container">
               <button type="submit" className="button-30 create-user-button">

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "../../stylesheets/homepage.css";
+import React, { useState } from 'react';
+import '../../stylesheets/homepage.css';
 
 function LoginModal() {
   const [showModal, setShowModal] = useState(false);
@@ -45,7 +45,7 @@ function LoginModal() {
                   placeholder="Adgangskode"
                 />
                 <br />
-            <button className="button-30 login-button">Log ind</button>
+                <button className="button-30 login-button">Log ind</button>
               </form>
             </div>
             <div className="modal-footer">

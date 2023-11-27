@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Select  from 'react-select';
+import Select from 'react-select';
 import '../stylesheets/userProfile.css';
-
 
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
@@ -10,12 +9,12 @@ function UserProfileDetails() {
     firstName: '',
     lastName: '',
     email: '',
-    birthdate: ''
+    birthdate: '',
   });
 
   const [interests, setInterests] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let selectedOptions = []
+  let selectedOptions = [];
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -24,7 +23,7 @@ function UserProfileDetails() {
     setIsModalOpen(false);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
@@ -32,12 +31,10 @@ function UserProfileDetails() {
   const options = [
     { value: 'Fodbold', label: 'Fodbold' },
     { value: 'Hockey', label: 'Hockey' },
-    { value: 'Volley', label: 'Volley' }
-  ]
+    { value: 'Volley', label: 'Volley' },
+  ];
 
-
-
-  const handleImageChange = (e) => {
+  const handleImageChange = e => {
     const file = e.target.files[0];
 
     if (file) {
@@ -48,10 +45,9 @@ function UserProfileDetails() {
       reader.readAsDataURL(file);
     }
   };
-  const handleInterestChange = (e) => {
-   console.log(e);
-     selectedOptions = Array.from(e, (option) => option.value);
-    
+  const handleInterestChange = e => {
+    console.log(e);
+    selectedOptions = Array.from(e, option => option.value);
   };
 
   const saveChanges = () => {
@@ -69,11 +65,7 @@ function UserProfileDetails() {
               <h2 className="h2Style">Rediger</h2>
               <form>
                 <label className="labelStyle">Billede</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
+                <input type="file" accept="image/*" onChange={handleImageChange} />
                 <img src={userData.image} alt="" className="imgStyle" />
 
                 <label className="labelStyle">Brugernavn:</label>
@@ -115,14 +107,14 @@ function UserProfileDetails() {
                   value={userData.birthdate}
                   onChange={handleInputChange}
                 />
-                 
+
                 <label className="labelStyle">Interesser:</label>
                 <div className="interests-container">
-                <Select 
-                options={options} 
-                isMulti
-                onChange={handleInterestChange}
-                />
+                  <Select
+                    options={options}
+                    isMulti
+                    onChange={handleInterestChange}
+                  />
                   <label className="labelStyle">Valgte interesser:</label>
                   <div className="selected-interests-box">
                     <div className="selected-interests">
@@ -145,7 +137,6 @@ function UserProfileDetails() {
         </div>
       )}
 
-   
       <div className="display-mode">
         <h2 className="h2Style">Brugerprofil</h2>
         <div className="grid-container">
@@ -188,6 +179,3 @@ function UserProfileDetails() {
 }
 
 export default UserProfileDetails;
-
-
-

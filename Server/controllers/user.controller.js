@@ -1,11 +1,9 @@
-import { UserModels } from "../Models/users.models.js";
+import  UserModels  from '../Models/users.models.js';
 
-class UserController {
-  constructor() {
-    this.userModels = new UserModels();
-  }
 
-  async createUser(req, res) {
+export default class UserController {
+  
+  static async createUser(req, res) {
     const {
       username,
       password,
@@ -18,7 +16,7 @@ class UserController {
     } = req.body;
 
     try {
-      const newUser = await this.UserModels.createUser(
+      const newUser = await UserModels.createUser(
         username,
         password,
         first_name,
@@ -30,14 +28,12 @@ class UserController {
       );
       res.status(200).json(newUser);
     } catch (error) {
-      console.error("error creating user", error);
-      res
-        .status(500)
-        .json({ error: "An error occurred while creating a user" });
+      console.error('error creating user', error);
+      res.status(500).json({ error: 'An error occurred while creating a user' });
     }
   }
 
-  async updateUser(req, res) {
+  static async updateUser(req, res) {
     const id = req.params.id;
     const {
       image,
@@ -51,7 +47,7 @@ class UserController {
     } = req.body;
 
     try {
-      const updatedUser = await this.UserModels.updateUser(
+      const updatedUser = await UserModels.updateUser(
         id,
         image,
         userName,
@@ -65,21 +61,21 @@ class UserController {
       res.status(200).json(updatedUser);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "An error occurred while updating user" });
+      res.status(500).json({ error: 'An error occurred while updating user' });
     }
   }
 
-  async deleteUser(req, res) {
+  static async deleteUser(req, res) {
     const id = req.params.id;
 
     try {
-      const deletedUser = await this.UserModels.deleteUser(id);
+      const deletedUser = await UserModels.deleteUser(id);
       res.status(200).json(deletedUser);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "An error occurred while deleting user" });
+      res.status(500).json({ error: 'An error occurred while deleting user' });
     }
   }
 }
 
-export default new UserController();
+

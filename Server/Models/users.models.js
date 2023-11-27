@@ -44,7 +44,7 @@ class UserModels {
       ]);
       return result;
     } catch (error) {
-      console.error("error creating user", error);
+      console.error('error creating user', error);
       throw error;
     }
   }
@@ -89,7 +89,7 @@ class UserModels {
 
       return results;
     } catch (error) {
-      console.error("Error updating user profile:", error);
+      console.error('Error updating user profile:', error);
       throw error;
     }
   }
@@ -110,7 +110,7 @@ class UserModels {
 
       return results;
     } catch (error) {
-      console.error("Error deleting user profile:", error);
+      console.error('Error deleting user profile:', error);
       throw error;
     }
   }

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import   userRouter  from './user.router.js';
+import userRouter from './routes/user.router.js';
 // import homeRouter from "./routes/home.router";
 // import userRouter from "./routes/user.router";
 // import chatRouter from "./routes/chat.router";
@@ -9,8 +9,8 @@ import   userRouter  from './user.router.js';
 // import surveyRouter from "./routes/survey.router";
 
 export default Router()
-//   .use("/", homeRouter)
-  .use("/users", userRouter);
+  //   .use("/", homeRouter)
+  .use('/users', userRouter);
 //   .use("/chat", chatRouter);
 //   .use("/login", loginRouter);
 //   .use("/signup", signupRouter);
