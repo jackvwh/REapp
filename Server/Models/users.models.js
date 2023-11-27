@@ -1,6 +1,64 @@
 class UserModels {
-    async updateUser(profileId, username, password, firstName, lastName, email, birthdate, activities) {
-      const sql = `
+  async query(sql, params) {
+    return new Promise((resolve, reject) => {
+      connection.query(sql, params, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
+
+  async createUser(
+    username,
+    password,
+    first_name,
+    last_name,
+    email,
+    birthdate,
+    privilege,
+    signup_date
+  ) {
+    const sql = ` 
+        START TRANSACTION;
+        INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege, signup_date)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+        
+        SET @last_id = LAST_INSERT_ID();
+
+        COMMIT;
+      `;
+
+    try {
+      const result = await query(sql, [
+        username,
+        password,
+        first_name,
+        last_name,
+        email,
+        birthdate,
+        privilege,
+        signup_date,
+      ]);
+      return result;
+    } catch (error) {
+      console.error("error creating user", error);
+      throw error;
+    }
+  }
+  async updateUser(
+    profileId,
+    username,
+    password,
+    firstName,
+    lastName,
+    email,
+    birthdate,
+    activities
+  ) {
+    const sql = `
         START TRANSACTION;
     
         UPDATE user_profiles 
@@ -14,30 +72,30 @@ class UserModels {
     
         COMMIT;
       `;
-  
-      try {
-        const results = await query(sql, [
-          username,
-          password,
-          firstName,
-          lastName,
-          email,
-          birthdate,
-          profileId,
-          profileId,
-          profileId,
-          activities,
-        ]);
-  
-        return results;
-      } catch (error) {
-        console.error('Error updating user profile:', error);
-        throw error;
-      }
+
+    try {
+      const results = await query(sql, [
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+        birthdate,
+        profileId,
+        profileId,
+        profileId,
+        activities,
+      ]);
+
+      return results;
+    } catch (error) {
+      console.error("Error updating user profile:", error);
+      throw error;
     }
-  
-    async deleteUser(profileId) {
-      const sql = `
+  }
+
+  async deleteUser(profileId) {
+    const sql = `
         START TRANSACTION;
     
         DELETE FROM user_activities WHERE profile_id = ?;
@@ -46,20 +104,16 @@ class UserModels {
     
         COMMIT;
       `;
-  
-      try {
-        const results = await query(sql, [profileId, profileId]);
-  
-        return results;
-      } catch (error) {
-        console.error('Error deleting user profile:', error);
-        throw error;
-      }
+
+    try {
+      const results = await query(sql, [profileId, profileId]);
+
+      return results;
+    } catch (error) {
+      console.error("Error deleting user profile:", error);
+      throw error;
     }
   }
-  
+}
 
-  const userProfileManager = new UserProfileManager();
-  userProfileManager.updateUser
-  userProfileManager.deleteUser
-  
+export default UserModels;
