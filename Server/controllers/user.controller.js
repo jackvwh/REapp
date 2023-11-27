@@ -9,13 +9,14 @@
     }
     async updateUser(req, res) {
       const id = req.params.id;
-      const { image, userName, firstName,lastName, email, birthdate, interests } = req.body;
+      const { image, userName,password, firstName,lastName, email, birthdate, interests } = req.body;
   
       try {
         const updatedUser = await this.UserModels.updateUser(
           id,
           image,
           userName,
+          password,
           firstName,
           lastName,
           email,
