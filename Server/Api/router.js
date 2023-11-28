@@ -13,4 +13,4 @@ export default Router()
   .get('/', homeRouter)
   .use('/feedback', feedbackRouter)
   .use('/surveys/', surveyRouter)
-  .use('/questions', questionRouter)
+  .use('/questions', questionRouter);

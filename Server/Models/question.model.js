@@ -14,7 +14,6 @@ async function query(sql, params) {
 
 export default class QuestionModels {
   static async getAll() {
-    console.log('QuestionModels get all');
     const sql = 'SELECT * FROM questions';
     try {
       const result = await query(sql);

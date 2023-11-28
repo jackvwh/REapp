@@ -24,7 +24,33 @@ export default class SurveyModels {
 
     try {
       const result = await query(sql);
-      return result;
+      // convert the flat array of rows into an array of surveys
+      const surveys = [];
+      while (result.length > 0) {
+        const survey = {
+          survey_id: result[0].survey_id,
+          survey_title: result[0].survey_title,
+          description: result[0].description,
+          created_at: result[0].created_at,
+          questions: [],
+        };
+
+        while (result.length > 0 && result[0].survey_id === survey.survey_id) {
+          const question = {
+            question_id: result[0].question_id,
+            question_text: result[0].question_text,
+            answer_type: result[0].answer_type,
+            combined_at: result[0].combined_at,
+          };
+
+          survey.questions.push(question);
+          result.shift();
+        }
+
+        surveys.push(survey);
+      }
+
+      return surveys;
     } catch (error) {
       throw new Error(error);
     }
@@ -42,7 +68,26 @@ export default class SurveyModels {
 
     try {
       const result = await query(sql, [id]);
-      return result;
+      // convert the flat array of rows into survey object
+      const survey = {
+        survey_id: result[0].survey_id,
+        survey_title: result[0].survey_title,
+        description: result[0].description,
+        created_at: result[0].created_at,
+        questions: [],
+      };
+      while (result.length > 0) {
+        const question = {
+          question_id: result[0].question_id,
+          question_text: result[0].question_text,
+          answer_type: result[0].answer_type,
+          combined_at: result[0].combined_at,
+        };
+
+        survey.questions.push(question);
+        result.shift();
+      }
+      return survey;
     } catch (error) {
       throw new Error(error);
     }
