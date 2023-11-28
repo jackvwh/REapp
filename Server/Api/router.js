@@ -10,7 +10,7 @@ import questionRouter from './routes/question.router.js';
 // import calenderRouter from "./routes/calender.router";
 
 export default Router()
-  .use('/', homeRouter)
+  .get('/', homeRouter)
   .use('/feedback', feedbackRouter)
-  .use('/surveys', surveyRouter)
-  .use('/questions', questionRouter);
+  .use('/surveys/', surveyRouter)
+  .use('/questions', questionRouter)
