@@ -10,7 +10,7 @@ export default class QuestionController {
       const result = await QuestionModels.getAll();
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Error fetching questions' });
+      res.status(500).json({ error: 'Error fetching questions' + error});
     }
   }
 
@@ -20,7 +20,7 @@ export default class QuestionController {
       const result = await QuestionModels.getOne(id);
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Error fetching question' });
+      res.status(500).json({ error: 'Error fetching question' + error });
     }
   }
 
@@ -33,7 +33,7 @@ export default class QuestionController {
       const result = await QuestionModels.createOne(question, answerType);
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Error creating question' });
+      res.status(500).json({ error: 'Error creating question' + error });
     }
   }
 
@@ -47,7 +47,7 @@ export default class QuestionController {
       const result = await QuestionModels.updateOne(id, question, answerType);
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Error updating question' });
+      res.status(500).json({ error: 'Error updating question' + error });
     }
   }
 
@@ -56,7 +56,7 @@ export default class QuestionController {
       const result = await QuestionModels.deleteOne(req.params.id);
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Error deleting question' });
+      res.status(500).json({ error: 'Error deleting question' + error });
     }
   }
 }
