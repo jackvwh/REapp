@@ -123,13 +123,8 @@ function UserProfileDetails() {
                 isMulti
                 onChange={handleInterestChange}
                 />
-                  <label className="labelStyle">Valgte interesser:</label>
-                  <div className="selected-interests-box">
-                    <div className="selected-interests">
-                      {interests.length > 0 && interests.join(', ')}
-                    </div>
-                  </div>
                 </div>
+                
 
                 <div>
                   <button className="button" onClick={saveChanges}>

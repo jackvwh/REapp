@@ -1,4 +1,11 @@
-/* UserProfileHeader.css */
+
+.display-mode {
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 
 .user-profile-header {
     background-color: #3498db;
@@ -13,21 +20,22 @@
     margin: 0;
   }
   
-  .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .button  {
-    margin: 1%; 
-    padding: 0.5rem; 
-    background-color: #3498db;
-    color: #e5e9ec;
-    border: none;
-    cursor: pointer;
-  }
-  
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+.button {
+  margin-top: 1rem; 
+  padding: 0.75rem 1.5rem; 
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 25px; 
+  cursor: pointer;
+}
 
 
   .modal-container {
@@ -41,7 +49,7 @@
     max-height: 80%; 
     overflow: auto; 
     border: 0.1rem solid #ddd; 
-    padding: 3rem; 
+    padding: 4rem; 
   }
   
   
@@ -123,14 +131,6 @@
 
 
 
-.item2:hover,
-.item3:hover,
-.item4:hover,
-.item5:hover,
-.item6:hover,
-.item7:hover {
-  transform: scale(1.05);
-}
 
     
     
