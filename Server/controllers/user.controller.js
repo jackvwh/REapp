@@ -37,7 +37,7 @@ export default class UserController {
     const id = req.params.id;
     const {
       image,
-      userName,
+      username,
       password,
       first_name,
       last_name,
@@ -50,7 +50,7 @@ export default class UserController {
       const updatedUser = await UserModels.updateUser(
         id,
         image,
-        userName,
+        username,
         password,
         first_name,
         last_name,
