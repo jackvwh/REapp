@@ -1,7 +1,9 @@
+import mysqlConnection from "../Db/db.js";
+
 class UserModels {
-  async query(sql, params) {
+  static async query(sql, params) {
     return new Promise((resolve, reject) => {
-      connection.query(sql, params, (err, results) => {
+      mysqlConnection.query(sql, params, (err, results) => {
         if (err) {
           reject(err);
         } else {
@@ -11,7 +13,7 @@ class UserModels {
     });
   }
 
-  async createUser(
+  static async createUser(
     username,
     password,
     first_name,
@@ -32,7 +34,7 @@ class UserModels {
       `;
 
     try {
-      const result = await query(sql, [
+      const result = await this.query(sql, [
         username,
         password,
         first_name,
@@ -48,12 +50,12 @@ class UserModels {
       throw error;
     }
   }
-  async updateUser(
+  static async updateUser(
     profileId,
     username,
     password,
-    firstName,
-    lastName,
+    first_name,
+    last_name,
     email,
     birthdate,
     activities
@@ -74,11 +76,11 @@ class UserModels {
       `;
 
     try {
-      const results = await query(sql, [
+      const results = await this.query(sql, [
         username,
         password,
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         email,
         birthdate,
         profileId,
@@ -94,7 +96,7 @@ class UserModels {
     }
   }
 
-  async deleteUser(profileId) {
+  static async deleteUser(profileId) {
     const sql = `
         START TRANSACTION;
     
@@ -106,7 +108,7 @@ class UserModels {
       `;
 
     try {
-      const results = await query(sql, [profileId, profileId]);
+      const results = await this.query(sql, [profileId, profileId]);
 
       return results;
     } catch (error) {

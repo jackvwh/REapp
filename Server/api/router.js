@@ -10,7 +10,7 @@ import userRouter from './routes/user.router.js';
 
 export default Router()
   //   .use("/", homeRouter)
-  .use('/users', userRouter);
+  .use('/user', userRouter);
 //   .use("/chat", chatRouter);
 //   .use("/login", loginRouter);
 //   .use("/signup", signupRouter);
