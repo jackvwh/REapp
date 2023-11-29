@@ -21,12 +21,11 @@ class UserModels {
     email,
     birthdate,
     privilege,
-    signup_date
   ) {
     const sql = ` 
         START TRANSACTION;
-        INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege, signup_date)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+        INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
+        VALUES (?, ?, ?, ?, ?, ?, ?);
         
         SET @last_id = LAST_INSERT_ID();
 
@@ -42,7 +41,6 @@ class UserModels {
         email,
         birthdate,
         privilege,
-        signup_date,
       ]);
       return result;
     } catch (error) {
