@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import homeRouter from './routes/home.router.js';
+import userRouter from './routes/user.router.js';
 import feedbackRouter from './routes/feedback.router.js';
 import surveyRouter from './routes/survey.router.js';
 import questionRouter from './routes/question.router.js';
