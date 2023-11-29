@@ -1,18 +1,13 @@
 import { Router } from 'express';
-import userRouter from './routes/user.router.js';
-// import homeRouter from "./routes/home.router";
-// import userRouter from "./routes/user.router";
-// import chatRouter from "./routes/chat.router";
-// import loginRouter from "./routes/login.router";
-// import signupRouter from "./routes/signup.router";
-// import calenderRouter from "./routes/calender.router";
-// import surveyRouter from "./routes/survey.router";
+import homeRouter from './routes/home.router.js';
+import feedbackRouter from './routes/feedback.router.js';
+import surveyRouter from './routes/survey.router.js';
+import questionRouter from './routes/question.router.js';
+import testdataController from '../Controllers/test.controller.js';
 
 export default Router()
-  //   .use("/", homeRouter)
-  .use('/user', userRouter);
-//   .use("/chat", chatRouter);
-//   .use("/login", loginRouter);
-//   .use("/signup", signupRouter);
-//   .use("/calender", calenderRouter);
-//   .use("/survey", surveyRouter);
+  .get('/', homeRouter)
+  .use('/feedback', feedbackRouter)
+  .use('/surveys/', surveyRouter)
+  .use('/questions', questionRouter)
+  .use('/testdata', testdataController.insertTestData);
