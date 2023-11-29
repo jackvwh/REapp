@@ -47,7 +47,7 @@ class UserModels {
       return result;
     } catch (error) {
       console.error('error creating user', error);
-      throw error;
+      throw new error;
     }
   }
   static async updateUser(
@@ -70,7 +70,7 @@ class UserModels {
         DELETE FROM user_activities WHERE profile_id = ?;
         
         INSERT INTO user_activities (profile_id, activity_id) 
-        SELECT ?, id FROM activities WHERE activity_type IN (?);
+        SELECT ?, activity_id FROM activities WHERE activity_type IN (?);
     
         COMMIT;
       `;
@@ -92,7 +92,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error updating user profile:', error);
-      throw error;
+      throw new error;
     }
   }
 
@@ -113,7 +113,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error deleting user profile:', error);
-      throw error;
+      throw new error;
     }
   }
 }

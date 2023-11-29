@@ -59,9 +59,9 @@ export default class UserController {
         interests
       );
       res.status(200).json(updatedUser);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'An error occurred while updating user' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while updating user' + error});
     }
   }
 
@@ -71,8 +71,8 @@ export default class UserController {
     try {
       const deletedUser = await UserModels.deleteUser(id);
       res.status(200).json(deletedUser);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'An error occurred while deleting user' });
     }
   }
