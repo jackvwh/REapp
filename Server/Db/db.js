@@ -13,18 +13,15 @@ const dbconfig = {
   // eslint-disable-next-line no-undef
   database: process.env.MYSQL_DATABASE,
   multipleStatements: true,
-  
 };
 
 const mysqlConnection = mysql.createConnection(dbconfig);
 
-mysqlConnection.connect(function(err) {
+mysqlConnection.connect(function (err) {
   if (err) {
     return console.error('error: ' + err.message);
   }
-
   console.log('Connected to the MySQL server.');
 });
-
 
 export default mysqlConnection;
