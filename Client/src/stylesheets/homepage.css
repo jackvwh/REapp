@@ -1,0 +1,219 @@
+/*----------Google Fonts----------*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+
+.home-page-picture-container {
+  position: absolute;
+  overflow: hidden;
+  width: auto;
+  height: 55vh;
+}
+
+.home-page-picture {
+  position: relative;
+  width: 100vw;
+  height: auto;
+  overflow: hidden;
+  z-index: 998;
+}
+
+.title-and-login-container {
+  position: absolute;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  align-items: center;
+  justify-items: center;
+}
+
+.reapp-logo-container {
+  position: relative;
+  font-size: 10vh;
+  left: -5vw;
+  font-family: 'Bebas Neue', cursive;
+  font-style: italic;
+  color: white;
+  -webkit-text-stroke: 0.15vh;
+  -webkit-text-stroke-color: black;
+}
+
+.create-user-container {
+  position: relative;
+  font-size: 3vh;
+  font-family: 'Roboto', sans-serif;
+  background-color: #87ceeb;
+  color: #2b2a4c;
+  border-radius: 1vw;
+  width: 33vw;
+  height: 43vh;
+  text-align: center;
+}
+
+.create-user-container > h2 {
+  margin: 1vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+}
+
+.input-field {
+  width: 20vw;
+  height: 3vh;
+  font-size: 1vw;
+  border-radius: 0.5vh;
+  border-style: none;
+  padding-left: 1ch;
+}
+.name-input-field {
+  width: 8.8vw;
+  border-radius: 0.5vh;
+  border-style: none;
+  padding-left: 1ch;
+  height: 3vh;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  font-size: 1vw;
+}
+
+input[type='date'] {
+  position: relative;
+  top: 0.5vh;
+  background-color: white;
+  padding: 0.3vw;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator {
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.create-user-button-container {
+  position: relative;
+  top: 1.5vh;
+}
+
+.create-user-button {
+  position: relative;
+  top: 1vh;
+  font-size: 1.2vw;
+  padding: 1.2vw;
+  height: 3vh;
+}
+
+.login-button-container {
+  position: relative;
+  top: 2vh;
+}
+
+.login-button-container > p {
+  position: relative;
+  top: 2vh;
+  font-size: 1.2vw;
+  margin: 0%;
+  height: 3vh;
+  color: #2b2a4c;
+}
+
+.login-button {
+  position: relative;
+  top: 1vh;
+  font-size: 0.5vw;
+  padding: 1vh;
+  height: 1vh;
+}
+
+.close-login-modal-button {
+  font-size: 1.2vw;
+}
+
+.home-page-icon-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  top: 60vh;
+  width: 100vw;
+}
+
+.home-page-icon-image {
+  position: relative;
+  width: 10vw;
+  height: 10vw;
+  background-color: white;
+  margin: 1vw;
+}
+
+.home-page-icon-text {
+  font-size: 2vw;
+  margin-top: 0%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.birthdate-styling {
+  position: relative;
+  font-size: 1vw;
+  top: 0.5vh;
+  margin-right: 0.5vw;
+}
+
+/* CSS button */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395a;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'JetBrains Mono', monospace;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    box-shadow 0.15s,
+    transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+}
+
+.button-30:focus {
+  box-shadow:
+    #d6d6e7 0 0 0 1.5px inset,
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
