@@ -11,4 +11,5 @@ export default Router()
   .use('/feedback', feedbackRouter)
   .use('/surveys/', surveyRouter)
   .use('/questions', questionRouter)
-  .use('/testdata', testdataController.insertTestData);
+  .use('/testdata', testdataController.insertTestData)
+  .use('/user', userRouter)
