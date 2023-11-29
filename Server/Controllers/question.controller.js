@@ -5,7 +5,6 @@ const answerTypes = ['text', 'boolean', '1-5', '1-10', 'number'];
 
 export default class QuestionController {
   static async getAll(req, res) {
-    console.log('QuestionController get alll');
     try {
       const result = await QuestionModels.getAll();
       res.status(200).json(result);
