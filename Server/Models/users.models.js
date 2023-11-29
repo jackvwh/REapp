@@ -55,8 +55,9 @@ class UserModels {
     first_name,
     last_name,
     email,
-    birthdate,
-    activities
+    activities,
+    birthdate
+    
   ) {
     const sql = `
         START TRANSACTION;
@@ -85,6 +86,7 @@ class UserModels {
         profileId,
         profileId,
         activities,
+        
       ]);
 
       return results;
