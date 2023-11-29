@@ -2,12 +2,15 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-//we are missing cors
+import cors from 'cors';
 dotenv.config();
-//const routes = routes = require("./api/server/router");
+import routes from './api/router.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(cors());
+app.use(express.json());
+app.use(routes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
