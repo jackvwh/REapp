@@ -3,9 +3,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cors from 'cors';
-dotenv.config();
 import routes from './api/router.js';
+dotenv.config();
 const app = express();
+//eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 8080;
 
 app.use(cors());
