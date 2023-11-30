@@ -1,49 +1,33 @@
-import AnswerModels from '../Models/answer.model.js';
 import FeedbackModels from '../Models/feedback.model.js';
 
 export default class FeedbackController {
-  static async apiGetAllFeedbacksFromOneProfile(req, res, next) {
+  static async getAllFeedbacks(req, res) {
     try {
-      const { id } = req.params;
-      const result = await FeedbackModels.getAllFeedbacksFromOneProfile(id);
+      const result = await FeedbackModels.getAllFeedbacks();
       res.json(result);
     } catch (error) {
       res.status(500).json({ error: error });
     }
   }
-  static async apiGetOneFeedbackFromOneProfile(req, res) {
+
+  static async getAllFeedbacksFromOneProfile(req, res) {
     try {
-      const { userId, surveyId } = req.params;
-      const result = await FeedbackModels.getOneFeedbackFromOneProfile(
-        userId,
-        surveyId
-      );
+      const { userId } = req.params;
+      const result = await FeedbackModels.getAllFeedbacksFromOneProfile(userId);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  }
+  static async getOneFeedbackFromOneProfile(req, res) {
+    try {
+      const { feedbackId } = req.params;
+      const result = await FeedbackModels.getOneFeedbackFromOneProfile(feedbackId);
       res.json(result);
     } catch (error) {
       res.status(500).json({ error: ' Error getting user feedback ' + error });
     }
   }
-  static async apiInsertAnswers(req, res) {
-    console.log(req.body);
-    const { feedbackId } = req.params;
-    const { answers } = req.body;
-    try {
-      const result = await AnswerModels.insertAnswers(feedbackId, answers);
-      res.json(result);
-    } catch (error) {
-      res.status(500).json({ error: ' Error inserting feedback answers- ' + error });
-    }
-  }
-  static async apiGetAllAnswersFromOneProfile(req, res, next) {
-    try {
-      const { id } = req.params;
-      const result = await AnswerModels.getAllAnswersFromOneProfile(id);
-      res.json(result);
-    } catch (error) {
-      res.status(500).json({ error: error });
-    }
-  }
-
   static async createOne(req, res) {
     const { userId, surveyId } = req.params;
     try {
@@ -55,11 +39,24 @@ export default class FeedbackController {
   }
 
   static async deleteOne(req, res) {
+    const { feedbackId } = req.params;
     try {
-      const result = await FeedbackModels.deleteOne(req.params.feedbackId);
+      const result = await FeedbackModels.deleteFeedback(feedbackId);
       res.json(result);
     } catch (error) {
-      res.status(500).json({ error: error });
+      res.status(500).json({ error: ' Error deleting feedback record - ' + error });
+    }
+  }
+
+  static async insertFeedbackAnswers(req, res) {
+    console.log(req.body);
+    const { feedbackId } = req.params;
+    const { answers } = req.body;
+    try {
+      const result = await FeedbackModels.insertFeedbackAnswers(feedbackId, answers);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: ' Error inserting feedback answers- ' + error });
     }
   }
 }
