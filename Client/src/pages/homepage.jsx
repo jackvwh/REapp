@@ -1,7 +1,6 @@
 import React from 'react';
 import CreateUserForm from '../components/forms/CreateUserForm';
 import '../stylesheets/homepage.css';
-import MyComponent from '../components/MyComponent';
 
 function HomePage() {
   return (
