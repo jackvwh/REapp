@@ -1,5 +1,6 @@
 import SurveyModel from '../Models/survey.model.js';
 import QuestionModel from '../Models/question.model.js';
+import FeedbackModels from '../Models/feedback.model.js';
 
 export default class testdataController {
   static async insertTestData(req, res) {
@@ -13,9 +14,16 @@ export default class testdataController {
         survey.questions
       );
     });
+    FeedbackModels.createFeedback(1, 1);
+    FeedbackModels.createFeedback(1, 2);
+
+    await FeedbackModels.insertFeedbackAnswers(1, answers1);
+    await FeedbackModels.insertFeedbackAnswers(2, answers2);
+
     res.status(200).json({ message: 'Test data inserted successfully' });
   }
 }
+
 const questions = [
   {
     question: 'Do you enjoy working in a team environment?',
@@ -59,7 +67,6 @@ const questions = [
     answerType: 'boolean',
   },
 ];
-
 const surveys = [
   {
     surveyTitle: 'Employee Satisfaction Survey',
@@ -111,5 +118,57 @@ const surveys = [
     surveyTitle: 'Event Evaluation Survey',
     description: 'Collecting feedback on the event organization and content.',
     questions: ['2', '4', '5', '6'],
+  },
+];
+const answers1 = [
+  {
+    questionId: '1',
+    answerText: null,
+    answerValue: null,
+    answerBool: true,
+  },
+  {
+    questionId: '2',
+    answerText: null,
+    answerValue: '4',
+    answerBool: null,
+  },
+  {
+    questionId: '4',
+    answerText: null,
+    answerValue: null,
+    answerBool: false,
+  },
+  {
+    questionId: '6',
+    answerText: 'no not at all i am weak',
+    answerValue: null,
+    answerBool: null,
+  },
+];
+const answers2 = [
+  {
+    questionId: '10',
+    answerText: null,
+    answerValue: null,
+    answerBool: true,
+  },
+  {
+    questionId: '9',
+    answerText: null,
+    answerValue: '4',
+    answerBool: null,
+  },
+  {
+    questionId: '7',
+    answerText: null,
+    answerValue: null,
+    answerBool: false,
+  },
+  {
+    questionId: '8',
+    answerText: 'no not at all i am weak',
+    answerValue: null,
+    answerBool: null,
   },
 ];

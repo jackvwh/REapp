@@ -57,7 +57,6 @@ export default class SurveyModels {
   }
 
   static async getOne(id) {
-    console.log('getOne id', id);
     const sql = `
   
       SELECT * FROM surveys 
