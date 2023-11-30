@@ -12,47 +12,162 @@ export default class FeedbackModels {
       });
     });
   }
-
-  static async getAllFeedbacksFromOneProfile(id) {
+  static async getAllFeedbacks() {
     const sql = `
-        SELECT 
-            feedback.*,             -- Selects all columns from feedback table
-            surveys.*,              -- Selects all columns from surveys table
-            questions.*,            -- Selects all columns from questions table
-            answers.*               -- Selects all columns from answers table
-        FROM 
-            feedback 
-            JOIN surveys ON feedback.survey_id = surveys.survey_id
-            JOIN questions ON surveys.survey_id = questions.survey_id
-            LEFT JOIN answers ON (answers.profile_id = feedback.profile_id AND answers.question_id = questions.question_id)
-        WHERE 
-            feedback.profile_id = ?;
-            `;
+    SELECT 
+        feedback.*,
+        surveys.*,
+        questions.*,            
+        answers.*
+    FROM 
+        feedback 
+        LEFT JOIN surveys ON feedback.survey_id = surveys.survey_id
+        LEFT JOIN answers ON answers.feedback_id = feedback.feedback_id 
+        LEFT JOIN questions ON answers.question_id = questions.question_id
+          `;
     try {
-      const result = await this.query(sql, id);
-      return result;
+      const result = await this.query(sql);
+      // convert the result to an array of objects
+      const feedbacks = [];
+      while (result.length > 0) {
+        console.log(result.length);
+        const feedback = {
+          feedback_id: result[0].feedback_id,
+          survey_id: result[0].survey_id,
+          profile_id: result[0].profile_id,
+          created_at: result[0].created_at,
+          answers: [],
+        };
+
+        while (result.length > 0 && result[0].feedback_id === feedback.feedback_id) {
+          const answer = {
+            answer_id: result[0].answer_id,
+            question_id: result[0].question_id,
+            answer_text: result[0].answer_text,
+            answer_value: result[0].answer_value,
+            answer_bool: result[0].answer_bool,
+            question: {
+              question_id: result[0].question_id,
+              question_text: result[0].question_text,
+              answer_type: result[0].answer_type,
+              combined_at: result[0].combined_at,
+            },
+          };
+
+          feedback.answers.push(answer);
+          result.shift();
+        }
+
+        feedbacks.push(feedback);
+      }
+      return feedbacks;
     } catch (error) {
       throw new Error(error);
     }
   }
-  static async getOneFeedbackFromOneProfile(id, survey_id) {
+
+  static async getAllFeedbacksFromOneProfile(userId) {
     const sql = `
-        SELECT 
-            feedback.*,             -- Selects all columns from feedback table
-            surveys.*,              -- Selects all columns from surveys table
-            questions.*,            -- Selects all columns from questions table
-            answers.*               -- Selects all columns from answers table
-        FROM 
-            feedback 
-            JOIN surveys ON feedback.survey_id = surveys.survey_id
-            JOIN questions ON surveys.survey_id = questions.survey_id
-            LEFT JOIN answers ON (answers.profile_id = feedback.profile_id AND answers.question_id = questions.question_id)
-            WHERE 
-        feedback.profile_id = ? AND feedback.survey_id = ?;
-         `;
+    SELECT 
+        feedback.*,
+        surveys.*,
+        questions.*,
+        answers.*
+    FROM 
+        feedback 
+        LEFT JOIN surveys ON feedback.survey_id = surveys.survey_id
+        LEFT JOIN answers ON answers.feedback_id = feedback.feedback_id 
+        LEFT JOIN questions ON answers.question_id = questions.question_id
+    WHERE 
+        feedback.profile_id = ?;
+          `;
     try {
-      const result = await this.query(sql, [id, survey_id]);
-      return result;
+      const result = await this.query(sql, userId);
+      // convert the result to an array of objects
+      const feedbacks = [];
+      while (result.length > 0) {
+        console.log(result.length);
+        const feedback = {
+          feedback_id: result[0].feedback_id,
+          survey_id: result[0].survey_id,
+          profile_id: result[0].profile_id,
+          created_at: result[0].created_at,
+          answers: [],
+        };
+
+        while (result.length > 0 && result[0].feedback_id === feedback.feedback_id) {
+          const answer = {
+            answer_id: result[0].answer_id,
+            question_id: result[0].question_id,
+            answer_text: result[0].answer_text,
+            answer_value: result[0].answer_value,
+            answer_bool: result[0].answer_bool,
+            question: {
+              question_id: result[0].question_id,
+              question_text: result[0].question_text,
+              answer_type: result[0].answer_type,
+              combined_at: result[0].combined_at,
+            },
+          };
+
+          feedback.answers.push(answer);
+          result.shift();
+        }
+
+        feedbacks.push(feedback);
+      }
+      return feedbacks;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  static async getOneFeedbackFromOneProfile(feedbackId) {
+    const sql = `
+      SELECT 
+          feedback.*,             -- Selects only required columns from feedback table
+          surveys.*,              -- Selects only required columns from surveys table
+          questions.*,            -- Selects only required columns from questions table
+          answers.*               -- Selects only required columns from answers table
+      FROM 
+          feedback 
+          LEFT JOIN surveys ON feedback.survey_id = surveys.survey_id
+          LEFT JOIN answers ON answers.feedback_id = feedback.feedback_id 
+          LEFT JOIN questions ON answers.question_id = questions.question_id
+      WHERE feedback.feedback_id = ?;
+        
+      `;
+    try {
+      const result = await this.query(sql, [feedbackId]);
+
+      // convert the result to an array of objects
+      const feedback = {
+        feedback_id: result[0].feedback_id,
+        survey_id: result[0].survey_id,
+        profile_id: result[0].profile_id,
+        created_at: result[0].created_at,
+        answers: [],
+      };
+
+      while (result.length > 0) {
+        const answer = {
+          answer_id: result[0].answer_id,
+          question_id: result[0].question_id,
+          answer_text: result[0].answer_text,
+          answer_value: result[0].answer_value,
+          answer_bool: result[0].answer_bool,
+          question: {
+            question_id: result[0].question_id,
+            question_text: result[0].question_text,
+            answer_type: result[0].answer_type,
+            combined_at: result[0].combined_at,
+          },
+        };
+
+        feedback.answers.push(answer);
+        result.shift();
+      }
+
+      return feedback;
     } catch (error) {
       throw new Error(error);
     }
@@ -61,12 +176,12 @@ export default class FeedbackModels {
   static async createFeedback(userId, surveyId) {
     const sql = `
 
-    START TRANSACTION;
+      START TRANSACTION;
 
-    INSERT INTO feedback (profile_id, survey_id)
-    VALUES (?, ?);
-         
-    COMMIT;`;
+      INSERT INTO feedback (profile_id, survey_id)
+      VALUES (?, ?);
+          
+      COMMIT;`;
     try {
       const result = await this.query(sql, [userId, surveyId]);
       return result;
@@ -75,18 +190,44 @@ export default class FeedbackModels {
     }
   }
 
-  static async deleteFeedback(id) {
+  static async deleteFeedback(feedback_id) {
     const sql = `
         
-        START TRANSACTION;
-    
-        DELETE FROM feedbacks WHERE id = ?;
-    
-        COMMIT;
+      START TRANSACTION;
+
+      DELETE FROM answers WHERE feedback_id = ?;
+  
+      DELETE FROM feedbacks WHERE feedback_id = ?;
+  
+      COMMIT;
     `;
 
     try {
-      const result = await this.query(sql, id);
+      const result = await this.query(sql, feedback_id);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  static async insertFeedbackAnswers(feedbackId, answers) {
+    const sql = `
+      
+      INSERT INTO answers (feedback_id, question_id, answer_text, answer_value, answer_bool)
+      VALUES ?;
+      `;
+    try {
+      // Prepare the data for bulk insert
+      const values = answers.map(answer => [
+        feedbackId,
+        answer.questionId,
+        answer.answerText,
+        answer.answerValue,
+        answer.answerBool,
+      ]);
+
+      // Perform the bulk insert
+      const result = await this.query(sql, [values]);
       return result;
     } catch (error) {
       throw new Error(error);
