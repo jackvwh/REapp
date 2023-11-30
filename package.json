@@ -6,7 +6,6 @@
   "scripts": {
     "client": "cd Client && npm start",
     "server": "cd Server && npm run dev",
-    "app": "npm run client && npm run server",
     "build": "cd Client && npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -40,13 +39,8 @@
     }
   },
   "lint-staged": {
-    "*.+(js|jsx)": [
-      "eslint --fix",
-      "git add"
-    ],
     "*.+(js|jsx|json|css|md)": [
-      "prettier --write",
-      "git add"
+      "prettier --write"    
     ]
   },
   "prettier": {
