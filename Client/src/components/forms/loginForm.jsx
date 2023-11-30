@@ -14,15 +14,28 @@ function LoginModal() {
     setShowModal(false);
   };
 
-  const loginUser = async (event) => {
+  const loginUser = async (event, id) => {
     event.preventDefault();
+    
+    const username = event.target.username.value;
 
-    const formData = {
-      username: event.target.username.value,
-      password: event.target.password.value,
-    };
-    console.log(formData);
-    //authentication Logic Goes here
+    try {
+      const response = await fetch(`${serverEndpoint}/user/${username}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to login');
+      }
+  
+      const user = await response.json();
+      console.log('', user);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (

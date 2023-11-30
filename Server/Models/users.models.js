@@ -13,6 +13,20 @@ class UserModels {
     });
   }
 
+  static async getUserById(username) {
+    const sql = `
+        SELECT * FROM user_profiles WHERE username = ?;
+      `;
+
+    try {
+      const result = await this.query(sql, [username]);
+      return result;
+    } catch (error) {
+      console.error('error getting user', error);
+      throw new Error(error);
+    }
+  }
+
   static async createUser(
     username,
     password,
