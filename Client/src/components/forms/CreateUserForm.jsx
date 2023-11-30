@@ -4,6 +4,7 @@ import '../../stylesheets/homepage.css';
 
 function CreateUserForm() {
   const serverEndpoint = 'http://localhost:3001';
+  const formRef = React.createRef();
 
   const createUser = async (event) => {
     event.preventDefault();
@@ -28,6 +29,7 @@ function CreateUserForm() {
 
       if (response.ok) {
         console.log('User created successfully!');
+        formRef.current.reset();
       } else {
         console.error('Failed to create user:', response.statusText);
       }
@@ -41,7 +43,7 @@ function CreateUserForm() {
       <h2>Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
-          <form id="sign-up-form" onSubmit={createUser}>
+          <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
             <input
               className="name-input-field"
               type="text"
