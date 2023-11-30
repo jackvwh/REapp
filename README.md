@@ -84,15 +84,16 @@ Ensure the following are installed:
    - Create `./test_database/test_data/mysql_db`.
    - Include `DDL_schema.sql` in the `test_database` directory.
    - Ensure directory structure resembles:
+
      ```
      /someDirectory
        -- reapp (root directory)
             -- client
             -- server
        -- test_database
+            -- DDL_schema.sql
             -- test_data
                   -- mysql_db
-                        -- DDL_schema.sql
      ```
 
 2. **Manage Docker Container:**
