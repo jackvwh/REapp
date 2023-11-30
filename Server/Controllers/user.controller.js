@@ -1,6 +1,18 @@
 import UserModels from '../Models/users.models.js';
 
 export default class UserController {
+  static async getUserById(req, res) {
+    const username = req.params.username;
+
+    try {
+      const user = await UserModels.getUserById(username);
+      res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while getting user' + error });
+    }
+  }
+
   static async createUser(req, res) {
     const {
       username,

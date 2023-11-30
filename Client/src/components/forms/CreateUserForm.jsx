@@ -3,24 +3,59 @@ import LoginModal from './loginForm';
 import '../../styles/homepage.css';
 
 function CreateUserForm() {
+  const serverEndpoint = 'http://localhost:3001';
+  const formRef = React.createRef();
+
+  const createUser = async (event) => {
+    event.preventDefault();
+
+    const formData = {
+      first_name: event.target.first_name.value,
+      last_name: event.target.last_name.value,
+      email: event.target.email.value,
+      username: event.target.username.value,
+      password: event.target.password.value,
+      birthdate: event.target.birthdate.value,
+    };
+
+    try {
+      const response = await fetch(`${serverEndpoint}/user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('User created successfully!');
+        formRef.current.reset();
+      } else {
+        console.error('Failed to create user:', response.statusText);
+      }
+    } catch (error) {
+      console.error('An error occurred while processing the form:', error);
+    }
+  };
+
   return (
     <div className="create-user-container">
       <h2>Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
-          <form id="sign-up-form">
+          <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
             <input
               className="name-input-field"
               type="text"
-              id="firstName"
-              name="firstName"
+              id="first_name"
+              name="first_name"
               placeholder="Fornavn"
             />
             <input
               className="name-input-field"
               type="text"
-              id="lastName"
-              name="lastName"
+              id="last_name"
+              name="last_name"
               placeholder="Efternavn"
             />
             <br />

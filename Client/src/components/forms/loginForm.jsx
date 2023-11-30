@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../../styles/homepage.css';
 
 function LoginModal() {
+  const serverEndpoint = 'http://localhost:3001';
+
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -11,6 +13,30 @@ function LoginModal() {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const loginUser = async (event, id) => {
+    event.preventDefault();
+    
+    const username = event.target.username.value;
+
+    try {
+      const response = await fetch(`${serverEndpoint}/user/${username}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to login');
+      }
+  
+      const user = await response.json();
+      console.log(`Succesfully logged into ${username}`, user);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <div>
@@ -28,20 +54,20 @@ function LoginModal() {
               <h3>Log ind</h3>
             </div>
             <div className="modal-body">
-              <form id="login-form">
+              <form id="login-form" onSubmit={loginUser}>
                 <input
                   className="input-field"
                   type="text"
-                  name="login-username"
-                  id="login-username"
+                  name="username"
+                  id="username"
                   placeholder="Brugernavn"
                 />
                 <br />
                 <input
                   className="input-field"
                   type="password"
-                  name="login-password"
-                  id="login-password"
+                  name="password"
+                  id="password"
                   placeholder="Adgangskode"
                 />
                 <br />
