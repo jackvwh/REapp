@@ -15,8 +15,10 @@ export default class testdataController {
       );
     });
     FeedbackModels.createFeedback(1, 1);
+    FeedbackModels.createFeedback(1, 2);
 
-    await FeedbackModels.insertFeedbackAnswers(1, answers);
+    await FeedbackModels.insertFeedbackAnswers(1, answers1);
+    await FeedbackModels.insertFeedbackAnswers(2, answers2);
 
     res.status(200).json({ message: 'Test data inserted successfully' });
   }
@@ -65,7 +67,6 @@ const questions = [
     answerType: 'boolean',
   },
 ];
-
 const surveys = [
   {
     surveyTitle: 'Employee Satisfaction Survey',
@@ -119,8 +120,7 @@ const surveys = [
     questions: ['2', '4', '5', '6'],
   },
 ];
-
-const answers = [
+const answers1 = [
   {
     questionId: '1',
     answerText: null,
@@ -141,6 +141,32 @@ const answers = [
   },
   {
     questionId: '6',
+    answerText: 'no not at all i am weak',
+    answerValue: null,
+    answerBool: null,
+  },
+];
+const answers2 = [
+  {
+    questionId: '10',
+    answerText: null,
+    answerValue: null,
+    answerBool: true,
+  },
+  {
+    questionId: '9',
+    answerText: null,
+    answerValue: '4',
+    answerBool: null,
+  },
+  {
+    questionId: '7',
+    answerText: null,
+    answerValue: null,
+    answerBool: false,
+  },
+  {
+    questionId: '8',
     answerText: 'no not at all i am weak',
     answerValue: null,
     answerBool: null,
