@@ -5,12 +5,12 @@ import '../../stylesheets/homepage.css';
 function CreateUserForm() {
   const serverEndpoint = 'http://localhost:3001';
 
-  const handleSubmit = async (event) => {
+  const createUser = async (event) => {
     event.preventDefault();
 
     const formData = {
-      firstName: event.target.firstName.value,
-      lastName: event.target.lastName.value,
+      first_name: event.target.first_name.value,
+      last_name: event.target.last_name.value,
       email: event.target.email.value,
       username: event.target.username.value,
       password: event.target.password.value,
@@ -41,19 +41,19 @@ function CreateUserForm() {
       <h2>Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
-          <form id="sign-up-form" onSubmit={handleSubmit}>
+          <form id="sign-up-form" onSubmit={createUser}>
             <input
               className="name-input-field"
               type="text"
-              id="firstName"
-              name="firstName"
+              id="first_name"
+              name="first_name"
               placeholder="Fornavn"
             />
             <input
               className="name-input-field"
               type="text"
-              id="lastName"
-              name="lastName"
+              id="last_name"
+              name="last_name"
               placeholder="Efternavn"
             />
             <br />

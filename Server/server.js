@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
 });
 
 
-
 app.listen(PORT, function () {
   console.log(`🌎  ==> API server running on PORT ${PORT}!`);
   console.log(`🌎  ==> Open http://localhost:${PORT} in your browser`);
