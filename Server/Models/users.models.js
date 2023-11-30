@@ -25,7 +25,7 @@ class UserModels {
     const sql = ` 
         START TRANSACTION;
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
-        VALUES (?, ?, ?, ?, ?, ?, ?);
+        VALUES (?, ?, ?, ?, ?, ?, 1);
         
         SET @last_id = LAST_INSERT_ID();
 
