@@ -32,7 +32,7 @@ function LoginModal() {
       }
   
       const user = await response.json();
-      console.log('', user);
+      console.log(`Succesfully logged into ${username}`, user);
     } catch (err) {
       console.error(err);
     }
