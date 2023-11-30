@@ -4,7 +4,6 @@ import '../styles/userProfile.css';
 
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
-    image: '',
     userName: '',
     firstName: '',
     lastName: '',
@@ -15,6 +14,14 @@ function UserProfileDetails() {
   const [interests, setInterests] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   let selectedOptions = [];
+ 
+  let userInfomation = {
+    userName: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    birthdate: '',
+  };
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -34,17 +41,6 @@ function UserProfileDetails() {
     { value: 'Volley', label: 'Volley' },
   ];
 
-  const handleImageChange = e => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUserData({ ...userData, image: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
   const handleInterestChange = e => {
     console.log(e);
     selectedOptions = Array.from(e, option => option.value);
@@ -53,6 +49,8 @@ function UserProfileDetails() {
   const saveChanges = () => {
     console.log('Saving changes:', userData, interests);
     setInterests(selectedOptions);
+    setUserData(userInfomation);
+
     closeModal();
   };
 
@@ -64,9 +62,6 @@ function UserProfileDetails() {
             <div className="containerStyle">
               <h2 className="h2Style">Rediger</h2>
               <form>
-                <label className="labelStyle">Billede</label>
-                <input type="file" accept="image/*" onChange={handleImageChange} />
-                <img src={userData.image} alt="" className="imgStyle" />
 
                 <label className="labelStyle">Brugernavn:</label>
                 <input
@@ -140,9 +135,7 @@ function UserProfileDetails() {
       <div className="display-mode">
         <h2 className="h2Style">Brugerprofil</h2>
         <div className="grid-container">
-          <div className="item1 ">
-            <img className="imgTest" src="/test.png" alt="user" />
-          </div>
+        
           <div className="item2 itemStyle">
             <p className="item-title">Brugernavn:</p>
             <p>{userData.userName}</p>
