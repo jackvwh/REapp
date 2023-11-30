@@ -3,12 +3,45 @@ import LoginModal from './loginForm';
 import '../../stylesheets/homepage.css';
 
 function CreateUserForm() {
+  const serverEndpoint = 'http://localhost:3001';
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = {
+      firstName: event.target.firstName.value,
+      lastName: event.target.lastName.value,
+      email: event.target.email.value,
+      username: event.target.username.value,
+      password: event.target.password.value,
+      birthdate: event.target.birthdate.value,
+    };
+
+    try {
+      const response = await fetch(`${serverEndpoint}/userpage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('User created successfully!');
+      } else {
+        console.error('Failed to create user:', response.statusText);
+      }
+    } catch (error) {
+      console.error('An error occurred while processing the form:', error);
+    }
+  };
+
   return (
     <div className="create-user-container">
       <h2>Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
-          <form id="sign-up-form">
+          <form id="sign-up-form" onSubmit={handleSubmit}>
             <input
               className="name-input-field"
               type="text"
