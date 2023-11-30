@@ -1,8 +1,8 @@
-# Reapp: A Social Platform for Abstinence Practitioners
+# REapp: A Social Platform for Abstinence Practitioners
 
 ## Introduction
 
-AbstinenceConnect is a unique social platform designed for individuals who practice abstinence from alcohol, smoking, or drugs. In a society where such habits are prevalent, finding a supportive community can be challenging. This platform offers a safe and understanding environment for those committed to an abstinent lifestyle, facilitating connections with like-minded individuals.
+REapp is a unique social platform designed for individuals who practice abstinence from alcohol, smoking, or drugs. In a society where such habits are prevalent, finding a supportive community can be challenging. This platform offers a safe and understanding environment for those committed to an abstinent lifestyle, facilitating connections with like-minded individuals.
 
 ## Features
 
@@ -21,7 +21,7 @@ AbstinenceConnect is a unique social platform designed for individuals who pract
 ### Registration and Login
 
 - Users can register using a simple sign-up form.
-- After registration, log in to access all the features of AbstinenceConnect.
+- After registration, log in to access all the features of REapp.
 
 ### Navigation
 
@@ -29,7 +29,7 @@ AbstinenceConnect is a unique social platform designed for individuals who pract
 
 ## Community Guidelines
 
-AbstinenceConnect is committed to maintaining a respectful and supportive environment. We encourage all users to:
+REapp is committed to maintaining a respectful and supportive environment. We encourage all users to:
 
 - Share experiences and tips in a positive and encouraging manner.
 - Respect the privacy and boundaries of other members.
@@ -38,72 +38,100 @@ AbstinenceConnect is committed to maintaining a respectful and supportive enviro
 
 ## Feedback and Support
 
-We continuously strive to improve AbstinenceConnect. Your feedback is invaluable. Please use the in-built survey feature to share your thoughts or contact our support team for assistance.
+We continuously strive to improve REapp. Your feedback is invaluable. Please use the in-built survey feature to share your thoughts or contact our support team for assistance.
 
 ## Conclusion
 
-AbstinenceConnect is more than just a platform; it's a community. It's a place where abstinence is not only understood but celebrated. Join us in creating a supportive network for those choosing a lifestyle of abstinence in a modern society.
+REapp is more than just a platform; it's a community. It's a place where abstinence is not only understood but celebrated. Join us in creating a supportive network for those choosing a lifestyle of abstinence in a modern society.
 
-## DEVELOPERS
+# Developer Setup Guide for REapp
 
-### TEST DATABASE ENVIRONMENT
+## Technology Stack
 
-# Docker Engine Installation and Setup Guide
+- **Node.js:** JavaScript runtime for server-side execution.
+- **Express.js:** Flexible Node.js web application framework.
+- **MySQL:** Database system for managing artist, album, and song data.
+- **Docker:** Containerization platform for application packaging.
+- **React:** JavaScript library for UI development.
 
-This guide provides instructions for setting up a Docker environment for the `test_database` project. Please note that post-installation steps are crucial for Linux systems. Instructions for Windows or Mac are not covered in this guide.
+## Initial Setup
 
-## Prerequisites
+### Prerequisites
 
-- Docker Engine installed on your system. Refer to [Docker's official documentation](https://docs.docker.com/engine/install/) for installation instructions. Pay special attention to post-install steps if you're using Linux.
+Ensure the following are installed:
 
-## Setting Up the Test Database
+- Node.js (Version 14+)
+- Docker (Version 20+)
 
-1. **Download the Test Database Directory:**
+### Installation
 
-   - Obtain the `test_database` folder. This can be done either by downloading it or by creating the directory structure manually.
-   - If manually creating, structure it as follows: `./test_database/test_data/mysql_db`
-   - Place the `DDL_schema.sql` file inside the `test_database` directory.
+1. **Clone Repository:**
 
-2. **Prepare the Downloaded Directory:**
+   - Via SSH: `git clone git@github.com:jackvwh/REapp.git`
+   - Via HTTPS: `git clone https://github.com/jackvwh/REapp.git`
 
-   - The folder will be downloaded as a zip file with an additional extension.
-   - Extract the zip file and rename the folder to `test_database`.
+2. **Install Dependencies:**
 
-3. **Copy to Project Root:**
-   - Copy the `test_database` folder to the root directory of your project.
-   - Note: This directory is already included in the `.gitignore` file.
+   - In the project directory, execute `npm install`.
 
-## Managing the Docker Container
+3. **Environment Configuration:**
+   - Create `.env` files in both Server and Client directories with necessary configurations.
 
-1. **Start the Container:**
+## Database Setup with Docker
 
-   - From the root directory, use the command: `docker compose up -d`.
+1. **Prepare Database Directory:**
 
-2. **Stop the Container:**
-   - To stop the container, use: `docker compose down`.
+   - Create `./test_database/test_data/mysql_db`.
+   - Include `DDL_schema.sql` in the `test_database` directory.
+   - Ensure directory structure resembles:
+     ```
+     /someDirectory
+       -- reapp (root directory)
+            -- client
+            -- server
+       -- test_database
+            -- test_data
+                  -- mysql_db
+                        -- DDL_schema.sql
+     ```
 
-## Connecting to MySQL
+2. **Manage Docker Container:**
 
-- Connect using a MySQL client as the root user:
-  - **User:** `root`
-  - **Password:** `root`
-  - **Database:** `test_db`
-  - **Connection and Port:** Standard localhost and 3306
+   - Start: In the root directory, run `docker compose up -d`.
+   - Stop: Execute `docker compose down`.
 
-## Resetting the Database
+3. **MySQL Connection:**
+   - Connect via MySQL client using:
+     - User: `root`
+     - Password: `root`
+     - Database: `test_db`
+     - Port: `3306`
 
-1. **Stop the Container:**
+### Database Reset Procedure
 
-   - Use the command: `docker compose down`.
+1. **Stop Container:** `docker compose down`.
+2. **Recreate Directory:**
 
-2. **Delete and Recreate the Directory:**
+   - Delete and recreate the `test_data` folder.
+   - Add a new subfolder named `mysql_db`.
+   - Optionally, update the `DDL_schema.sql` file.
 
-   - Delete the `test_data` folder.
-   - Create a new `test_data` folder and a subfolder named `mysql_db`.
+3. **Restart Container:**
+   - Start a new instance with `docker compose up -d`.
 
-3. **Update Schema (Optional):**
+## Running the Application
 
-   - Optionally, update the `DDL_schema.sql` file as needed.
+1. **Start the Backend Server:**
 
-4. **Start a New Instance:**
-   - Start a new container instance with: `docker compose up`.
+   - In the project directory, run:
+     ```
+     npm run server
+     ```
+   - The server will be available at `http://localhost:3001`.
+
+2. **Start the Frontend Server:**
+   - In the project directory, run:
+     ```
+     npm run client
+     ```
+   - The client will be available at `http://localhost:3000`.
