@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import '../stylesheets/userProfile.css';
+import '../styles/userProfile.css';
 
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
