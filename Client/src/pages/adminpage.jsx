@@ -1,30 +1,15 @@
-import React from "react";
-
+import React from 'react';
+import '../styles/index.css';
 
 function AdminPage() {
-    return (
-        <>
-        <main>
-            <div className="admin-page-container">
-            <div className="admin-page-header">
-                <h1>Admin side</h1>
-            </div>
-            <div className="admin-page-body">
-                <div className="admin-page-body-left">
-                <h2>Brugere</h2>
-                <p>Her kan du se alle brugere</p>
-                <button className="button-30">Se brugere</button>
-                </div>
-                <div className="admin-page-body-right">
-                <h2>Grupper</h2>
-                <p>Her kan du se alle grupper</p>
-                <button className="button-30">Se grupper</button>
-                </div>
-            </div>
-            </div>
-        </main>
-        </>
-    );
-    }
+  return (
+    <main>
+      <h1 className="">Admin Page</h1>
+      <p>Her kan admin se alle brugere og slette dem</p>
+
+      <button className="btn btn-secondary">Slet bruger</button>
+    </main>
+  );
+}
 
 export default AdminPage;
