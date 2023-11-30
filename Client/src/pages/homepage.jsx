@@ -1,5 +1,5 @@
 import React from "react";
-import CreateUserForm from "../components/form/CreateUserForm";
+import CreateUserForm from "../components/forms/CreateUserForm";
 
 import "../stylesheets/homepage.css";
 
