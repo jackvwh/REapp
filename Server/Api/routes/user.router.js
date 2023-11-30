@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import UserController from '../../controllers/user.controller.js';
+import UserController from '../../Controllers/user.controller.js';
 
 export default Router()
   .post('/', UserController.createUser)

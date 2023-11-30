@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
-app.use(routes);
+app.use(router);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,12 +26,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(projectRoot, 'reapp/client/build', 'index.html'));
 });
 
-// Uncomment and modify this part once you have your routes set up
-// import routes from './api/server/router';
-// app.use(routes);
-
-app.listen(PORT, function() {
-    console.log(`🌎  ==> API server running on PORT ${PORT}!`);
+app.listen(PORT, function () {
+  console.log(`🌎  ==> API server running on PORT ${PORT}!`);
+  console.log(`🌎  ==> Open http://localhost:${PORT} in your browser`);
 });
-
-

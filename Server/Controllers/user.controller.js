@@ -1,8 +1,6 @@
-import  UserModels  from '../Models/users.models.js';
-
+import UserModels from '../Models/users.models.js';
 
 export default class UserController {
-  
   static async createUser(req, res) {
     const {
       username,
@@ -29,20 +27,21 @@ export default class UserController {
       res.status(200).json(newUser);
     } catch (error) {
       console.error('error creating user', error);
-      res.status(500).json({ error: 'An error occurred while creating a user' });
+      res.status(500).json({ error: 'An error occurred while creating a user' + error});
     }
   }
 
   static async updateUser(req, res) {
     const id = req.params.id;
-    const { 
+    const {
       username,
       password,
       first_name,
       last_name,
       email,
+      activities,
       birthdate,
-      interests,
+      
     } = req.body;
 
     try {
@@ -53,13 +52,16 @@ export default class UserController {
         first_name,
         last_name,
         email,
+        activities,
         birthdate,
-        interests
+        
       );
       res.status(200).json(updatedUser);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'An error occurred while updating user' + error});
+      res
+        .status(500)
+        .json({ error: 'An error occurred while updating user' + error });
     }
   }
 
@@ -71,9 +73,7 @@ export default class UserController {
       res.status(200).json(deletedUser);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'An error occurred while deleting user' });
+      res.status(500).json({ error: 'An error occurred while deleting user' + error });
     }
   }
 }
-
-

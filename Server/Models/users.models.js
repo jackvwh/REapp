@@ -1,4 +1,4 @@
-import mysqlConnection from "../Db/db.js";
+import mysqlConnection from '../Db/db.js';
 
 class UserModels {
   static async query(sql, params) {
@@ -20,7 +20,7 @@ class UserModels {
     last_name,
     email,
     birthdate,
-    privilege,
+    privilege
   ) {
     const sql = ` 
         START TRANSACTION;
@@ -45,7 +45,7 @@ class UserModels {
       return result;
     } catch (error) {
       console.error('error creating user', error);
-      throw new error;
+      throw new Error(error);
     }
   }
   static async updateUser(
@@ -92,7 +92,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error updating user profile:', error);
-      throw new error;
+      throw new Error(error);
     }
   }
 
@@ -113,7 +113,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error deleting user profile:', error);
-      throw new error;
+      throw new Error(error);
     }
   }
 }
