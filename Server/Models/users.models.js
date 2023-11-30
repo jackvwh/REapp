@@ -45,7 +45,7 @@ class UserModels {
       return result;
     } catch (error) {
       console.error('error creating user', error);
-      throw new error();
+      throw new Error(error);
     }
   }
   static async updateUser(
@@ -92,7 +92,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error updating user profile:', error);
-      throw new error();
+      throw new Error(error);
     }
   }
 
@@ -113,7 +113,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error deleting user profile:', error);
-      throw new error();
+      throw new Error(error);
     }
   }
 }
