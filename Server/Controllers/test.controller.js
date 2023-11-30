@@ -1,5 +1,6 @@
 import SurveyModel from '../Models/survey.model.js';
 import QuestionModel from '../Models/question.model.js';
+import FeedbackModels from '../Models/feedback.model.js';
 
 export default class testdataController {
   static async insertTestData(req, res) {
@@ -13,9 +14,14 @@ export default class testdataController {
         survey.questions
       );
     });
+    FeedbackModels.createFeedback(1, 1);
+
+    await FeedbackModels.insertFeedbackAnswers(1, answers);
+
     res.status(200).json({ message: 'Test data inserted successfully' });
   }
 }
+
 const questions = [
   {
     question: 'Do you enjoy working in a team environment?',
@@ -111,5 +117,32 @@ const surveys = [
     surveyTitle: 'Event Evaluation Survey',
     description: 'Collecting feedback on the event organization and content.',
     questions: ['2', '4', '5', '6'],
+  },
+];
+
+const answers = [
+  {
+    questionId: '1',
+    answerText: null,
+    answerValue: null,
+    answerBool: true,
+  },
+  {
+    questionId: '2',
+    answerText: null,
+    answerValue: '4',
+    answerBool: null,
+  },
+  {
+    questionId: '4',
+    answerText: null,
+    answerValue: null,
+    answerBool: false,
+  },
+  {
+    questionId: '6',
+    answerText: 'no not at all i am weak',
+    answerValue: null,
+    answerBool: null,
   },
 ];
