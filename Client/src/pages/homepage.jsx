@@ -1,7 +1,7 @@
-import React from "react";
-import CreateUserForm from "../components/forms/CreateUserForm";
-
-import "../stylesheets/homepage.css";
+import React from 'react';
+import CreateUserForm from '../components/forms/CreateUserForm';
+import '../stylesheets/homepage.css';
+import MyComponent from '../components/MyComponent';
 
 function HomePage() {
   return (
@@ -26,6 +26,7 @@ function HomePage() {
           <CreateUserForm />
         </div>
 
+
         {/*Home page icons*/}
         <div className="home-page-icon-container">
           <div className="home-page-icon">
@@ -43,7 +44,7 @@ function HomePage() {
               alt="REapp Icon"
             />
             <p className="home-page-icon-text">Daglige opgaver</p>
-          </div>
+          </div>          
           <div className="home-page-icon">
             <img
               className="home-page-icon-image"

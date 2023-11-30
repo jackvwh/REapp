@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './stylesheets/tailwind.css';
 import HomePage from './pages/homepage.jsx';
+import NotificationForm from './components/forms/notification';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <HomePage />
+    <HomePage />
+
+    <NotificationForm />
   </React.StrictMode>
 );

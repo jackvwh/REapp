@@ -6,5 +6,5 @@ module.exports = {
     extend: {},
   },
   //eslint-disable-next-line no-undef
-  plugins: [],
+  plugins: [require('daisyui')],
 };
