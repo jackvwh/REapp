@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../stylesheets/homepage.css';
+import '../../styles/homepage.css';
 
 function LoginModal() {
   const [showModal, setShowModal] = useState(false);

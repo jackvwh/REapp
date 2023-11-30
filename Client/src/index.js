@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './stylesheets/tailwind.css';
+import './styles/tailwind.css';
 import HomePage from './pages/homepage.jsx';
 import NotificationForm from './components/forms/notification';
 
