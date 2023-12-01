@@ -3,6 +3,9 @@ const endpoint = 'http://localhost:3001/';
 async function get(url) {
   return fetch(endpoint + url)
     .then(response => response.json())
+    .then(data => {
+      return data;
+    })
     .catch(err => console.log(err));
 }
 
@@ -13,6 +16,9 @@ async function post(url, data) {
     body: JSON.stringify(data),
   })
     .then(response => response.json())
+    .then(data => {
+      return data;
+    })
     .catch(err => console.log(err));
 }
 async function put(url, data) {
@@ -22,6 +28,9 @@ async function put(url, data) {
     body: JSON.stringify(data),
   })
     .then(response => response.json())
+    .then(data => {
+      return data;
+    })
     .catch(err => console.log(err));
 }
 
@@ -31,6 +40,10 @@ async function del(url) {
     headers: { 'Content-Type': 'application/json' },
   })
     .then(response => response.json())
+    .then(data => {
+      return data;
+    })
+
     .catch(err => console.log(err));
 }
 

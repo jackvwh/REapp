@@ -13,7 +13,7 @@ export default function SurveyRow({ props }) {
       <td>{props.description}</td>
       <td>{formatDate(new Date(props.created_at))}</td>
       <td>
-        <button className="btn btn-ghost btn-sm rounded-btn">Rediger</button>
+        <button className="btn btn-ghost btn-sm rounded-btn">Slet</button>
       </td>
     </tr>
   );
