@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/userProfile.css';
+import '../styles/index.css';
 
 function UserProfileHeader() {
   return (

@@ -1,0 +1,53 @@
+// eslint-disable-next-line no-undef
+module.exports = {
+  purge: ['./src/**/*.{js,jsx}', './public/index.html'],
+  content: [
+    './src/pages/**/*.{js,jsx,mdx}',
+    './src/components/**/*.{js,jsx,mdx}',
+    './src/app/**/*.{js,jsx,mdx}',
+  ],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  daisyui: {
+    themes: [
+      'light',
+      'dark',
+      'cupcake',
+      'bumblebee',
+      'emerald',
+      'corporate',
+      'synthwave',
+      'retro',
+      'cyberpunk',
+      'valentine',
+      'halloween',
+      'garden',
+      'forest',
+      'aqua',
+      'lofi',
+      'pastel',
+      'fantasy',
+      'wireframe',
+      'black',
+      'luxury',
+      'dracula',
+      'cmyk',
+      'autumn',
+      'business',
+      'acid',
+      'lemonade',
+      'night',
+      'coffee',
+      'winter',
+      'dim',
+      'nord',
+      'sunset',
+    ],
+  },
+};
