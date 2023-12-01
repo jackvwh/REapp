@@ -76,7 +76,7 @@ Ensure the following are installed:
 
 3. **Environment Configuration:**
 
-   - Create `.env` files in both Server and Client directories with necessary configurations.
+   - Create a `.env` file in Server directory with necessary configurations.
 
    ```
    /Server/.env
@@ -86,9 +86,6 @@ Ensure the following are installed:
    MYSQL_PASSWORD: root
    MYSQL_DATABASE: test_db
    PORT : 3001
-
-   /Client/.env
-   APP_API_URL=http://localhost:3001
    ```
 
 ## Database Setup with Docker
