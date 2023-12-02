@@ -13,6 +13,16 @@ export default class ActivityModels {
     });
   }
 
+  static async getActivityOptions() {
+    const sql = 'SELECT * FROM activities;';
+    try {
+      const result = await this.query(sql);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   static async getAllActivities() {
     const sql = 'SELECT * FROM activities';
     try {

@@ -1,6 +1,15 @@
 import ActivityModels from '../Models/activity.model.js';
 
 export default class ActivityController {
+  static async getActivityOptions(req, res) {
+    try {
+      const result = await ActivityModels.getActivityOptions();
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  }
+
   static async getAllActivities(req, res) {
     try {
       const result = await ActivityModels.getAllActivities();

@@ -6,9 +6,9 @@ function UserProfileHeader() {
     <header className="user-profile-header">
       <h1>REapp</h1>
       <div className="button-container">
-        <button class="button">Ressoucer</button>
-        <button class="button">Forside</button>
-        <button class="button">Fællesskab</button>
+        <button className="button">Ressoucer</button>
+        <button className="button">Forside</button>
+        <button className="button">Fællesskab</button>
       </div>
     </header>
   );
