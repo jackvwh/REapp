@@ -31,7 +31,6 @@ export default class ActivityModels {
 
     try {
       const result = await this.query(sql, [activity_type, activity_description]);
-      console.log(result);
       return result;
     } catch (error) {
       throw new Error(error);

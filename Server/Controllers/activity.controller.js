@@ -12,7 +12,6 @@ export default class ActivityController {
 
   static async insertActivity(req, res) {
     const { activityType, activityDescription } = req.body;
-    console.log(activityDescription);
     try {
       const result = await ActivityModels.insertActivity(
         activityType,
