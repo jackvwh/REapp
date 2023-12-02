@@ -5,6 +5,7 @@ import feedbackRouter from './routes/feedback.router.js';
 import surveyRouter from './routes/survey.router.js';
 import questionRouter from './routes/question.router.js';
 import testdataController from '../Controllers/test.controller.js';
+import activityRouter from './routes/activity.router.js';
 
 export default Router()
   .get('/', homeRouter)
@@ -13,3 +14,4 @@ export default Router()
   .use('/questions', questionRouter)
   .use('/testdata', testdataController.insertTestData)
   .use('/user', userRouter)
+  .use('/activities', activityRouter);
