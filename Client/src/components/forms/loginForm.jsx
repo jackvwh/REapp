@@ -16,27 +16,27 @@ function LoginModal() {
 
   const loginUser = async (event, id) => {
     event.preventDefault();
-    
+
     const username = event.target.username.value;
 
     try {
       const response = await fetch(`${serverEndpoint}/user/${username}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to login');
       }
-  
+
       const user = await response.json();
       console.log(`Succesfully logged into ${username}`, user);
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   return (
     <div>

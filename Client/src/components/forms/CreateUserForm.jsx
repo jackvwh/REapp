@@ -6,7 +6,7 @@ function CreateUserForm() {
   const serverEndpoint = 'http://localhost:3001';
   const formRef = React.createRef();
 
-  const createUser = async (event) => {
+  const createUser = async event => {
     event.preventDefault();
 
     const formData = {

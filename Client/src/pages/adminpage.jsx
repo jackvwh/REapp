@@ -66,12 +66,14 @@ export default function AdminPage() {
         <div className="flex-1">
           <button
             className="btn btn-ghost btn-sm rounded-btn"
-            onClick={getSurveyList}>
+            onClick={getSurveyList}
+          >
             Alle spørgeskemaer
           </button>
           <button
             className="btn btn-ghost btn-sm rounded-btn"
-            onClick={getQuestionList}>
+            onClick={getQuestionList}
+          >
             Alle spørgsmål
           </button>
         </div>
@@ -116,7 +118,8 @@ export default function AdminPage() {
               <label
                 htmlFor="my-drawer-4"
                 aria-label="close sidebar"
-                className="drawer-overlay"></label>
+                className="drawer-overlay"
+              ></label>
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 {/* Sidebar content here */}
                 <li>
