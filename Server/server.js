@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(projectRoot, 'reapp/client/build', 'index.html'));
 });
 
+
 app.listen(PORT, function () {
   console.log(`🌎  ==> API server running on PORT ${PORT}!`);
   console.log(`🌎  ==> Open http://localhost:${PORT} in your browser`);

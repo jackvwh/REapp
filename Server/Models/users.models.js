@@ -13,6 +13,20 @@ class UserModels {
     });
   }
 
+  static async getUserById(username) {
+    const sql = `
+        SELECT * FROM user_profiles WHERE username = ?;
+      `;
+
+    try {
+      const result = await this.query(sql, [username]);
+      return result;
+    } catch (error) {
+      console.error('error getting user', error);
+      throw new Error(error);
+    }
+  }
+
   static async createUser(
     username,
     password,
@@ -25,7 +39,7 @@ class UserModels {
     const sql = ` 
         START TRANSACTION;
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
-        VALUES (?, ?, ?, ?, ?, ?, ?);
+        VALUES (?, ?, ?, ?, ?, ?, 1);
         
         SET @last_id = LAST_INSERT_ID();
 
@@ -45,7 +59,7 @@ class UserModels {
       return result;
     } catch (error) {
       console.error('error creating user', error);
-      throw new error();
+      throw new Error(error);
     }
   }
   static async updateUser(
@@ -55,8 +69,9 @@ class UserModels {
     first_name,
     last_name,
     email,
-    birthdate,
-    activities
+    activities,
+    birthdate
+    
   ) {
     const sql = `
         START TRANSACTION;
@@ -85,12 +100,13 @@ class UserModels {
         profileId,
         profileId,
         activities,
+        
       ]);
 
       return results;
     } catch (error) {
       console.error('Error updating user profile:', error);
-      throw new error();
+      throw new Error(error);
     }
   }
 
@@ -111,7 +127,7 @@ class UserModels {
       return results;
     } catch (error) {
       console.error('Error deleting user profile:', error);
-      throw new error();
+      throw new Error(error);
     }
   }
 }
