@@ -1,7 +1,6 @@
-import React from "react";
-import CreateUserForm from "../components/forms/CreateUserForm";
-
-import "../stylesheets/homepage.css";
+import React from 'react';
+import CreateUserForm from '../components/forms/CreateUserForm';
+import '../styles/homepage.css';
 
 function HomePage() {
   return (
