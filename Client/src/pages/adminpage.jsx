@@ -1,57 +1,39 @@
-import React, { useEffect, useState } from 'react';
 import '../styles/index.css';
 import StatusBar from '../components/chat/statusbar';
-import { ApiClient } from '../Api/ApiClient.js';
 import SurveyRow from '../components/tables/rows/surveyRow';
 import QuestionRow from '../components/tables/rows/questionRow';
+import { useApiClient } from '../Hooks/useApiClient.js';
 
 export default function AdminPage() {
   // get survey list from server
-  const [surveyList, setSurveyList] = useState([]);
-  const [questionList, setQuestionList] = useState([]);
-  const [isSurveyLoading, setIsSurveyLoading] = useState(false);
-  const [isQuestionLoading, setIsQuestionLoading] = useState(false);
+  const {
+    data: surveyData,
+    loading: surveyLoading,
+    error: surveyError,
+  } = useApiClient.useGet('surveys');
 
-  useEffect(() => {
-    getSurveyList();
-    getQuestionList();
-  }, []);
+  // get question list from server
+  const {
+    data: questionData,
+    loading: questionLoading,
+    error: questionError,
+  } = useApiClient.useGet('questions');
 
-  function getSurveyList() {
-    setIsSurveyLoading(true);
-    ApiClient.get('surveys')
-      .then(data => {
-        setSurveyList(data);
-        setIsSurveyLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching surveys:', error);
-        setIsSurveyLoading(false);
-      });
+  if (surveyLoading || questionLoading) {
+    return <div>Loading...</div>;
   }
-
-  function getQuestionList() {
-    setIsQuestionLoading(true);
-    ApiClient.get('questions')
-      .then(data => {
-        setQuestionList(data);
-        setIsQuestionLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching questions:', error);
-        setIsQuestionLoading(false);
-      });
+  if (surveyError || questionError) {
+    return <div>Error loading </div>;
   }
 
   function RowRenderer({ list, element: Element }) {
-    return list.map((listItem, index) => {
-      return <Element key={index} props={listItem} />;
-    });
-  }
-
-  // Show loading indicator
-  if (isSurveyLoading || isQuestionLoading) {
-    return <div>Loading...</div>;
+    return list && list.length > 0 ? (
+      list.map((listItem, index) => <Element key={index} props={listItem} />)
+    ) : (
+      <tr>
+        <td colSpan="5">Ingen data fundet</td>
+      </tr>
+    );
   }
 
   return (
@@ -61,21 +43,6 @@ export default function AdminPage() {
       <nav className="navbar bg-base-100">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Administrator</a>
-        </div>
-
-        <div className="flex-1">
-          <button
-            className="btn btn-ghost btn-sm rounded-btn"
-            onClick={getSurveyList}
-          >
-            Alle spørgeskemaer
-          </button>
-          <button
-            className="btn btn-ghost btn-sm rounded-btn"
-            onClick={getQuestionList}
-          >
-            Alle spørgsmål
-          </button>
         </div>
 
         <div className="flex justify-between gap-2">
@@ -153,12 +120,14 @@ export default function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {surveyList.length === 0 ? (
+                  {surveyData && surveyData.length === 0 ? (
                     <tr>
                       <td colSpan="5">Ingen spørgeskemaer fundet</td>
                     </tr>
                   ) : (
-                    <RowRenderer list={surveyList} element={SurveyRow} />
+                    <RowRenderer list={surveyData} element={SurveyRow} /> || (
+                      <div>loading...</div>
+                    )
                   )}
                 </tbody>
               </table>
@@ -179,12 +148,14 @@ export default function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {questionList.length === 0 ? (
+                  {questionData && questionData.length === 0 ? (
                     <tr>
                       <td colSpan="3">Ingen spørgsmål fundet</td>
                     </tr>
                   ) : (
-                    <RowRenderer list={questionList} element={QuestionRow} />
+                    <RowRenderer list={questionData} element={QuestionRow} /> || (
+                      <div>loading...</div>
+                    )
                   )}
                 </tbody>
               </table>

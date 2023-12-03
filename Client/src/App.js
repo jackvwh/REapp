@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/homepage.jsx';
 import AdminPage from './pages/adminpage.jsx';
 import UserProfile from './pages/userProfile.jsx';
+import AIprofilepage from './pages/aiProfilepage.jsx';
+import AIfrontpage from './pages/aiFrontpage.jsx';
+import AIadminpage from './pages/aiAdminpage.jsx';
 
 function App() {
   return (
@@ -11,6 +14,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/userpage" element={<UserProfile />} />
         <Route path="/notadminpage" element={<AdminPage />} />
+        <Route path="/ai/profilepage" element={<AIprofilepage />} />
+        <Route path="/ai/frontpage/" element={<AIfrontpage />} />
+        <Route path="/ai/adminpage" element={<AIadminpage />} />
         {/* Add other routes here */}
       </Routes>
     </Router>
