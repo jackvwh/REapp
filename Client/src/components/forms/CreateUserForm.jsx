@@ -19,7 +19,7 @@ function CreateUserForm() {
     };
 
     try {
-      const response = await fetch(`${serverEndpoint}/user`, {
+      const response = await fetch(`${serverEndpoint}/user/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

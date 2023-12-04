@@ -1,4 +1,8 @@
 import UserModels from '../Models/users.models.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default class UserController {
   static async getUserById(req, res) {
@@ -12,6 +16,27 @@ export default class UserController {
         .json({ error: 'An error occurred while getting user' + error });
     }
   }
+
+  static async LoginUser(req, res) {
+    const { username, password } = req.body;
+
+    try {
+      const user = await UserModels.ValidateUser(username, password);
+
+      if (user) {
+        //TODO: cube makes a good point if userID is necessary here 
+        const token = jwt.sign({ username: user.username, userId: user.userId }, process.env.JWT_SECRET, {expiresIn: '8h' });
+        res.json({ token });
+      } else {
+        res.status(401).json({ message: 'Invalid username or password' })
+      }
+    }catch (error){
+      console.error('Error during user login:', error);
+      res.status(500).json({ error: 'An error occurred during login' });
+    }
+  }
+  
+  
 
   static async createUser(req, res) {
     const {
@@ -36,7 +61,8 @@ export default class UserController {
         privilege,
         signup_date
       );
-      res.status(200).json(newUser);
+      const token = jwt.sign({username}, process.env.JWT_SECRET,{expiresIn: '1h'}); //TODO: is this nessacary or is it for first time login only?
+      res.status(200).json({user: newUser, token});
     } catch (error) {
       console.error('error creating user', error);
       res

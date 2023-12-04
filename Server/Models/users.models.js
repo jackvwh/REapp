@@ -1,4 +1,5 @@
 import mysqlConnection from '../Db/db.js';
+import bcrypt from 'bcrypt';
 
 class UserModels {
   static async query(sql, params) {
@@ -12,6 +13,27 @@ class UserModels {
       });
     });
   }
+
+  //we dont like the position of this. we want it somewhere else
+  //but currently this is how you would do it in the documnetation we have read :)
+  static async ValidateUser(username, password){
+    const sql = `SELECT * FROM user_profiles WHERE username = ?`;
+
+    try{
+      const result = await this.query(sql, [username]);
+      //maybe check for multiple users and return an error
+      if(result.length > 0){
+        const user = result[0];
+        //compare hashed password with the hashed passowrd in the DB
+        const validPassword = await bcrypt.compare(password, user.password);
+        if(validPassword)
+          return user;
+      }
+      return null;        
+    }catch(error) {
+    console.error("Error validating user", error)
+  }
+}
 
   static async getUserById(profile_id) {
     const sql = `
@@ -62,7 +84,11 @@ class UserModels {
     email,
     birthdate,
     privilege
-  ) {
+  ) 
+  {
+    const saltRounds = 10; 
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     const sql = ` 
         START TRANSACTION;
 
@@ -75,7 +101,7 @@ class UserModels {
     try {
       const result = await this.query(sql, [
         username,
-        password,
+        hashedPassword,
         first_name,
         last_name,
         email,
@@ -88,6 +114,8 @@ class UserModels {
       throw new Error(error);
     }
   }
+
+
   static async updateUser(
     profileId,
     username,
