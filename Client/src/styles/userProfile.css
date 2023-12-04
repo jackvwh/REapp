@@ -55,21 +55,6 @@
   width: 50%;
 }
 
-.imgStyle {
-  display: block;
-  width: 20vw;
-  height: 20vh;
-}
-
-.imgTest {
-  display: block;
-  width: 15vw;
-  height: 30vh;
-  margin-left: 50w;
-  border: 2px solid #ccc; /* Border color */
-  border-radius: 8px;
-}
-
 .labelStyle {
   display: block;
   margin-top: 2rem;
@@ -89,9 +74,6 @@
   grid-gap: 10px;
 }
 
-.item1 {
-  grid-row-start: 1;
-}
 .item2 {
   grid-row-start: 2;
 }

@@ -22,9 +22,7 @@
     "lint-staged": "^15.1.0",
     "prettier": "^3.1.0"
   },
-  "dependencies": {
-    "dotenv": "^16.3.1"
-  },
+  "dependencies": {},
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -39,7 +37,7 @@
   },
   "lint-staged": {
     "*.+(js|jsx|json|css|md)": [
-      "prettier --write"    
+      "prettier --write"
     ]
   },
   "prettier": {

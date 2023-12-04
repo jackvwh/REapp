@@ -75,7 +75,18 @@ Ensure the following are installed:
    - In the project directory, execute `npm install`.
 
 3. **Environment Configuration:**
-   - Create `.env` files in both Server and Client directories with necessary configurations.
+
+   - Create a `.env` file in Server directory with necessary configurations.
+
+   ```
+   /Server/.env
+   MYSQL_HOST: localhost
+   MYSQL_PORT: 3306
+   MYSQL_USER: root
+   MYSQL_PASSWORD: root
+   MYSQL_DATABASE: test_db
+   PORT : 3001
+   ```
 
 ## Database Setup with Docker
 

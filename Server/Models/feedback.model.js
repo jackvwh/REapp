@@ -30,7 +30,6 @@ export default class FeedbackModels {
       // convert the result to an array of objects
       const feedbacks = [];
       while (result.length > 0) {
-        console.log(result.length);
         const feedback = {
           feedback_id: result[0].feedback_id,
           survey_id: result[0].survey_id,
@@ -86,7 +85,6 @@ export default class FeedbackModels {
       // convert the result to an array of objects
       const feedbacks = [];
       while (result.length > 0) {
-        console.log(result.length);
         const feedback = {
           feedback_id: result[0].feedback_id,
           survey_id: result[0].survey_id,

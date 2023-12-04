@@ -1,20 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import '../styles/userProfile.css';
+import { ApiClient } from '../Api/ApiClient.js';
 
 function UserProfileDetails() {
   const [userData, setUserData] = useState({
-    image: '',
-    userName: '',
+    username: '',
+    password: '',
     firstName: '',
     lastName: '',
     email: '',
     birthdate: '',
   });
 
-  const [interests, setInterests] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  let selectedOptions = [];
+  const [userActivities, setUserActivities] = useState([]);
+  const [activityOptions, setActivityOptions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState();
+
+  useEffect(() => {
+    getActivityOptions();
+    getUser(2);
+
+    console.log(userData, userActivities);
+  }, []);
+
+  function getActivityOptions() {
+    ApiClient.get('activities/options').then(data => {
+      // format data to select options
+      const options = data.map(activity => ({
+        value: activity.activity_type,
+        label: activity.activity_type,
+      }));
+      setActivityOptions(options);
+    });
+  }
+
+  function getUser(id) {
+    ApiClient.get(`user/${id}`).then(data => {
+      const user = data;
+      setUserData({
+        profileId: user.profileId,
+        username: user.username,
+        password: user.password,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        birthdate: formatDate(new Date(user.birthdate)),
+      });
+      setUserActivities(user.activities.map(activity => activity.activityType));
+    });
+  }
+
+  function formatDate(date) {
+    return new Intl.DateTimeFormat('da-DK').format(date);
+  }
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -28,31 +68,27 @@ function UserProfileDetails() {
     setUserData({ ...userData, [name]: value });
   };
 
-  const options = [
-    { value: 'Fodbold', label: 'Fodbold' },
-    { value: 'Hockey', label: 'Hockey' },
-    { value: 'Volley', label: 'Volley' },
-  ];
-
-  const handleImageChange = e => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUserData({ ...userData, image: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  const handleInterestChange = e => {
-    console.log(e);
-    selectedOptions = Array.from(e, option => option.value);
+  const handleActivityChange = e => {
+    console.log(e)
+    const { name } = e.target;
+    setUserActivities(...userActivities, value);
   };
 
-  const saveChanges = () => {
-    console.log('Saving changes:', userData, interests);
-    setInterests(selectedOptions);
+  const onSubmit = () => {
+    console.log('Saving changes:', userData, userActivities);
+
+    ApiClient.put(`user/${2}`, {
+      username: userData.username,
+      password: userData.password,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      birthdate: userData.birthdate,
+      activities: userActivities,
+    }).then(data => {
+      console.log('User updated', data);
+    });
+
     closeModal();
   };
 
@@ -63,16 +99,20 @@ function UserProfileDetails() {
           <div className="modal-content">
             <div className="containerStyle">
               <h2 className="h2Style">Rediger</h2>
-              <form>
-                <label className="labelStyle">Billede</label>
-                <input type="file" accept="image/*" onChange={handleImageChange} />
-                <img src={userData.image} alt="" className="imgStyle" />
-
+              <form onSubmit={onSubmit}>
                 <label className="labelStyle">Brugernavn:</label>
                 <input
                   type="text"
-                  name="userName"
-                  value={userData.userName}
+                  name="username"
+                  value={userData.username}
+                  onChange={handleInputChange}
+                />
+
+                <label className="labelStyle">Password:</label>
+                <input
+                  type="number"
+                  name="password"
+                  value={userData.password}
                   onChange={handleInputChange}
                 />
 
@@ -104,27 +144,24 @@ function UserProfileDetails() {
                 <input
                   type="date"
                   name="birthdate"
-                  value={userData.birthdate}
                   onChange={handleInputChange}
                 />
 
                 <label className="labelStyle">Interesser:</label>
                 <div className="interests-container">
                   <Select
-                    options={options}
+                    options={activityOptions}
                     isMulti
-                    onChange={handleInterestChange}
+                    onChange={handleActivityChange}
+                    value={userActivities.map(activity => ({
+                      value: activity,
+                      label: activity,
+                    }))}
                   />
-                  <label className="labelStyle">Valgte interesser:</label>
-                  <div className="selected-interests-box">
-                    <div className="selected-interests">
-                      {interests.length > 0 && interests.join(', ')}
-                    </div>
-                  </div>
                 </div>
 
                 <div>
-                  <button className="button" onClick={saveChanges}>
+                  <button type="submit" className="button">
                     Save Changes
                   </button>
                   <button className="button" onClick={closeModal}>
@@ -140,13 +177,16 @@ function UserProfileDetails() {
       <div className="display-mode">
         <h2 className="h2Style">Brugerprofil</h2>
         <div className="grid-container">
-          <div className="item1 ">
-            <img className="imgTest" src="/test.png" alt="user" />
-          </div>
-          <div className="item2 itemStyle">
+          <div className="item1 itemStyle">
             <p className="item-title">Brugernavn:</p>
-            <p>{userData.userName}</p>
+            <p>{userData.username}</p>
           </div>
+
+          <div className="item2 itemStyle">
+            <p className="item-title">Password:</p>
+            <p>{userData.password}</p>
+          </div>
+
           <div className="item3 itemStyle">
             <p className="item-title">Førstenavn:</p>
             <p>{userData.firstName}</p>
@@ -165,7 +205,9 @@ function UserProfileDetails() {
           </div>
           <div className="item7 itemStyle">
             <p className="item-title">Interesser:</p>
-            <p>{interests.join(', ')}</p>
+            {userActivities.map(activity => (
+              <span className="badge badge-lg">{activity}</span>
+            ))}
           </div>
           <div>
             <button className="button" onClick={openModal}>
