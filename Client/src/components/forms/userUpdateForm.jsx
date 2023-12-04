@@ -2,13 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useApiClient } from '../../Hooks/useApiClient';
 
+const Spinner = () => {
+  return <span className="loading loading-spinner loading-xs"></span>;
+};
+
 export default function UserUpdateForm({ userData }) {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  console.log(userData);
+  // initialize custom hook
+  const { executePut, loading: updating } = useApiClient.usePut();
+  // modal
+  const [isModalClosed, setIsModelClosed] = useState(false);
+  // react form hook
   function closeModal() {
-    setIsModalOpen(false);
+    setIsModelClosed(true);
   }
-  const [userActivities, setUserActivities] = useState([]); // updated values states
+  //
+  const [userActivities, setUserActivities] = useState([]);
   const [userDetails, setUserDetails] = useState({
+    profileId: '',
     username: '',
     password: '',
     firstName: '',
@@ -21,6 +32,7 @@ export default function UserUpdateForm({ userData }) {
   useEffect(() => {
     if (userData) {
       setUserDetails({
+        profileId: userData.profileId,
         username: userData.username,
         password: userData.password,
         firstName: userData.firstName,
@@ -31,37 +43,27 @@ export default function UserUpdateForm({ userData }) {
       setUserActivities(userData.activities.map(activity => activity.activityType));
     }
   }, [userData]);
-  // options list from server
-  const {
-    data: activityOptions,
-    loading: optionsLoading,
-    error: optionsError,
-  } = useApiClient.useGet('activities/options');
 
-  let options = [];
-  // format data to select options
-  if (activityOptions) {
-    options = activityOptions.map(activity => ({
-      value: activity.activity_type,
-      label: activity.activity_type,
-    }));
-  }
+  // options list from server
+  const { data: activityOptions } = useApiClient.useGet('activities/options');
+
   const handleInputChange = e => {
     const { name, value } = e.target;
     setUserDetails({ ...userDetails, [name]: value });
   };
+
   const handleActivityChange = e => {
-    console.log(e)
-    const { value } = e.target;
-    setUserActivities(value);
+    setUserActivities(e.map(activity => activity.value));
   };
 
-
-  const onSubmit = () => {
-    console.log('Saving changes:', userData, userActivities);
-
-    closeModal();
-  };
+  function onSubmit() {
+    console.log('submitting', userDetails, userActivities);
+    // update user with new values
+    executePut(`user/${userData.profileId}`, {
+      ...userDetails,
+      activities: userActivities,
+    });
+  }
 
   return (
     <div className="modal-container">
@@ -115,18 +117,29 @@ export default function UserUpdateForm({ userData }) {
             <label className="labelStyle">Interesser:</label>
             <div className="interests-container">
               <Select
-                options={options}
+                options={
+                  (activityOptions &&
+                    activityOptions.map(activity => ({
+                      value: activity.activity_type,
+                      label: activity.activity_type,
+                    }))) || { value: 'Loading...', label: 'Loading...' }
+                }
                 isMulti
                 onChange={handleActivityChange}
-                value={userData.activities.map(activity => ({
-                  value: activity.activityType,
-                  label: activity.activityType,
-                }))}
+                placeholder="Vælg interesser"
+                value={
+                  userActivities &&
+                  userActivities.map(activity => ({
+                    value: activity,
+                    label: activity,
+                  }))
+                }
               />
             </div>
             <div>
-              <button type="submit" className="button">
-                Save Changes
+              <button disabled={updating} className="btn btn-primary">
+                {updating && <Spinner />}
+                Submit
               </button>
               <button className="button" onClick={closeModal}>
                 Close

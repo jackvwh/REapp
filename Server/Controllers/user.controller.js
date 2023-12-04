@@ -47,7 +47,7 @@ export default class UserController {
 
   static async updateUser(req, res) {
     const userId = req.params.userId;
-    const { username, password, firstName, lastName, email, activities, birthdate } =
+    const { username, password, firstName, lastName, email, birthdate, activities } =
       req.body;
 
     try {
@@ -58,8 +58,8 @@ export default class UserController {
         firstName,
         lastName,
         email,
-        activities,
-        birthdate
+        birthdate,
+        activities
       );
       res.status(200).json(updatedUser);
     } catch (error) {

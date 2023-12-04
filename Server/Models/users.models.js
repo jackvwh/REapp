@@ -30,7 +30,7 @@ class UserModels {
       const result = await this.query(sql, [profile_id]);
       // convert the flat array of objects to a user objects with nested activities
       const user = {
-        profileId: result[0].profile_id,
+        profileId: result[0].profile_id || Number(profile_id),
         username: result[0].username,
         password: result[0].password,
         firstName: result[0].first_name,
@@ -95,8 +95,8 @@ class UserModels {
     first_name,
     last_name,
     email,
-    activities,
-    birthdate
+    birthdate,
+    activities
   ) {
     const sql = `
 
