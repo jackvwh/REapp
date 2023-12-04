@@ -13,7 +13,6 @@ function useGet(endpoint) {
     const fetchData = async () => {
       try {
         const result = await ApiClient.get(endpoint);
-        console;
         if (isMounted) {
           setData(result);
           setLoading(false);
