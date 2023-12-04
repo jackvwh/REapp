@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/homepage.css';
 
 function LoginModal() {
   const serverEndpoint = 'http://localhost:3001';
+  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -14,17 +16,19 @@ function LoginModal() {
     setShowModal(false);
   };
 
-  const loginUser = async (event, id) => {
+  const loginUser = async event => {
     event.preventDefault();
 
     const username = event.target.username.value;
+    const password = event.target.password.value;
 
     try {
-      const response = await fetch(`${serverEndpoint}/user/${username}`, {
-        method: 'GET',
+      const response = await fetch(`${serverEndpoint}/user/login`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ username, password }),
       });
 
       if (!response.ok) {
@@ -33,6 +37,7 @@ function LoginModal() {
 
       const user = await response.json();
       console.log(`Succesfully logged into ${username}`, user);
+      navigate('/notadminpage');
     } catch (err) {
       console.error(err);
     }
@@ -77,8 +82,7 @@ function LoginModal() {
             <div className="modal-footer">
               <button
                 className="button-30 close-login-modal-button"
-                onClick={closeModal}
-              >
+                onClick={closeModal}>
                 Luk
               </button>
             </div>

@@ -28,7 +28,7 @@ function CreateUserForm() {
       });
 
       if (response.ok) {
-        console.log('User created successfully!');
+        console.log(`User created: ${formData.username}`);
         formRef.current.reset();
       } else {
         console.error('Failed to create user:', response.statusText);

@@ -108,6 +108,7 @@ class UserModels {
         birthdate,
         privilege,
       ]);
+      console.log(`User ${username} created`)
       return result;
     } catch (error) {
       console.error('error creating user', error);
