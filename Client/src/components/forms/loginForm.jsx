@@ -29,6 +29,7 @@ function LoginModal() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
+        credentials: 'include', // Include credentials for cookies
       });
 
       if (!response.ok) {
@@ -37,7 +38,7 @@ function LoginModal() {
 
       const user = await response.json();
       console.log(`Succesfully logged into ${username}`, user);
-      navigate('/notadminpage');
+      navigate('/notadminpage'); //TODO: change to the homepage, when done
     } catch (err) {
       console.error(err);
     }

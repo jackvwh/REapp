@@ -25,8 +25,16 @@ export default class UserController {
 
       if (user) {
         //TODO: cube makes a good point if userID is necessary here 
+        //Generate a JWT token
         const token = jwt.sign({ username: user.username, userId: user.userId }, process.env.JWT_SECRET, {expiresIn: '8h' });
-        res.json({ token });
+
+        res.cookie('token', token, {
+          httpOnly: true,  // The cookie is not accessible via JavaScript
+          secure: false,  // Use HTTPS in production
+          sameSite: 'Lax',  // Strictly same site
+          maxAge: 8 * 60 * 60 * 1000  // Cookie expiry in milliseconds, same as JWT, but this is 8 hours
+        });
+        res.status(200).json({ message: 'Logged in successfully' });
       } else {
         res.status(401).json({ message: 'Invalid username or password' })
       }
@@ -34,6 +42,11 @@ export default class UserController {
       console.error('Error during user login:', error);
       res.status(500).json({ error: 'An error occurred during login' });
     }
+  }
+
+  static async Logout(req, res){
+    res.clearCookie('token');
+    res.status(200).send('Logged out successfully')
   }
   
   

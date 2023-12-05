@@ -10,7 +10,14 @@ const app = express();
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 8080;
 
-app.use(cors());
+
+// CORS configuration, this is used for cookies
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with your client's URL
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(router);
 
