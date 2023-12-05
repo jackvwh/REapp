@@ -10,7 +10,7 @@ const ProtectedRoute = ({children}) => {
 
   if(!isAuthenticated){
     console.log('you are not authorized');
-    return <Navigate to="/"/>;
+    return <Navigate to="/" replace />;
   }
   
   return children;
