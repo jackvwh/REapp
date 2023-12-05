@@ -29,8 +29,7 @@ export default class UserController {
         const token = jwt.sign({ username: user.username, userId: user.userId }, process.env.JWT_SECRET, {expiresIn: '8h' });
 
         res.cookie('token', token, {
-          httpOnly: true,  // The cookie is not accessible via JavaScript
-          secure: false,  // Use HTTPS in production
+          secure: true,  // Use HTTPS in production
           sameSite: 'Lax',  // Strictly same site
           maxAge: 8 * 60 * 60 * 1000  // Cookie expiry in milliseconds, same as JWT, but this is 8 hours
         });
