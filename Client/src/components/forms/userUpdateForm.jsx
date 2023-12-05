@@ -13,13 +13,7 @@ export default function UserUpdateForm({ userData }) {
     loading: updating,
     error: updateError,
   } = useApiClient.usePut();
-  // modal
-  const [isModalClosed, setIsModelClosed] = useState(false);
-  // react form hook
-  function closeModal() {
-    setIsModelClosed(true);
-  }
-  //  state
+  
   const [userActivities, setUserActivities] = useState();
   const [userDetails, setUserDetails] = useState({
     username: '',
