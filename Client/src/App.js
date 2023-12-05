@@ -6,13 +6,15 @@ import UserProfile from './pages/userProfile.jsx';
 import AIprofilepage from './pages/aiProfilepage.jsx';
 import AIfrontpage from './pages/aiFrontpage.jsx';
 import AIadminpage from './pages/aiAdminpage.jsx';
+import UserPage from './pages/userpage.jsx';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/userpage" element={<UserProfile />} />
+        <Route path="/userpage" element={<UserPage />} />
+        <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/notadminpage" element={<AdminPage />} />
         <Route path="/ai/profilepage" element={<AIprofilepage />} />
         <Route path="/ai/frontpage/" element={<AIfrontpage />} />

@@ -17,7 +17,7 @@ function CreateUserForm() {
       password: event.target.password.value,
       birthdate: event.target.birthdate.value,
     };
-
+    // TODO: might need to be run through APIClient instead
     try {
       const response = await fetch(`${serverEndpoint}/user/`, {
         method: 'POST',
