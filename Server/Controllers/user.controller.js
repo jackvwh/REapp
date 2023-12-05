@@ -49,7 +49,6 @@ export default class UserController {
     const userId = req.params.userId;
     const { username, password, firstName, lastName, email, birthdate, activities } =
       req.body;
-
     try {
       const updatedUser = await UserModels.updateUser(
         userId,

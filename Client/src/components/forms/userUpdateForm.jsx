@@ -7,19 +7,21 @@ const Spinner = () => {
 };
 
 export default function UserUpdateForm({ userData }) {
-  console.log(userData);
   // initialize custom hook
-  const { executePut, loading: updating } = useApiClient.usePut();
+  const {
+    executePut,
+    loading: updating,
+    error: updateError,
+  } = useApiClient.usePut();
   // modal
   const [isModalClosed, setIsModelClosed] = useState(false);
   // react form hook
   function closeModal() {
     setIsModelClosed(true);
   }
-  //
-  const [userActivities, setUserActivities] = useState([]);
+  //  state
+  const [userActivities, setUserActivities] = useState();
   const [userDetails, setUserDetails] = useState({
-    profileId: '',
     username: '',
     password: '',
     firstName: '',
@@ -32,7 +34,6 @@ export default function UserUpdateForm({ userData }) {
   useEffect(() => {
     if (userData) {
       setUserDetails({
-        profileId: userData.profileId,
         username: userData.username,
         password: userData.password,
         firstName: userData.firstName,
@@ -56,21 +57,26 @@ export default function UserUpdateForm({ userData }) {
     setUserActivities(e.map(activity => activity.value));
   };
 
-  function onSubmit() {
-    console.log('submitting', userDetails, userActivities);
-    // update user with new values
-    executePut(`user/${userData.profileId}`, {
+  function onSubmit(e) {
+    e.preventDefault();
+    // update user object with new values
+    const updatedUser = {
       ...userDetails,
       activities: userActivities,
-    });
+    };
+    try {
+      executePut('user/' + userData.profileId, updatedUser);
+      window.location.reload();
+    } catch (error) {
+      console.log(error, updateError);
+    }
   }
-
   return (
     <div className="modal-container">
       <div className="modal-content">
         <div className="containerStyle">
           <h2 className="h2Style">Rediger</h2>
-          <form onSubmit={onSubmit}>
+          <form>
             <label className="labelStyle">Brugernavn:</label>
             <input
               type="text"
@@ -81,7 +87,7 @@ export default function UserUpdateForm({ userData }) {
 
             <label className="labelStyle">Password:</label>
             <input
-              type="number"
+              type="password"
               name="password"
               value={userDetails.password}
               onChange={handleInputChange}
@@ -112,7 +118,12 @@ export default function UserUpdateForm({ userData }) {
             />
 
             <label className="labelStyle">Alder:</label>
-            <input type="date" name="birthdate" onChange={handleInputChange} />
+            <input
+              type="date"
+              name="birthdate"
+              onChange={handleInputChange}
+              required
+            />
 
             <label className="labelStyle">Interesser:</label>
             <div className="interests-container">
@@ -136,13 +147,12 @@ export default function UserUpdateForm({ userData }) {
                 }
               />
             </div>
-            <div>
-              <button disabled={updating} className="btn btn-primary">
-                {updating && <Spinner />}
-                Submit
+            <div className="button-container">
+              <button className="button" onClick={onSubmit} disabled={updating}>
+                {updating ? <Spinner /> : 'Gem'}
               </button>
               <button className="button" onClick={closeModal}>
-                Close
+                Luk
               </button>
             </div>
           </form>

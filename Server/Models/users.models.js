@@ -39,7 +39,11 @@ class UserModels {
         birthdate: result[0].birthdate,
         activities: [],
       };
-      while (result.length > 0) {
+      while (
+        result.length > 0 &&
+        result[0].activity_id !== null &&
+        result[0].activity_id !== null
+      ) {
         const activity = {
           activityId: result[0].activity_id,
           activityType: result[0].activity_type,
@@ -98,6 +102,7 @@ class UserModels {
     birthdate,
     activities
   ) {
+    const formattedBirthdate = new Date(birthdate).toISOString().slice(0, 10);
     const sql = `
 
         START TRANSACTION;
@@ -121,7 +126,7 @@ class UserModels {
         first_name,
         last_name,
         email,
-        birthdate,
+        formattedBirthdate,
         profileId,
         profileId,
         profileId,

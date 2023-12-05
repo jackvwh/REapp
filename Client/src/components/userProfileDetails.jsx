@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useApiClient } from '../Hooks/useApiClient';
 import UserUpdateForm from './forms/userUpdateForm';
 
-const userId = 2;
+// const userId = localStorage.getItem('userId')
+
+const userId = 5;
 
 function UserProfileDetails() {
   // modal
@@ -25,7 +27,8 @@ function UserProfileDetails() {
 
   return (
     <div>
-      {isModalOpen && <UserUpdateForm userData={userData} />}
+      {isModalOpen && userData && <UserUpdateForm userData={userData} />}
+
       <div className="display-mode">
         <h2 className="h2Style">Brugerprofil</h2>
         {userIsLoading && <p>Loading...</p>}
@@ -60,18 +63,19 @@ function UserProfileDetails() {
             </div>
             <div className="item7 itemStyle">
               <p className="item-title">Aktiviteter:</p>
-              {userData.activities.map((activity, index) => (
-                <span
-                  key={activity.activityType || index}
-                  className="badge badge-lg"
-                >
-                  {activity.activityType}
-                </span>
-              ))}
+              {userData &&
+                userData.activities.map((activity, index) => (
+                  <span
+                    key={activity.activityType || index}
+                    className="badge badge-lg"
+                  >
+                    {activity.activityType}
+                  </span>
+                ))}
             </div>
             <div>
               <button className="button" onClick={openModal}>
-                Edit Profile
+                Opdater profil
               </button>
             </div>
           </div>
