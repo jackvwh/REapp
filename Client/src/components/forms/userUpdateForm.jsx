@@ -10,12 +10,13 @@ export default function UserUpdateForm({ userData }) {
   // initialize custom hook
   const {
     executePut,
+    data: updateResponse,
     loading: updating,
     error: updateError,
   } = useApiClient.usePut();
-  
+
   const [userActivities, setUserActivities] = useState();
-  const [userDetails, setUserDetails] = useState({
+  const [updatedData, setUpdatedData] = useState({
     username: '',
     password: '',
     firstName: '',
@@ -24,10 +25,10 @@ export default function UserUpdateForm({ userData }) {
     birthdate: '',
   });
 
-  // Update state when userData changes
+  // Set initial user details from userData prop
   useEffect(() => {
     if (userData) {
-      setUserDetails({
+      setUpdatedData({
         username: userData.username,
         password: userData.password,
         firstName: userData.firstName,
@@ -44,112 +45,116 @@ export default function UserUpdateForm({ userData }) {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    setUserDetails({ ...userDetails, [name]: value });
+    setUpdatedData({ ...updatedData, [name]: value });
   };
 
   const handleActivityChange = e => {
     setUserActivities(e.map(activity => activity.value));
   };
 
-  function onSubmit(e) {
+  const onSubmit = async e => {
     e.preventDefault();
-    // update user object with new values
-    const updatedUser = {
-      ...userDetails,
-      activities: userActivities,
-    };
     try {
-      executePut('user/' + userData.profileId, updatedUser);
-      window.location.reload();
+      // send updated user object to server
+      await executePut('user/' + userData.profileId, {
+        ...updatedData,
+        activities: userActivities,
+      });
+      if (updateResponse) {
+        // close modal
+        document.getElementById('my_modal_4').close();
+        // reload page
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error, updateError);
     }
-  }
+  };
   return (
     <div className="modal-box">
       <h3 className="font-bold text-lg">Opdater bruger</h3>
-      <div className="modal-action">
-        <form method="dialog">
-          <label className="labelStyle">Brugernavn:</label>
-          <input
-            type="text"
-            name="username"
-            value={userDetails.username}
-            onChange={handleInputChange}
-          />
+      <form method="dialog">
+        <label className="labelStyle">Brugernavn:</label>
+        <input
+          type="text"
+          name="username"
+          value={updatedData.username}
+          onChange={handleInputChange}
+        />
 
-          <label className="labelStyle">Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={userDetails.password}
-            onChange={handleInputChange}
-          />
+        <label className="labelStyle">Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={updatedData.password}
+          onChange={handleInputChange}
+        />
 
-          <label className="labelStyle">Førstenavn:</label>
-          <input
-            type="text"
-            name="firstName"
-            value={userDetails.firstName}
-            onChange={handleInputChange}
-          />
+        <label className="labelStyle">Førstenavn:</label>
+        <input
+          type="text"
+          name="firstName"
+          value={updatedData.firstName}
+          onChange={handleInputChange}
+        />
 
-          <label className="labelStyle">Efternavn:</label>
-          <input
-            type="text"
-            name="lastName"
-            value={userDetails.lastName}
-            onChange={handleInputChange}
-          />
+        <label className="labelStyle">Efternavn:</label>
+        <input
+          type="text"
+          name="lastName"
+          value={updatedData.lastName}
+          onChange={handleInputChange}
+        />
 
-          <label className="labelStyle">Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={userDetails.email}
-            onChange={handleInputChange}
-          />
+        <label className="labelStyle">Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={updatedData.email}
+          onChange={handleInputChange}
+        />
 
-          <label className="labelStyle">Alder:</label>
-          <input
-            type="date"
-            name="birthdate"
-            onChange={handleInputChange}
-            required
-          />
+        <label className="labelStyle">Alder:</label>
+        <input
+          type="date"
+          name="birthdate"
+          onChange={handleInputChange}
+          value={updatedData.birthdate}
+          required
+        />
 
-          <label className="labelStyle">Interesser:</label>
-          <div className="interests-container">
-            <Select
-              options={
-                (activityOptions &&
-                  activityOptions.map(activity => ({
-                    value: activity.activity_type,
-                    label: activity.activity_type,
-                  }))) || { value: 'Loading...', label: 'Loading...' }
-              }
-              isMulti
-              onChange={handleActivityChange}
-              placeholder="Vælg interesser"
-              value={
-                userActivities &&
-                userActivities.map(activity => ({
-                  value: activity,
-                  label: activity,
-                }))
-              }
-            />
-          </div>
-          <button className="button" onClick={onSubmit} disabled={updating}>
-            {updating ? <Spinner /> : 'Gem'}
-          </button>
-          <button
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-            onClick={() => document.getElementById('my_modal_4').close()}>
-            X
-          </button>
-        </form>
-      </div>
+        <label className="labelStyle">Interesser:</label>
+        <div className="interests-container">
+          <Select
+            options={
+              (activityOptions &&
+                activityOptions.map(activity => ({
+                  value: activity.activity_type,
+                  label: activity.activity_type,
+                }))) || { value: 'Loading...', label: 'Loading...' }
+            }
+            isMulti
+            onChange={handleActivityChange}
+            placeholder="Vælg interesser"
+            value={
+              userActivities &&
+              userActivities.map(activity => ({
+                value: activity,
+                label: activity,
+              }))
+            }
+          />
+        </div>
+        <button className="button" onClick={onSubmit} disabled={updating}>
+          {updating ? <Spinner /> : 'Gem'}
+        </button>
+        <button
+          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          onClick={() => document.getElementById('my_modal_4').close()}
+        >
+          X
+        </button>
+      </form>
     </div>
   );
 }

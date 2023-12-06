@@ -58,7 +58,8 @@ function UserProfileDetails() {
                 userData.activities.map((activity, index) => (
                   <span
                     key={activity.activityType || index}
-                    className="badge badge-lg">
+                    className="badge badge-lg"
+                  >
                     {activity.activityType}
                   </span>
                 ))}
@@ -66,7 +67,8 @@ function UserProfileDetails() {
             <div>
               <button
                 className="button"
-                onClick={() => document.getElementById('my_modal_4').showModal()}>
+                onClick={() => document.getElementById('my_modal_4').showModal()}
+              >
                 Opdater oplysninger
               </button>
             </div>
