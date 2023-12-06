@@ -3,7 +3,9 @@ import UserController from '../../Controllers/user.controller.js';
 import { authenticateToken } from '../../Controllers/auhentication.controller.js'; //TODO: why did i do this????
 
 export default Router()
+  
   .post('/', UserController.createUser)
+  .get('/user/profile', authenticateToken, UserController.getUserProfile)
   .post('/login', UserController.LoginUser)
   .post('/logout', UserController.Logout)
   .get('/:userId', UserController.getUserById)

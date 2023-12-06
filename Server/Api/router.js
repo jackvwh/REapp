@@ -8,7 +8,7 @@ import testdataController from '../Controllers/test.controller.js';
 import activityRouter from './routes/activity.router.js';
 
 export default Router()
-  .get('/', homeRouter)
+  .use('/', homeRouter)//changed to use instead of get
   .use('/feedback', feedbackRouter)
   .use('/surveys/', surveyRouter)
   .use('/questions', questionRouter)
