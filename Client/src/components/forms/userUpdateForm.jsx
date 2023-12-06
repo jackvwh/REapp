@@ -52,6 +52,10 @@ export default function UserUpdateForm({ userData }) {
     setUserActivities(e.map(activity => activity.value));
   };
 
+  function formatBirthdate(date) {
+    return new Intl.DateTimeFormat('da-DK').format(date);
+  }
+
   const onSubmit = async e => {
     e.preventDefault();
     try {
@@ -114,14 +118,25 @@ export default function UserUpdateForm({ userData }) {
           onChange={handleInputChange}
         />
 
-        <label className="labelStyle">Alder:</label>
-        <input
-          type="date"
-          name="birthdate"
-          onChange={handleInputChange}
-          value={updatedData.birthdate}
-          required
-        />
+        <div tabIndex={0} className="collapse collapse-arrow ">
+          <input type="checkbox" />
+          <div className="collapse-title">
+            <label className="labelStyle">Fødselsdato:</label>
+            <p>
+              {updatedData.birthdate &&
+                formatBirthdate(new Date(updatedData.birthdate))}
+            </p>{' '}
+          </div>
+          <div className="collapse-content">
+            <input
+              type="date"
+              name="birthdate"
+              onChange={handleInputChange}
+              value={updatedData.birthdate}
+              required
+            />
+          </div>
+        </div>
 
         <label className="labelStyle">Interesser:</label>
         <div className="interests-container">
@@ -150,8 +165,7 @@ export default function UserUpdateForm({ userData }) {
         </button>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('my_modal_4').close()}
-        >
+          onClick={() => document.getElementById('my_modal_4').close()}>
           X
         </button>
       </form>
