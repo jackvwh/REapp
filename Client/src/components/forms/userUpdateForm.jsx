@@ -84,6 +84,7 @@ export default function UserUpdateForm({ userData }) {
           name="username"
           value={updatedData.username}
           onChange={handleInputChange}
+          className="input input-bordered w-full max-w-xs"
         />
 
         <label className="labelStyle">Password:</label>
@@ -92,6 +93,7 @@ export default function UserUpdateForm({ userData }) {
           name="password"
           value={updatedData.password}
           onChange={handleInputChange}
+          className="input input-bordered w-full max-w-xs"
         />
 
         <label className="labelStyle">Førstenavn:</label>
@@ -100,6 +102,7 @@ export default function UserUpdateForm({ userData }) {
           name="firstName"
           value={updatedData.firstName}
           onChange={handleInputChange}
+          className="input input-bordered w-full max-w-xs"
         />
 
         <label className="labelStyle">Efternavn:</label>
@@ -108,6 +111,7 @@ export default function UserUpdateForm({ userData }) {
           name="lastName"
           value={updatedData.lastName}
           onChange={handleInputChange}
+          className="input input-bordered w-full max-w-xs"
         />
 
         <label className="labelStyle">Email:</label>
@@ -116,12 +120,15 @@ export default function UserUpdateForm({ userData }) {
           name="email"
           value={updatedData.email}
           onChange={handleInputChange}
+          className="input input-bordered w-full max-w-xs"
         />
 
-        <div tabIndex={0} className="collapse collapse-arrow ">
+        <label className="labelStyle">Fødselsdato:</label>
+        <div
+          tabIndex={0}
+          className="collapse collapse-arrow border border-base-300 ">
           <input type="checkbox" />
           <div className="collapse-title">
-            <label className="labelStyle">Fødselsdato:</label>
             <p>
               {updatedData.birthdate &&
                 formatBirthdate(new Date(updatedData.birthdate))}
