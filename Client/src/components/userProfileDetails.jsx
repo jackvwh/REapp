@@ -15,8 +15,10 @@ function UserProfileDetails() {
   } = useApiClient.useGet('user/' + userId);
 
   function calcAge(dateString) {
+    // + sign converts date string to number(milliseconds since 1970)
     const birthday = +new Date(dateString);
-    return ~~((Date.now() - birthday) / 31557600000);
+    // calculate age from milliseconds
+    return Math.floor((Date.now() - birthday) / 31557600000);
   }
 
   return (
@@ -58,8 +60,7 @@ function UserProfileDetails() {
                 userData.activities.map((activity, index) => (
                   <span
                     key={activity.activityType || index}
-                    className="badge badge-lg"
-                  >
+                    className="badge badge-lg">
                     {activity.activityType}
                   </span>
                 ))}
@@ -67,8 +68,7 @@ function UserProfileDetails() {
             <div>
               <button
                 className="button"
-                onClick={() => document.getElementById('my_modal_4').showModal()}
-              >
+                onClick={() => document.getElementById('my_modal_4').showModal()}>
                 Opdater oplysninger
               </button>
             </div>
