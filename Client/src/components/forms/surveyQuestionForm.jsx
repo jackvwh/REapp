@@ -15,10 +15,17 @@ const SurveyQuestionForm = ({ onAddQuestion }) => {
         type="text"
         value={question}
         onChange={e => setQuestion(e.target.value)}
-        placeholder="Enter your question"
+        placeholder="Tilføj spørgsmål"
         required
       />
-      <button type="submit">Add Question</button>
+
+      <select name="answerType" id="answerType">
+        <option value="text">Text</option>
+        <option value="boolean">Date</option>
+        <option value="1-10">1-5</option>
+        <option value="1-5">1-10</option>
+      </select>
+      <button type="submit">Tilføj spørgsmål</button>
     </form>
   );
 };

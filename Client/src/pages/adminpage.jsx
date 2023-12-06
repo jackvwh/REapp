@@ -2,7 +2,10 @@ import '../styles/index.css';
 import StatusBar from '../components/chat/statusbar';
 import SurveyRow from '../components/tables/rows/surveyRow';
 import QuestionRow from '../components/tables/rows/questionRow';
+import SurveyForm from '../components/forms/surveyForm.jsx';
+import SurveyQuestionForm from '../components/forms/surveyQuestionForm.jsx';
 import { useApiClient } from '../Hooks/useApiClient.js';
+import RowRenderer from '../components/lists/rowRenderer.jsx';
 
 export default function AdminPage() {
   // get survey list from server
@@ -26,18 +29,26 @@ export default function AdminPage() {
     return <div>Error loading </div>;
   }
 
-  function RowRenderer({ list, element: Element }) {
-    return list && list.length > 0 ? (
-      list.map((listItem, index) => <Element key={index} props={listItem} />)
-    ) : (
-      <tr>
-        <td colSpan="5">Ingen data fundet</td>
-      </tr>
-    );
-  }
-
   return (
     <main className="">
+      {/* survey modal */}
+      <dialog id="survey-modal" className="modal">
+        {/* Survey form */}
+        <SurveyForm questionData={questionData} />
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+      {/* question modal */}
+      <dialog id="question-modal" className="modal">
+        <div className="modal-box">
+          {/* Question form */}
+          <SurveyQuestionForm />
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
       <StatusBar />
       {/* top navbar */}
       <nav className="navbar bg-base-100">
@@ -70,10 +81,9 @@ export default function AdminPage() {
         </div>
       </nav>
 
-      {/* main content */}
       <section className="container">
-        <menu className="">
-          <div className="drawer drawer-end">
+        <menu>
+          <div className="drawer drawer-end z-50">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
               {/* Page content here */}
@@ -81,19 +91,29 @@ export default function AdminPage() {
                 Åben menu
               </label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side z-50">
               <label
                 htmlFor="my-drawer-4"
                 aria-label="close sidebar"
-                className="drawer-overlay"
-              ></label>
+                className="drawer-overlay"></label>
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                {/* Sidebar content here */}
                 <li>
-                  <a>Tilføj spørgsmål</a>
+                  <button
+                    className="btn"
+                    onClick={() =>
+                      document.getElementById('question-modal').showModal()
+                    }>
+                    Opret nyt spørgsmål
+                  </button>
                 </li>
                 <li>
-                  <a>Tilføj spørgeskema</a>
+                  <button
+                    className="btn"
+                    onClick={() =>
+                      document.getElementById('survey-modal').showModal()
+                    }>
+                    Opret spørgeskema
+                  </button>
                 </li>
                 <li>
                   <a>Slet bruger</a>
@@ -104,7 +124,6 @@ export default function AdminPage() {
         </menu>
 
         <div className="flex justify-between px-4 py-16 bg-base-200">
-          {/* Create survey section */}
           <section id="survey-table" className="card w-100 bg-base-100 shadow-xl">
             <div className="overflow-x-auto">
               {' '}
