@@ -13,7 +13,6 @@ function useGet(endpoint) {
     const fetchData = async () => {
       try {
         const result = await ApiClient.get(endpoint);
-        console;
         if (isMounted) {
           setData(result);
           setLoading(false);
@@ -34,100 +33,67 @@ function useGet(endpoint) {
   return { data, loading, error };
 }
 
-// Function for POST requests
-function usePost(endpoint, body) {
+// Function for POST requests. Returns a function that can be called with the endpoint and body
+function usePost() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    let isMounted = true;
-    const fetchData = async () => {
-      try {
-        const result = await ApiClient.post(endpoint, body);
+  const executePost = async (endpoint, body) => {
+    setLoading(true);
+    try {
+      const result = await ApiClient.post(endpoint, body);
+      setData(result);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (isMounted) {
-          setData(result);
-          setLoading(false);
-        }
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [endpoint, body]);
-
-  return { data, loading, error };
+  return { executePost, data, loading, error };
 }
 
-// Function for PUT requests
-function usePut(endpoint, body) {
+// Function for PUT requests. Returns a function that can be called with the endpoint and body
+function usePut() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    let isMounted = true;
-    const fetchData = async () => {
-      try {
-        const result = await ApiClient.put(endpoint, body);
+  const executePut = async (endpoint, body) => {
+    setLoading(true);
+    try {
+      const result = await ApiClient.put(endpoint, body);
+      setData(result);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (isMounted) {
-          setData(result);
-          setLoading(false);
-        }
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [endpoint, body]);
-
-  return { data, loading, error };
+  return { executePut, data, loading, error };
 }
 
-// Function for DELETE requests
-function useDelete(endpoint) {
+// Function for DELETE requests. Returns a function that can be called with the endpoint
+function useDelete() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    let isMounted = true;
-    const fetchData = async () => {
-      try {
-        const result = await ApiClient.delete(endpoint);
+  const executeDelete = async endpoint => {
+    setLoading(true);
+    try {
+      const result = await ApiClient.delete(endpoint);
+      setData(result);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (isMounted) {
-          setData(result);
-          setLoading(false);
-        }
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [endpoint]);
-
-  return { data, loading, error };
+  return { executeDelete, data, loading, error };
 }
 
 export const useApiClient = {
