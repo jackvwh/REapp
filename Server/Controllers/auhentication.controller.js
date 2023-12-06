@@ -9,14 +9,14 @@ dotenv.config();
 //this will be used to see if youre trying to navigate to pages, you dont have access to
 export function authenticateToken(res,req,next){
     const authheader = req.headers['authorization'];
-    const token = authheader && authheader.split('')[1];
-//todo: you should be send to the login page, in case your token is expired or wrong so you can get a new one.
+    const token = authheader && authheader.split(' ')[1];// be careful with this split, i missed my typo, and took my 2 hours to find
+
     if(!token){
-        return res.status(401).send('Access denied/get bent');
+        return res.status(401).send('Access denied');
     }
 
     try{
-        //does a random user have their jwt token saved in dotenv then?
+        //TODO: does a random user have their jwt token saved in dotenv then?
         const verified = jwt.verify(token, process.env.JWT_secret);
         req.user = verified;
         next();

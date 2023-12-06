@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/index.css';
 
+//TODO: this bitch needs a logout button and funcationality for that
 function UserProfileHeader() {
   return (
     <header className="user-profile-header">

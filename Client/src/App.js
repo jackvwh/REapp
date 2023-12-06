@@ -10,6 +10,7 @@ import AIadminpage from './pages/aiAdminpage.jsx';
 import UserPage from './pages/userpage.jsx';
 import ProtectedRoute from './components/protectedRoute.jsx';
 
+//TODO: make sure, you cant navigate to login through either url or buttons
 function App() {
   return (
     <CookiesProvider>
