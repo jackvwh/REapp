@@ -45,7 +45,7 @@ const QuestionForm = () => {
           <input
             type="text"
             placeholder="Skriv her"
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs text-black"
             name="question"
             onClick={handleChange}
           />
@@ -66,7 +66,6 @@ const QuestionForm = () => {
           </select>
         </label>
 
-        
         <button type="submit" onSubmit={onSubmit}>
           Tilføj spørgsmål
         </button>

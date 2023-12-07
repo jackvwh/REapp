@@ -3,9 +3,9 @@ import StatusBar from '../components/chat/statusbar';
 import SurveyRow from '../components/tables/rows/surveyRow';
 import QuestionRow from '../components/tables/rows/questionRow';
 import SurveyForm from '../components/forms/surveyForm.jsx';
-import SurveyQuestionForm from '../components/forms/surveyQuestionForm.jsx';
 import { useApiClient } from '../Hooks/useApiClient.js';
 import RowRenderer from '../components/lists/rowRenderer.jsx';
+import QuestionForm from '../components/forms/questionForm.jsx';
 
 export default function AdminPage() {
   // get survey list from server
@@ -43,7 +43,7 @@ export default function AdminPage() {
       <dialog id="question-modal" className="modal">
         <div className="modal-box">
           {/* Question form */}
-          <SurveyQuestionForm />
+          <QuestionForm />
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
