@@ -11,7 +11,13 @@ function UserProfile() {
       <UserProfileHeader />
       <div className="grid-container">
         <section className="notification-styling">
-          <h1>Notifikationer</h1>
+          <h1 className="bg-primary text-white text-xl p-4 rounded-lg">
+            Notifikationer
+          </h1>
+          <section>
+            <h2>Placeholder</h2>
+            <p>Placeholder</p>
+          </section>
         </section>
         <Calender />
         <footer className="footer-styling">Placeholder</footer>
