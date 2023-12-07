@@ -29,6 +29,8 @@
 }
 
 .footer-styling {
+  background-color: lightblue;
+  border-radius: 25px;
   height: 12vh;
   width: 100%;
   padding: 20px;
