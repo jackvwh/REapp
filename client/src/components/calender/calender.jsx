@@ -9,6 +9,7 @@ const Calendar = () => {
     viewType: "Week",
     headerDateFormat: "d MMMM yyyy",
     timeRangeSelectedHandling: "Enabled",
+    cellHeight: 60,
     onTimeRangeSelected: async (args) => {
       const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
       const dp = args.control;

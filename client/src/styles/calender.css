@@ -1,5 +1,37 @@
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'notification calendar calendar'
+    'footer footer footer';
+    grid-template-rows: 1fr auto;
+  grid-gap: 10px;
+  padding: 10px;
+  margin: 10px;
+  height: 90vh;
+}
+
 .calendar-styling {
-    border: 1px solid red; /* Just for testing */
-    margin: 20px;
-    padding: 20px;
+  border: 1px solid lightblue; /* Just for testing */
+  margin-top: 20px;
+  padding: 20px;
+  height: auto;
+  width: auto;
+  grid-area: calendar;
+}
+
+.notification-styling {
+  border: 1px solid lightblue; /* Just for testing */
+  margin-top: 20px;
+  padding: 20px;
+  height: auto;
+  width: 15vw;
+  grid-area: notification;
+}
+
+.footer-styling {
+    background-color: aquamarine;
+  padding: 20px;
+  height: 10vh;
+  width: 100%;
+  grid-area: footer;
 }
