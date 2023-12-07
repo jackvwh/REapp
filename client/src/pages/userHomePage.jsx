@@ -1,12 +1,13 @@
 // UserHomePage.jsx
 import React from 'react';
+import { useState } from 'react';
 import Calender from '../components/calender/calender';
 import UserProfileHeader from '../components/userProfileHeader.jsx';
 import NotificationMessage from '../components/notifications/notificationMessage.jsx';
 
 //Might add a "Goddag, <user>" here later on
-
 function UserProfile() {
+  
   return (
     <div>
       <UserProfileHeader />
@@ -43,6 +44,7 @@ function UserProfile() {
           </nav>
         </footer>
       </div>
+      
     </div>
   );
 }

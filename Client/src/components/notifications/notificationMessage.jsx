@@ -1,4 +1,5 @@
 import React from 'react';
+import NotificationModal from './notificationModal.jsx';
 
 function NotificationMessage() {
   return (
@@ -16,7 +17,7 @@ function NotificationMessage() {
       </svg>
       <span>Vil du deltage i en ny survey?</span>
       <div>
-        <button className="btn btn-sm btn-primary">Open</button>
+        <NotificationModal />
       </div>
     </div>
   );
