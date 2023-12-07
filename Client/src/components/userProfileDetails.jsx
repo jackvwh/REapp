@@ -1,6 +1,7 @@
 import React from 'react';
 import { useApiClient } from '../Hooks/useApiClient';
 import UserUpdateForm from './forms/userUpdateForm';
+import DailySurveyNotification from './surveys/daily';
 
 // const userId = localStorage.getItem('userId')
 
@@ -23,7 +24,17 @@ function UserProfileDetails() {
 
   return (
     <div>
-      <dialog id="my_modal_4" className="modal">
+      <dialog id="daily" className="modal">
+        <DailySurveyNotification surveyId={4} feedbackId={1}/>
+      </dialog>
+
+      <button
+        className="button"
+        onClick={() => document.getElementById('daily').showModal()}>
+        Daglig
+      </button>
+
+      <dialog id="update-form" className="modal">
         <UserUpdateForm userData={userData} />
       </dialog>
 
@@ -68,7 +79,7 @@ function UserProfileDetails() {
             <div>
               <button
                 className="button"
-                onClick={() => document.getElementById('my_modal_4').showModal()}>
+                onClick={() => document.getElementById('update-form').showModal()}>
                 Opdater oplysninger
               </button>
             </div>

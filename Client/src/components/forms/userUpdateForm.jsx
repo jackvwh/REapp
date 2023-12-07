@@ -172,7 +172,7 @@ export default function UserUpdateForm({ userData }) {
         </button>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('my_modal_4').close()}>
+          onClick={() => document.getElementById('update-form').close()}>
           X
         </button>
       </form>
