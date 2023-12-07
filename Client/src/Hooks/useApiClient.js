@@ -84,7 +84,7 @@ function useDelete() {
   const executeDelete = async endpoint => {
     setLoading(true);
     try {
-      const result = await ApiClient.delete(endpoint);
+      const result = await ApiClient.del(endpoint);
       setData(result);
     } catch (err) {
       setError(err);
