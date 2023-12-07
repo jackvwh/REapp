@@ -57,20 +57,22 @@ export default function SurveyForm({ questionData }) {
     <div className="modal-box">
       <h1 className="font-bold text-lg">Create a survey</h1>
       <form method="dialog" className="modal-backdrop">
-        <label htmlFor="survey-title">Survey title</label>
+        <label htmlFor="survey-title" className="text-black">
+          Survey title
+        </label>
         <input
-          className="form-control"
+          className="form-control text-black"
           id="surveyTitle"
           name="surveyTitle"
           placeholder="Enter survey title"
           onChange={handleChange}
           required
         />
-        <label className="labelStyle" htmlFor="description">
+        <label className="labelStyle text-black" htmlFor="description">
           Description
         </label>
         <textarea
-          className="form-control"
+          className="form-control text-black"
           id="description"
           name="description"
           placeholder="Enter description"
@@ -81,8 +83,8 @@ export default function SurveyForm({ questionData }) {
         <label className="labelStyle" htmlFor="selectedselectedQuestions">
           Valgte spørgsmål
         </label>
-        <div className="">
-          <table>
+        <div className="overflow-x-auto">
+          <table className="table">
             <thead>
               <tr>
                 <th></th>
@@ -120,7 +122,7 @@ export default function SurveyForm({ questionData }) {
       </form>
 
       <div className="question-list">
-        <h3>Alle spørgsmål</h3>
+        <h3 className="text-black">Alle spørgsmål</h3>
         <table>
           <thead>
             <tr>
@@ -163,12 +165,12 @@ function SurveyQuestionRowAdd({ props, addQuestion }) {
   };
 
   return (
-    <tr>
-      <td>{props.question_id}</td>
+    <tr className="hover">
+      <th>{props.question_id}</th>
       <td>{props.question_text}</td>
       <td>{props.answer_type}</td>
       <td colSpan="4">
-        <button className="btn btn-primary btn-sm" onClick={handleAddQuestion}>
+        <button className="btn btn-primary btn-sm " onClick={handleAddQuestion}>
           Tilføj spørgsmål
         </button>
       </td>
@@ -185,10 +187,10 @@ function SurveyQuestionRowRemove({ props, removeQuestion }) {
   };
 
   return (
-    <tr>
-      <td>{props.question_id}</td>
-      <td>{props.question_text}</td>
-      <td>{props.answer_type}</td>
+    <tr className="hover">
+      <th className="text-black">{props.question_id}</th>
+      <td className="text-black">{props.question_text}</td>
+      <td className="text-black">{props.answer_type}</td>
       <td colSpan="4">
         <button className="btn btn-primary btn-sm" onClick={handleRemoveQuestion}>
           Fjern spørgsmål
