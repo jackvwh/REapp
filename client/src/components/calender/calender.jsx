@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DayPilot, DayPilotCalendar } from "@daypilot/daypilot-lite-react";
 import  '../../styles/calender.css';
 
+//this right below here is the config!, you can change the UI here, styling in css does not work!!
 const Calendar = () => {
   const calendarRef = useRef();
   const [config, setConfig] = useState({
     locale: "da-dk",
     viewType: "Week",
     headerDateFormat: "d MMMM yyyy",
+    cellHeight: 40,
     timeRangeSelectedHandling: "Enabled",
     onTimeRangeSelected: async (args) => {
       const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
