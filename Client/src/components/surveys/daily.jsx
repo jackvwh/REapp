@@ -1,47 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useApiClient } from '../../Hooks/useApiClient';
 
-export default function DailySurveyNotification({ surveyId, feedbackId }) {
+export default function SurveyNotification({ surveyId, feedbackId }) {
   // survey state
   const {
     data: survey,
     loading: isSurveyLoading,
     error: surveyError,
   } = useApiClient.useGet(`surveys/${surveyId}`);
+
   // feedback state
   const {
-    executePut,
+    executePost,
     data: feedbackResponse,
     loading: isFeedbackLoading,
     error: feedbackError,
-  } = useApiClient.usePut();
-  // initialize states for feedback
+  } = useApiClient.usePost();
+
+  // initialize state for feedback answers
   const [answers, setAnswers] = useState([]);
 
+  useEffect(() => {
+    console.log(answers);
+  }, [answers]);
+  useEffect(() => {
+    console.log(feedbackResponse);
+    console.log(feedbackError);
+    console.log(isFeedbackLoading);
+    console.log(answers);
+  }, [feedbackResponse]);
+
   const handleInputChange = e => {
-    console.log(e.target)
-    let value;
-    if ( e.target.name === '1-10') {
-      value = e.target.value
+    let value = null;
+    let bool = null;
+    let text = null;
+    if (e.target.name === '1-10' || e.target.name === '1-5') {
+      value = e.target.value;
+    } else if (e.target.name === 'boolean') {
+      bool = e.target.value;
+    } else if (e.target.name === 'text') {
+      text = e.target.value;
     }
-
-
     const answer = {
-      questionId: e.target.name,
-      answerText: e.target.value || null,
-      answerValue: e.target.value || null,
-      answerBool: e.target.value || null,
+      questionId: e.target.id,
+      answerText: text,
+      answerValue: value,
+      answerBool: bool,
     };
-    // setAnswers({ ...answers, answer });
+    setAnswers(prevAnswers => {
+      // Check if the answer for the same questionId already exists
+      const existingAnswerIndex = prevAnswers.findIndex(
+        a => a.questionId === answer.questionId
+      );
+
+      if (existingAnswerIndex >= 0) {
+        // Update existing answer
+        return prevAnswers.map((item, index) =>
+          index === existingAnswerIndex ? answer : item
+        );
+      } else {
+        // Add new answer
+        return [...prevAnswers, answer];
+      }
+    });
   };
 
-  const handleSubmit = async event => {
+  const onSubmit = async event => {
     event.preventDefault();
     console.log(answers);
     try {
-      await executePut(`feedback/${feedbackId}/answers`, { feedbackId, answers });
+      await executePost(`feedback/${feedbackId}/answers`, answers);
+      console.log(feedbackResponse);
+      console.log('Feedback submitted');
       if (feedbackResponse) {
-        console.log(feedbackResponse);
         window.location.reload();
         return;
       }
@@ -59,8 +90,8 @@ export default function DailySurveyNotification({ surveyId, feedbackId }) {
 
   return (
     <div className="modal-box">
-      <h2>{survey.title}</h2>
-      <p>{survey.description}</p>
+      <h2>Titel: {survey.survey_title}</h2>
+      <p>Beskrivelse: {survey.description}</p>
       <form method="dialog">
         {survey.questions.map(question => (
           <div key={question.question_id}>
@@ -72,7 +103,9 @@ export default function DailySurveyNotification({ surveyId, feedbackId }) {
             {question.answer_type === 'boolean' ? (
               // Boolean type input
               <div className="radio-group">
-                <label className="radio checked:bg-blue-500 text-black">
+                <label
+                  className="radio checked:bg-blue-500 "
+                  style={{ marginRight: '0.5rem' }}>
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -83,10 +116,13 @@ export default function DailySurveyNotification({ surveyId, feedbackId }) {
                   />
                   Ja
                 </label>
-                <label className="radio checked:bg-blue-500 text-black">
+                <label
+                  className="radio checked:bg-blue-500 "
+                  style={{ marginRight: '0.5rem' }}>
                   <input
                     type="radio"
                     name={question.answer_type}
+                    id={question.question_id}
                     value="false"
                     checked={answers[question.question_id] === 'false'}
                     onChange={handleInputChange}
@@ -94,24 +130,14 @@ export default function DailySurveyNotification({ surveyId, feedbackId }) {
                   Nej
                 </label>
               </div>
-            ) : question.answer_type === 'text' ? (
-              // Text type input
-              <input
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full max-w-xs text-black"
-                id={question.question_id}
-                name={question.answer_type}
-                onChange={handleInputChange}
-                value={answers[question.question_id]}
-              />
             ) : question.answer_type === '1-5' ? (
-              <div className="radio-group">
+              <div className="radio-group space-x-2">
                 {[1, 2, 3, 4, 5].map(num => (
-                  <label key={num} className="radio checked:bg-blue-500 text-black">
+                  <label key={num} className="radio checked:bg-blue-500">
                     <input
                       type="radio"
                       name={question.answer_type}
+                      id={question.question_id}
                       value={num}
                       checked={answers[question.question_id] === num.toString()}
                       onChange={handleInputChange}
@@ -121,12 +147,13 @@ export default function DailySurveyNotification({ surveyId, feedbackId }) {
                 ))}
               </div>
             ) : question.answer_type === '1-10' ? (
-              <div className="radio-group">
+              <div className="radio-group space-x-2">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
-                  <label key={num} className="radio checked:bg-blue-500 text-black">
+                  <label key={num} className="radio checked:bg-blue-500">
                     <input
                       type="radio"
                       name={question.answer_type}
+                      id={question.question_id}
                       value={num}
                       checked={answers[question.question_id] === num.toString()}
                       onChange={handleInputChange}
@@ -135,13 +162,27 @@ export default function DailySurveyNotification({ surveyId, feedbackId }) {
                   </label>
                 ))}
               </div>
+            ) : question.answer_type === 'text' ? (
+              <div className="form-control">
+                <input
+                  type="text"
+                  name={question.answer_type}
+                  id={question.question_id}
+                  placeholder="Skriv her..."
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </div>
             ) : (
-              // Unknown type
-              <p>Unknown answer type: {question.answer_type}</p>
+              <p>Unknown answer type</p>
             )}
           </div>
         ))}
-        <button onSubmit={handleSubmit} className="btn btn-primary" type="submit">
+        <button
+          className="btn btn-primary mt-2"
+          type="submit"
+          disabled={isFeedbackLoading}
+          onSubmit={onSubmit}>
           {isFeedbackLoading ? <Spinner /> : 'Send svar'}
         </button>
         <button

@@ -44,12 +44,11 @@ export default function SurveyForm({ questionData }) {
         questions: selectedQuestions.map(question => question.question_id),
       });
       if (postResponse) {
-        console.log(postResponse);
         window.location.reload();
         return;
       }
     } catch (error) {
-      console.error(error);
+      console.error(error, postError);
     }
   };
 
