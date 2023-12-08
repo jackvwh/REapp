@@ -15,4 +15,3 @@ function UserProfileHeader() {
 }
 
 export default UserProfileHeader;
-

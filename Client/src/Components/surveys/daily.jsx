@@ -21,14 +21,11 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
   const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    console.log(answers);
-  }, [answers]);
-  useEffect(() => {
     console.log(feedbackResponse);
     console.log(feedbackError);
     console.log(isFeedbackLoading);
     console.log(answers);
-  }, [feedbackResponse]);
+  }, [feedbackResponse, feedbackError, isFeedbackLoading, answers]);
 
   const handleInputChange = e => {
     let value = null;

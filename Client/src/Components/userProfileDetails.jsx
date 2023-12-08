@@ -30,7 +30,8 @@ function UserProfileDetails() {
 
       <button
         className="button"
-        onClick={() => document.getElementById('daily').showModal()}>
+        onClick={() => document.getElementById('daily').showModal()}
+      >
         Spørgeskema
       </button>
 
@@ -71,7 +72,8 @@ function UserProfileDetails() {
                 userData.activities.map((activity, index) => (
                   <span
                     key={activity.activityType || index}
-                    className="badge badge-lg">
+                    className="badge badge-lg"
+                  >
                     {activity.activityType}
                   </span>
                 ))}
@@ -79,7 +81,8 @@ function UserProfileDetails() {
             <div>
               <button
                 className="button"
-                onClick={() => document.getElementById('update-form').showModal()}>
+                onClick={() => document.getElementById('update-form').showModal()}
+              >
                 Opdater oplysninger
               </button>
             </div>

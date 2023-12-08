@@ -95,14 +95,16 @@ export default function AdminPage() {
               <label
                 htmlFor="my-drawer-4"
                 aria-label="close sidebar"
-                className="drawer-overlay"></label>
+                className="drawer-overlay"
+              ></label>
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <li>
                   <button
                     className="btn"
                     onClick={() =>
                       document.getElementById('question-modal').showModal()
-                    }>
+                    }
+                  >
                     Opret nyt spørgsmål
                   </button>
                 </li>
@@ -111,7 +113,8 @@ export default function AdminPage() {
                     className="btn"
                     onClick={() =>
                       document.getElementById('survey-modal').showModal()
-                    }>
+                    }
+                  >
                     Opret spørgeskema
                   </button>
                 </li>
