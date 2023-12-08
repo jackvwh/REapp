@@ -1,79 +1,99 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { DayPilot, DayPilotCalendar } from "@daypilot/daypilot-lite-react";
-import  '../../styles/calender.css';
+import { DayPilot, DayPilotCalendar } from '@daypilot/daypilot-lite-react';
+import '../../styles/calender.css';
 
 const Calendar = () => {
   const calendarRef = useRef();
   const [config, setConfig] = useState({
-    locale: "da-dk",
-    viewType: "Week",
-    headerDateFormat: "d MMMM yyyy",
-    timeRangeSelectedHandling: "Enabled",
+    locale: 'da-dk',
+    viewType: 'Week',
+    headerDateFormat: 'd MMMM yyyy',
+    timeRangeSelectedHandling: 'Enabled',
     cellHeight: 60,
-    onTimeRangeSelected: async (args) => {
-      const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
+    onTimeRangeSelected: async args => {
+      const modal = await DayPilot.Modal.prompt('Create a new event:', 'Event 1');
       const dp = args.control;
       dp.clearSelection();
-      if (modal.canceled) { return; }
-      dp.events.add({
+      if (modal.canceled) {
+        return;
+      }
+      const newEvent = {
         start: args.start,
         end: args.end,
         id: DayPilot.guid(),
-        text: modal.result
-      });
+        text: modal.result,
+      };
+      dp.events.add();
+
+      try {
+        const response = await fetch('http://localhost:5000/calender', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newEvent),
+        });
+        const data = await response.json();
+        console.log('Success:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
-    eventMoveHandling: "Update",
-    onEventMoved: (args) => {
-      console.log("Event moved: " + args.e.text());
+    eventResizeHandling: 'Update',
+    onEventResized: async args => {
+      console.log('Event resized: ', args.e.text());
+      try {
+        const response = await fetch(`http://localhost:5000/calender/${args.e.id()}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            start: args.newStart,
+            end: args.newEnd,
+            test: args.e.text(),
+          }),
+        });
+        const data = await response.json();
+        console.log('Success:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
-    eventResizeHandling: "Update",
-    onEventResized: (args) => {
-      console.log("Event resized: " + args.e.text());
-    },
-    eventClickHandling: "Disabled",
+    eventClickHandling: 'Disabled',
   });
 
   useEffect(() => {
-
-    const events = [
-      {
-        id: 1,
-        text: "Event 1",
-        start: DayPilot.Date.today().addHours(10),
-        end: DayPilot.Date.today().addHours(12),
-        resource: "R1"
-      },
-      {
-        id: 2,
-        text: "Event 2",
-        start: "2024-06-02T10:00:00",
-        end: "2024-06-02T11:00:00",
-        resource: "R2",
-        barColor: "#38761d",
-        barBackColor: "#93c47d"
+    const fetchEvents = async () => {
+      try {
+        // Make a GET request to fetch the events
+        const response = await fetch('http://localhost:3000/calender');
+        const data = await response.json();
+        console.log('Success:', data);
+  
+        const events = data.map(event => ({
+          id: event.event_id,
+          text: event.text,
+          start: new DayPilot.Date(event.start),
+          end: new DayPilot.Date(event.end),
+          resource: event.profile_id,
+        }));
+  
+        setConfig(events);
+      } catch (error) {
+        console.error('Error:', error);
       }
-    ];
-
-    // load event data using config
-    setConfig(prevConfig => ({
-      ...prevConfig,
-      events
-    }));
-
-    // to improve performance, you can use the direct API to load resources and events instead:
-    // getCalendar().update({events, columns});
-
+    };
+  
+    fetchEvents();
   }, []);
 
   const getCalendar = () => calendarRef.current?.control;
 
   return (
-    <div className='calendar-styling'>
-      <DayPilotCalendar
-        {...config}
-        ref={calendarRef}
-      />
+    <div className="calendar-styling">
+      <DayPilotCalendar {...config} ref={calendarRef} />
     </div>
   );
-}
+};
 export default Calendar;
