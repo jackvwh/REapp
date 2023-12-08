@@ -1,9 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import NotificationBox from '../../styles/notificationBox.css';
 
 function NotificationModal() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -13,13 +11,24 @@ function NotificationModal() {
         Open
       </button>
       <dialog id="my_modal_2" className="modal">
-        <div className="modal-box">
+        <div className="modal-box py-16 px-8 w-11/12 max-w-5xl">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
           <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Press ESC key or click outside to close</p>
+          <span>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+            dolor dolorem excepturi sit ipsam laudantium, praesentium nostrum natus
+            exercitationem saepe quasi. Deserunt omnis rem dolorem eius a ipsam sit
+            explicabo.
+          </span>
+          <br />
+          <div className='btn-styling-container'>
+            <button className="btn btn-success btn-styling">Ja!</button>
+          </div>
         </div>
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
       </dialog>
     </div>
   );
