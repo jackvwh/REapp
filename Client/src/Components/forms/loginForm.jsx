@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/homepage.css';
+import '../../Styles/homepage.css';
 
 function LoginModal() {
   const serverEndpoint = 'http://localhost:3001';

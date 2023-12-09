@@ -1,7 +1,8 @@
 // UserProfilePage.jsx
 import React from 'react';
-import UserProfileDetails from '../components/userProfileDetails.jsx';
-import UserProfileHeader from '../components/userProfileHeader.jsx';
+import UserProfileDetails from '../Components/userProfileDetails.jsx';
+import UserProfileHeader from '../Components/userProfileHeader.jsx';
+import '../Styles/index.css';
 
 function UserProfile() {
   return (

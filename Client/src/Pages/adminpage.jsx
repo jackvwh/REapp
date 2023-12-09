@@ -1,11 +1,11 @@
-import '../styles/index.css';
-import StatusBar from '../components/chat/statusbar';
-import SurveyRow from '../components/tables/rows/surveyRow';
-import QuestionRow from '../components/tables/rows/questionRow';
-import SurveyForm from '../components/forms/surveyForm.jsx';
+import '../Styles/index.css';
+import StatusBar from '../Components/chat/statusbar';
+import SurveyRow from '../Components/tables/rows/surveyRow';
+import QuestionRow from '../Components/tables/rows/questionRow';
+import SurveyForm from '../Components/forms/surveyForm.jsx';
 import { useApiClient } from '../Hooks/useApiClient.js';
-import RowRenderer from '../components/lists/rowRenderer.jsx';
-import QuestionForm from '../components/forms/questionForm.jsx';
+import RowRenderer from '../Components/lists/rowRenderer.jsx';
+import QuestionForm from '../Components/forms/questionForm.jsx';
 
 export default function AdminPage() {
   // get survey list from server

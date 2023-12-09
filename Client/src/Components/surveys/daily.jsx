@@ -102,7 +102,8 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
               <div className="radio-group">
                 <label
                   className="radio checked:bg-blue-500 "
-                  style={{ marginRight: '0.5rem' }}>
+                  style={{ marginRight: '0.5rem' }}
+                >
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -115,7 +116,8 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
                 </label>
                 <label
                   className="radio checked:bg-blue-500 "
-                  style={{ marginRight: '0.5rem' }}>
+                  style={{ marginRight: '0.5rem' }}
+                >
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -179,12 +181,14 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
           className="btn btn-primary mt-2"
           type="submit"
           disabled={isFeedbackLoading}
-          onSubmit={onSubmit}>
+          onSubmit={onSubmit}
+        >
           {isFeedbackLoading ? <Spinner /> : 'Send svar'}
         </button>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('daily').close()}>
+          onClick={() => document.getElementById('daily').close()}
+        >
           X
         </button>
       </form>
