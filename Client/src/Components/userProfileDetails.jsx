@@ -82,9 +82,11 @@ function UserProfileDetails() {
               <button
                 className="button"
                 onClick={() => document.getElementById('update-form').showModal()}
-              >
-                Opdater oplysninger
+              > Opdater oplysninger
               </button>
+            </div> 
+            <div>
+              <button className="button">Slet bruger</button>
             </div>
           </div>
         )}
