@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DayPilot, DayPilotCalendar } from '@daypilot/daypilot-lite-react';
 import '../../styles/calender.css';
 
+//this right below here is the config!, you can change the UI here, styling in css does not work!!
 const Calendar = () => {
   const calendarRef = useRef();
   const [config, setConfig] = useState({

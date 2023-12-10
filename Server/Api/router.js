@@ -6,9 +6,11 @@ import surveyRouter from './routes/survey.router.js';
 import questionRouter from './routes/question.router.js';
 import testdataController from '../Controllers/test.controller.js';
 import activityRouter from './routes/activity.router.js';
+import calenderRouter from './routes/calender.router.js';
 
 export default Router()
-  .get('/', homeRouter)
+  .use('/', homeRouter)
+  .use('calender', calenderRouter)
   .use('/feedback', feedbackRouter)
   .use('/surveys/', surveyRouter)
   .use('/questions', questionRouter)
