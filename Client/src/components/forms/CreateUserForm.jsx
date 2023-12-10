@@ -45,14 +45,14 @@ function CreateUserForm() {
         <section>
           <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
             <input
-              className="name-input-field"
+              className="input w-full max-w-2xs input-field"
               type="text"
               id="first_name"
               name="first_name"
               placeholder="Fornavn"
             />
             <input
-              className="name-input-field"
+              className="input w-full max-w-2xs input-field"
               type="text"
               id="last_name"
               name="last_name"
@@ -60,7 +60,7 @@ function CreateUserForm() {
             />
             <br />
             <input
-              className="input-field"
+              className="input w-full max-w-xs"
               type="email"
               id="email"
               name="email"
@@ -68,7 +68,7 @@ function CreateUserForm() {
             />
             <br />
             <input
-              className="input-field"
+              className="input w-full max-w-xs"
               type="text"
               id="username"
               name="username"
@@ -76,7 +76,7 @@ function CreateUserForm() {
             />
             <br />
             <input
-              className="input-field"
+              className="input w-full max-w-xs"
               type="password"
               id="password"
               name="password"
