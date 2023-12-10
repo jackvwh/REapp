@@ -12,7 +12,7 @@ function UserProfileDetails() {
     data: userData,
     loading: userIsLoading,
     error: userError,
-  } = useApiClient.useGet('user/' + userId);
+  } = useApiClient.useGet('user/profile');
 
   function calcAge(dateString) {
     // + sign converts date string to number(milliseconds since 1970)
