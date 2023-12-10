@@ -70,10 +70,6 @@ const Calendar = () => {
         // Make a GET request to fetch the events
         const response = await fetch('http://localhost:3000/calender');
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
         const data = await response.json();
         console.log('Success:', data);
   

@@ -10,7 +10,7 @@ import calenderRouter from './routes/calender.router.js';
 
 export default Router()
   .use('/', homeRouter)
-  .use('calender', calenderRouter)
+  .use('/calender', calenderRouter)
   .use('/feedback', feedbackRouter)
   .use('/surveys/', surveyRouter)
   .use('/questions', questionRouter)
