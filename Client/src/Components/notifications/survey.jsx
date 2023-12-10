@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useApiClient } from '../../Hooks/useApiClient';
+import React, { useState } from 'react';
+import { useApiClient } from '../../Hooks/useApiClient.js';
 
 export default function SurveyNotification({ surveyId, feedbackId }) {
   // survey state
@@ -19,13 +19,6 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
 
   // initialize state for feedback answers
   const [answers, setAnswers] = useState([]);
-
-  useEffect(() => {
-    console.log(feedbackResponse);
-    console.log(feedbackError);
-    console.log(isFeedbackLoading);
-    console.log(answers);
-  }, [feedbackResponse, feedbackError, isFeedbackLoading, answers]);
 
   const handleInputChange = e => {
     let value = null;
@@ -62,19 +55,16 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
     });
   };
 
-  const onSubmit = async event => {
-    event.preventDefault();
-    console.log(answers);
+  const onSubmit = async e => {
+    e.preventDefault();
     try {
-      await executePost(`feedback/${feedbackId}/answers`, answers);
-      console.log(feedbackResponse);
-      console.log('Feedback submitted');
+      await executePost(`feedback/${feedbackId}/answers`, { answers: answers });
       if (feedbackResponse) {
         window.location.reload();
         return;
       }
     } catch (error) {
-      console.error(error);
+      console.error(error, feedbackError);
     }
   };
 
@@ -102,8 +92,7 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
               <div className="radio-group">
                 <label
                   className="radio checked:bg-blue-500 "
-                  style={{ marginRight: '0.5rem' }}
-                >
+                  style={{ marginRight: '0.5rem' }}>
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -116,8 +105,7 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
                 </label>
                 <label
                   className="radio checked:bg-blue-500 "
-                  style={{ marginRight: '0.5rem' }}
-                >
+                  style={{ marginRight: '0.5rem' }}>
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -181,14 +169,12 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
           className="btn btn-primary mt-2"
           type="submit"
           disabled={isFeedbackLoading}
-          onSubmit={onSubmit}
-        >
+          onClick={onSubmit}>
           {isFeedbackLoading ? <Spinner /> : 'Send svar'}
         </button>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('daily').close()}
-        >
+          onClick={() => document.getElementById('daily').close()}>
           X
         </button>
       </form>
