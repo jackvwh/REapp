@@ -23,7 +23,7 @@ const Calendar = () => {
         id: DayPilot.guid(),
         text: modal.result,
       };
-      dp.events.add();
+      dp.events.add(newEvent);
 
       try {
         const response = await fetch('http://localhost:5000/calender', {
@@ -68,6 +68,11 @@ const Calendar = () => {
       try {
         // Make a GET request to fetch the events
         const response = await fetch('http://localhost:3000/calender');
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
         console.log('Success:', data);
   
@@ -76,7 +81,7 @@ const Calendar = () => {
           text: event.text,
           start: new DayPilot.Date(event.start),
           end: new DayPilot.Date(event.end),
-          resource: event.profile_id,
+          profile_id: event.profile_id,
         }));
   
         setConfig(events);
