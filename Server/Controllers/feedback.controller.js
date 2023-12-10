@@ -49,7 +49,6 @@ export default class FeedbackController {
   }
 
   static async insertFeedbackAnswers(req, res) {
-    console.log(req.body);
     const { feedbackId } = req.params;
     const { answers } = req.body;
     try {
