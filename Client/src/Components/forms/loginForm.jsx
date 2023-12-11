@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import '../../Styles/homepage.css';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/homepage.css';
 
 function LoginModal() {
   const serverEndpoint = 'http://localhost:3001';

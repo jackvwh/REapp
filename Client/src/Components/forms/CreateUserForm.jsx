@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginModal from './loginForm';
-import '../../styles/homepage.css';
+import '../../Styles/homepage.css';
 
 function CreateUserForm() {
   const serverEndpoint = 'http://localhost:3001';
@@ -17,7 +17,7 @@ function CreateUserForm() {
       password: event.target.password.value,
       birthdate: event.target.birthdate.value,
     };
-    // TODO: might need to be run through APIClient instead
+    // TODO: might need to be run through useAPIClient instead
     try {
       const response = await fetch(`${serverEndpoint}/user/`, {
         method: 'POST',
