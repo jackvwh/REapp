@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import '../../Styles/homepage.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginModal() {
   const serverEndpoint = 'http://localhost:3001';
+  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -14,17 +16,20 @@ function LoginModal() {
     setShowModal(false);
   };
 
-  const loginUser = async (event, id) => {
+  const loginUser = async event => {
     event.preventDefault();
 
     const username = event.target.username.value;
-    // TODO: might need to be run through useAPIClient instead
+    const password = event.target.password.value;
+
     try {
-      const response = await fetch(`${serverEndpoint}/user/${username}`, {
-        method: 'GET',
+      const response = await fetch(`${serverEndpoint}/user/login`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ username, password }),
+        credentials: 'include', // Include credentials for cookies
       });
 
       if (!response.ok) {
@@ -33,6 +38,7 @@ function LoginModal() {
 
       const user = await response.json();
       console.log(`Succesfully logged into ${username}`, user);
+      navigate('/notadminpage', { replace: true }); //TODO: change to the homepage, when done
     } catch (err) {
       console.error(err);
     }
