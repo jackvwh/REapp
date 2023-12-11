@@ -78,7 +78,7 @@ class UserModels {
 // }
 
 
-//TODO: idk why it looks like this, i dont remember doing it like, why does it have activities and eveything, ask jack what this is?
+
   static async getUserById(profile_id) {
     console.log('%d',profile_id);
     const sql =     

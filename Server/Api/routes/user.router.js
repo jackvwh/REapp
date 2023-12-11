@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import UserController from '../../Controllers/user.controller.js';
-import { authenticateToken } from '../../Controllers/auhentication.controller.js'; //TODO: why did i do this????
+import { authenticateToken } from '../../Controllers/auhentication.controller.js'; 
 
 export default Router()
   

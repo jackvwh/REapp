@@ -1,4 +1,4 @@
-import mysqlConnection from "../Db/db.js";
+import mysqlConnection from '../Db/db.js';
 
 class CalenderModels{
     static async query(sql, params) {
@@ -14,17 +14,19 @@ class CalenderModels{
     }
 
     static async getEventsByUserId(userId) {
-      try{
-      const result = await db.query('SELECT * FROM events WHERE profile_id = ?', [userId]);
-      return result;
-      }catch(err){
+      const sql = 'SELECT * FROM calender_events WHERE profile_id = ?';
+      try {
+        const result = await this.query(sql, [userId]);
+        return result;
+      } catch (err) {
         throw err;
       }
     }
 
     static async addEvent(userId, start, end, text) {
+      const sql = 'INSERT INTO calender_events (profile_id, start, end, text) VALUES (?, ?, ?, ?)';
       try {
-          const result = await db.query('INSERT INTO calender_events (profile_id, start, end, text) VALUES (?, ?, ?, ?)', [userId, start, end, text]);
+          const result = await this.query(sql, [userId, start, end, text]);
           return result.insertId; // Returns the ID of the newly created event
       } catch (err) {
           throw err;

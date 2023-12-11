@@ -42,7 +42,7 @@ export default class UserController {
         const token = jwt.sign({ userId: user.profile_id }, process.env.JWT_SECRET, {expiresIn: '8h' });
 
         res.cookie('token', token, {
-          httpOnly: true,
+         // httpOnly: true, //this little bitch here is all or nothing i hate it
           secure: true,
           sameSite: 'Lax',
           maxAge: 8 * 60 * 60 * 1000 // 8 hours
