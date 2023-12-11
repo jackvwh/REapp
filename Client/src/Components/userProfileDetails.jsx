@@ -1,6 +1,7 @@
 import React from 'react';
 import { useApiClient } from '../Hooks/useApiClient';
 import UserUpdateForm from './forms/userUpdateForm';
+import SurveyNotification from './surveys/daily';
 
 function UserProfileDetails() {
   // getAuth user from custom useEffect hook
@@ -31,7 +32,18 @@ function UserProfileDetails() {
 
   return (
     <div>
-      <dialog id="my_modal_4" className="modal">
+      <dialog id="daily" className="modal">
+        <SurveyNotification surveyId={1} feedbackId={1} />
+      </dialog>
+
+      <button
+        className="button"
+        onClick={() => document.getElementById('daily').showModal()}
+      >
+        Spørgeskema
+      </button>
+
+      <dialog id="update-form" className="modal">
         <UserUpdateForm userData={userData} />
       </dialog>
 
@@ -68,7 +80,8 @@ function UserProfileDetails() {
                 userData.activities.map((activity, index) => (
                   <span
                     key={activity.activityType || index}
-                    className="badge badge-lg">
+                    className="badge badge-lg"
+                  >
                     {activity.activityType}
                   </span>
                 ))}
@@ -76,7 +89,8 @@ function UserProfileDetails() {
             <div>
               <button
                 className="button"
-                onClick={() => document.getElementById('my_modal_4').showModal()}>
+                onClick={() => document.getElementById('update-form').showModal()}
+              >
                 Opdater oplysninger
               </button>
             </div>

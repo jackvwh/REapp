@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
-import HomePage from './pages/homepage.jsx';
-import AdminPage from './pages/adminpage.jsx';
-import UserProfile from './pages/userProfile.jsx';
-import AIprofilepage from './pages/aiProfilepage.jsx';
-import AIfrontpage from './pages/aiFrontpage.jsx';
-import AIadminpage from './pages/aiAdminpage.jsx';
+import HomePage from './Pages/homepage.jsx';
+import AdminPage from './Pages/adminpage.jsx';
+import UserProfile from './Pages/userProfile.jsx';
+import AIprofilepage from './Pages/aiProfilepage.jsx';
+import AIfrontpage from './Pages/aiFrontpage.jsx';
+import AIadminpage from './Pages/aiAdminpage.jsx';
 import UserPage from './pages/userHomePage.jsx';
 import ProtectedRoute from './components/protectedRoute.jsx';
 

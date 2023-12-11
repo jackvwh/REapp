@@ -126,7 +126,8 @@ export default function UserUpdateForm({ userData }) {
         <label className="labelStyle">Fødselsdato:</label>
         <div
           tabIndex={0}
-          className="collapse collapse-arrow border border-base-300 ">
+          className="collapse collapse-arrow border border-base-300 "
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <p>
@@ -172,7 +173,8 @@ export default function UserUpdateForm({ userData }) {
         </button>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('my_modal_4').close()}>
+          onClick={() => document.getElementById('update-form').close()}
+        >
           X
         </button>
       </form>

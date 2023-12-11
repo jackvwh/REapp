@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginModal from './loginForm';
-import '../../styles/homepage.css';
+import '../../Styles/homepage.css';
 
 function CreateUserForm() {
   const serverEndpoint = 'http://localhost:3001';
