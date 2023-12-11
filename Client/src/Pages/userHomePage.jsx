@@ -1,9 +1,9 @@
 // UserHomePage.jsx
 import React from 'react';
 import { useState } from 'react';
-import Calender from '../components/calender/calender';
-import UserProfileHeader from '../components/userProfileHeader.jsx';
-import NotificationMessage from '../components/notifications/notificationMessage.jsx';
+import Calender from '../Components/calender/calender';
+import UserProfileHeader from '../Components/userProfileHeader.jsx';
+import NotificationMessage from '../Components/notifications/notificationMessage.jsx';
 
 //Might add a "Goddag, <user>" here later on
 function UserProfile() {

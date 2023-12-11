@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { DayPilot, DayPilotCalendar } from '@daypilot/daypilot-lite-react';
-import '../../styles/calender.css';
+import '../../Styles/calender.css';
 
 const Calendar = () => {
   const calendarRef = useRef();
