@@ -35,7 +35,7 @@ function useGet(endpoint) {
 
 // Function for POST requests. Returns a function that can be called with the endpoint and body
 function usePost() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([] || null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
