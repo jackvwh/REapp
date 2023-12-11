@@ -1,11 +1,11 @@
 import '../Styles/index.css';
-import StatusBar from '../Components/chat/statusbar';
-import SurveyRow from '../Components/tables/rows/surveyRow';
-import QuestionRow from '../Components/tables/rows/questionRow';
-import SurveyForm from '../Components/forms/surveyForm.jsx';
 import { useApiClient } from '../Hooks/useApiClient.js';
-import RowRenderer from '../Components/lists/rowRenderer.jsx';
+import StatusBar from '../Components/chat/statusbar';
+import SurveyForm from '../Components/forms/surveyForm.jsx';
 import QuestionForm from '../Components/forms/questionForm.jsx';
+import QuestionTable from '../Components/tables/questionTable.jsx';
+import SurveyTable from '../Components/tables/surveyTable.jsx';
+import MenuDrawer from '../Components/globals/menu-drawer.jsx';
 
 export default function AdminPage() {
   // get survey list from server
@@ -31,24 +31,6 @@ export default function AdminPage() {
 
   return (
     <main className="">
-      {/* survey modal */}
-      <dialog id="survey-modal" className="modal">
-        {/* Survey form */}
-        <SurveyForm questionData={questionData} />
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
-      </dialog>
-      {/* question modal */}
-      <dialog id="question-modal" className="modal">
-        <div className="modal-box">
-          {/* Question form */}
-          <QuestionForm />
-        </div>
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
-      </dialog>
       <StatusBar />
       {/* top navbar */}
       <nav className="navbar bg-base-100">
@@ -70,7 +52,6 @@ export default function AdminPage() {
               </li>
             </ul>
           </div>
-
           <div className="form-control">
             <input
               type="text"
@@ -82,109 +63,32 @@ export default function AdminPage() {
       </nav>
 
       <section className="container">
-        <menu>
-          <div className="drawer drawer-end z-50">
-            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
-              {/* Page content here */}
-              <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary">
-                Åben menu
-              </label>
-            </div>
-            <div className="drawer-side z-50">
-              <label
-                htmlFor="my-drawer-4"
-                aria-label="close sidebar"
-                className="drawer-overlay"
-              ></label>
-              <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                <li>
-                  <button
-                    className="btn"
-                    onClick={() =>
-                      document.getElementById('question-modal').showModal()
-                    }
-                  >
-                    Opret nyt spørgsmål
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="btn"
-                    onClick={() =>
-                      document.getElementById('survey-modal').showModal()
-                    }
-                  >
-                    Opret spørgeskema
-                  </button>
-                </li>
-                <li>
-                  <a>Slet bruger</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </menu>
-
+        <MenuDrawer />
         <div className="flex justify-between px-4 py-16 bg-base-200">
-          <section id="survey-table" className="card w-100 bg-base-100 shadow-xl">
-            <div className="overflow-x-auto">
-              {' '}
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Spørgeskema</th>
-                    <th>Beskrivelse</th>
-                    <th>Lavet den</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {surveyData && surveyData.length === 0 ? (
-                    <tr>
-                      <td colSpan="5">Ingen spørgeskemaer fundet</td>
-                    </tr>
-                  ) : (
-                    <RowRenderer list={surveyData} element={SurveyRow} /> || (
-                      <div>loading...</div>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </section>
-          {/* survey section */}
-          <section id="question-table" className="card w-96 bg-base-100 shadow-xl">
-            <div className="overflow-x-auto">
-              {' '}
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Spørgsmål</th>
-                    <th>Svar type</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {questionData && questionData.length === 0 ? (
-                    <tr>
-                      <td colSpan="3">Ingen spørgsmål fundet</td>
-                    </tr>
-                  ) : (
-                    <RowRenderer list={questionData} element={QuestionRow} /> || (
-                      <div>loading...</div>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </section>
+          {/* surveys section */}
+          <SurveyTable surveyData={surveyData} />
+          {/* question section */}
+          <QuestionTable questionData={questionData} />
         </div>
       </section>
+      {/* survey modal */}
+      <dialog id="survey-modal" className="modal">
+        {/* Survey form */}
+        <SurveyForm questionData={questionData} />
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+      {/* question modal */}
+      <dialog id="question-modal" className="modal">
+        <div className="modal-box">
+          {/* Question form */}
+          <QuestionForm />
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
     </main>
   );
 }

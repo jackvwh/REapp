@@ -1,4 +1,5 @@
 import mysqlConnection from '../Db/db.js';
+import bcrypt from 'bcrypt';
 
 class UserModels {
   static async query(sql, params) {
@@ -13,9 +14,71 @@ class UserModels {
     });
   }
 
+  //we dont like the position of this. we want it somewhere else
+  //but currently this is how you would do it in the documnetation we have read :)
+  static async ValidateUser(username, password) {
+    const sql = `SELECT * FROM user_profiles WHERE username = ?`;
+
+    try {
+      const result = await this.query(sql, [username]);
+      //maybe check for multiple users and return an error
+      if (result.length > 0) {
+        const user = result[0];
+        //compare hashed password with the hashed passowrd in the DB
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (validPassword) return user;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error validating user', error);
+    }
+  }
+
+  // static async getUserById(profile_id) {
+  //   console.log("Received profile_id:", profile_id);
+  //   const sql = `
+  //     SELECT
+  //       profile_id,
+  //       username,
+  //       first_name,
+  //       last_name,
+  //       email,
+  //       birthdate,
+  //       privilege,
+  //       signup_date
+  //     FROM
+  //       user_profiles
+  //     WHERE
+  //       profile_id = ?;
+  //   `;
+
+  //   try {
+  //     const result = await this.query(sql, [profile_id]);
+  //     if (result.length === 0) {
+  //       throw new Error('User not found');
+  //     }
+
+  //     // Assuming you want to return the first result
+  //     const user = result[0];
+  //     return {
+  //       profileId: user.profile_id,
+  //       username: user.username,
+  //       firstName: user.first_name,
+  //       lastName: user.last_name,
+  //       email: user.email,
+  //       birthdate: user.birthdate,
+  //       privilege: user.privilege,
+  //       signupDate: user.signup_date
+  //     };
+  //   } catch (error) {
+  //     console.error('Error getting user by ID:', error);
+  //     throw new Error(error);
+  //   }
+  // }
+
   static async getUserById(profile_id) {
-    const sql = `
-      SELECT 
+    console.log('%d', profile_id);
+    const sql = `SELECT 
         user_profiles.*,
         activities.*,
         user_activities.*
@@ -28,6 +91,9 @@ class UserModels {
       `;
     try {
       const result = await this.query(sql, [profile_id]);
+      if (result.length === 0) {
+        throw new Error('User not found');
+      }
       // convert the flat array of objects to a user objects with nested activities
       const user = {
         profileId: result[0].profile_id || Number(profile_id),
@@ -67,6 +133,9 @@ class UserModels {
     birthdate,
     privilege
   ) {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     const sql = ` 
         START TRANSACTION;
 
@@ -79,19 +148,21 @@ class UserModels {
     try {
       const result = await this.query(sql, [
         username,
-        password,
+        hashedPassword,
         first_name,
         last_name,
         email,
         birthdate,
         privilege,
       ]);
+      console.log(`User ${username} created`);
       return result;
     } catch (error) {
       console.error('error creating user', error);
       throw new Error(error);
     }
   }
+
   static async updateUser(
     profileId,
     username,

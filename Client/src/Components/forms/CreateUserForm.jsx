@@ -17,9 +17,9 @@ function CreateUserForm() {
       password: event.target.password.value,
       birthdate: event.target.birthdate.value,
     };
-
+    // TODO: might need to be run through useAPIClient instead
     try {
-      const response = await fetch(`${serverEndpoint}/user`, {
+      const response = await fetch(`${serverEndpoint}/user/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ function CreateUserForm() {
       });
 
       if (response.ok) {
-        console.log('User created successfully!');
+        console.log(`User created: ${formData.username}`);
         formRef.current.reset();
       } else {
         console.error('Failed to create user:', response.statusText);

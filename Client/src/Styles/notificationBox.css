@@ -1,0 +1,17 @@
+.btn-styling-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 20px;
+}
+
+.btn-styling {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

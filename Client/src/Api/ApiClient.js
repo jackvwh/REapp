@@ -20,6 +20,28 @@ async function get(endpoint) {
     throw err; // Re-throw the error so it can be caught in useGet hook
   }
 }
+//main use is for sending the cookie, the normal get doesnt do that
+async function getAuth(endpoint) {
+  if (!endpoint) return console.error('No endpoint provided');
+
+  try {
+    const response = await fetch(base_url + endpoint, {
+      method: 'GET',
+      credentials: 'include', // Include credentials for cookies, the special sauce
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    throw err; // Re-throw the error so it can be caught in useGet hook
+  }
+}
 
 async function post(endpoint, body) {
   if (!endpoint) return console.error('No endpoint provided');
@@ -88,6 +110,7 @@ async function del(endpoint) {
 
 export const ApiClient = {
   get,
+  getAuth,
   post,
   put,
   del,

@@ -1,29 +1,23 @@
 import React from 'react';
 import { useApiClient } from '../Hooks/useApiClient';
 import UserUpdateForm from './forms/userUpdateForm';
-import SurveyNotification from './surveys/daily';
-
-// const userId = localStorage.getItem('userId')
-
-const userId = 5;
+import SurveyNotification from './notifications/survey';
 
 function UserProfileDetails() {
-
-   // Initialize custom hook
-   const {
+  // Initialize custom hook
+  const {
     executeDelete,
     data: deleteResponse,
     loading: deleting,
     error: deleteError,
-  } = useApiClient.useDelete(); 
+  } = useApiClient.useDelete();
 
-
-  // get user from custom useEffect hook
+  // getAuth user from custom useEffect hook
   const {
     data: userData,
     loading: userIsLoading,
     error: userError,
-  } = useApiClient.useGet('user/' + userId);
+  } = useApiClient.useGetAuth('user/profile');
 
   function calcAge(dateString) {
     // + sign converts date string to number(milliseconds since 1970)
@@ -32,11 +26,11 @@ function UserProfileDetails() {
     return Math.floor((Date.now() - birthday) / 31557600000);
   }
 
-  const onDelete = async (e) => {
+  const onDelete = async e => {
     e.preventDefault();
     try {
       await executeDelete('user/' + userData.profileId);
-        
+
       if (deleteResponse) {
         window.location.reload();
       }
@@ -44,11 +38,22 @@ function UserProfileDetails() {
       console.error(error, deleteError);
     }
   };
+  if (userIsLoading) {
+    return <p>Loading...</p>; // Loading state
+  }
+
+  if (userError) {
+    return <p>Error: {userError.message}</p>; // Display error message
+  }
+
+  if (!userData) {
+    return <p>No user data found.</p>; // Handle no data state
+  }
 
   return (
     <div>
       <dialog id="daily" className="modal">
-        <SurveyNotification surveyId={1} feedbackId={1} />
+        <SurveyNotification surveyId={4} feedbackId={1} />
       </dialog>
 
       <button
@@ -57,7 +62,7 @@ function UserProfileDetails() {
       >
         Spørgeskema
       </button>
-      
+
       <dialog id="update-form" className="modal">
         <UserUpdateForm userData={userData} />
       </dialog>
@@ -105,14 +110,15 @@ function UserProfileDetails() {
               <button
                 className="button"
                 onClick={() => document.getElementById('update-form').showModal()}
-              > Opdater oplysninger
+              >
+                {' '}
+                Opdater oplysninger
               </button>
-            </div> 
+            </div>
             <div>
-              <button
-                className="button"
-                onClick= {onDelete}
-              > Slet bruger
+              <button className="button" onClick={onDelete}>
+                {' '}
+                Slet bruger
               </button>
             </div>
           </div>
