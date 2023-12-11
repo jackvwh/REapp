@@ -5,7 +5,7 @@ import logoImage from '../assets/logo.png';
 import loveIcon from '../assets/love.png';
 import supportIcon from '../assets/support.png';
 import taskIcon from '../assets/task.png';
-import '../styles/index.css';
+import '../Styles/index.css';
 
 function HomePage() {
   return (
