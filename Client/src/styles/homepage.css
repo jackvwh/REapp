@@ -87,6 +87,14 @@
   -webkit-text-stroke-color: black;
 }
 
+.modal-container {
+  background-color: white;
+  font-size: 0.5em;
+  width: 25vw;
+  height: 60vh;
+  border-radius: 25px;
+
+}
 .button-30 {
   align-items: center;
   appearance: none;

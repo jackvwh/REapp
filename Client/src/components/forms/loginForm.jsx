@@ -58,13 +58,11 @@ function LoginModal() {
       {showModal && (
         <div>
           <div className="modal-container">
-            <div className="modal-header">
-              <h3>Log ind</h3>
-            </div>
-            <div className="modal-body">
+            <h3 className='text-6xl'>Log ind</h3>
+            <div className="my-9">
               <form id="login-form" onSubmit={loginUser}>
                 <input
-                  className="input-field"
+                  className="input-field input w-full max-w-2xs text-black input-field input-bordered"
                   type="text"
                   name="username"
                   id="username"
@@ -72,22 +70,18 @@ function LoginModal() {
                 />
                 <br />
                 <input
-                  className="input-field"
+                  className="input-field input w-full max-w-2xs text-black input-field input-bordered "
                   type="password"
                   name="password"
                   id="password"
                   placeholder="Adgangskode"
                 />
                 <br />
-                <button className="btn btn-success button-30 text-white">Log ind</button>
+                <button className="btn btn-success button-30 text-white my-9">
+                  Log ind
+                </button>
               </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                className="btn btn-error button-30 text-white"
-                onClick={closeModal}>
-                Luk
-              </button>
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeModal}>✕</button>
             </div>
           </div>
         </div>

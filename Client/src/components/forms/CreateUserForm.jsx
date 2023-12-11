@@ -40,7 +40,7 @@ function CreateUserForm() {
 
   return (
     <div className="create-user-container text-black">
-      <h2>Tilmeld dig nu</h2>
+      <h2 className='my-1'>Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
           <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
