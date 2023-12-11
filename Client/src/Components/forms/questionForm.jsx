@@ -22,16 +22,13 @@ const QuestionForm = () => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      await executePost('questions', {
-        ...question,
-      });
+      await executePost('questions', question);
       if (postResponse) {
-        console.log(postResponse);
         window.location.reload();
         return;
       }
     } catch (error) {
-      console.error(error);
+      console.error(error, postError);
     }
   };
 
@@ -47,7 +44,7 @@ const QuestionForm = () => {
             placeholder="Skriv her"
             className="input input-bordered w-full max-w-xs text-black"
             name="question"
-            onClick={handleChange}
+            onChange={handleChange}
           />
         </label>
 
@@ -55,23 +52,61 @@ const QuestionForm = () => {
           <div className="label">
             <span className="label-text">Svar type</span>
           </div>
-          <select className="select select-bordered">
-            <option disabled selected>
-              Pick one
-            </option>
-            <option value="text"> Tekst </option>
-            <option value="boolean"> Ja/Nej </option>
-            <option value="1-5">1-5</option>
-            <option value="1-10">1-10</option>
-          </select>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="answerType"
+                value="text"
+                onChange={handleChange}
+              />
+              <span className="label-text">Tekst</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="answerType"
+                value="boolean"
+                onChange={handleChange}
+              />
+              <span className="label-text">Ja/Nej</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="answerType"
+                value="1-5"
+                onChange={handleChange}
+              />
+              <span className="label-text">1-5</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="answerType"
+                value="1-10"
+                onChange={handleChange}
+              />
+              <span className="label-text">1-10</span>
+            </label>
+          </div>
         </label>
 
-        <button type="submit" onSubmit={onSubmit} className='btn btn-primary'>
-          Tilføj spørgsmål
+        <button type="submit" onClick={onSubmit} className="btn btn-primary">
+          {isPostLoading ? <Spinner /> : 'Tilføj spørgsmål'}
         </button>
       </form>
     </div>
   );
+};
+const Spinner = () => {
+  return <span className="loading loading-spinner loading-xs"></span>;
 };
 
 export default QuestionForm;
