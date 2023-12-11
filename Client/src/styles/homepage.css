@@ -1,23 +1,53 @@
 /*----------Google Fonts----------*/
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&display=swap');
 
 .home-page-container {
   position: absolute;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'logo form'
+    'love form'
+    'support form'
+    'task form';
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   height: 100%;
   width: 100%;
 }
 
 .logo-styling {
+  grid-area: logo;
+}
+
+.icon-styling:nth-child(1) {
+  grid-area: love;
+}
+
+.icon-styling:nth-child(2) {
+  grid-area: support;
+}
+
+.icon-styling:nth-child(3) {
+  grid-area: task;
+}
+
+.create-user-form {
+  grid-area: form;
+}
+
+@media screen and (max-width: 1000px) {
+  .home-page-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logo-styling {
   width: auto;
-  height: 25vh;
+  height: 35vh;
 }
 
 .create-user-container {
-  background-color: black;
+  background-color: white;
   font-size: 2.5em;
   width: 25vw;
   height: auto;
@@ -28,4 +58,63 @@
   width: 10vw;
   margin: 10px;
   margin-bottom: 0;
+}
+
+.birthdate-input-field {
+  font-size: 1rem;
+}
+
+.logo-icon-container {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  width: 32vw;
+  height: auto;
+}
+
+.icon-styling {
+  position: relative;
+  width: 8vw;
+  height: auto;
+}
+
+.icon-text {
+  position: relative;
+  font-size: 2.4em;
+  top: -10vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  -webkit-text-stroke: 1.5px;
+  -webkit-text-stroke-color: black;
+}
+
+.button-30 {
+  align-items: center;
+  appearance: none;
+  border-radius: 4px;
+  border-width: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:active {
+  transform: translateY(2px);
 }

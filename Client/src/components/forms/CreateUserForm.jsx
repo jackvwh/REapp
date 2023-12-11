@@ -39,20 +39,20 @@ function CreateUserForm() {
   };
 
   return (
-    <div className="create-user-container">
+    <div className="create-user-container text-black">
       <h2>Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
           <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
             <input
-              className="input w-full max-w-2xs text-black input-field"
+              className="input w-full max-w-2xs text-black input-field input-bordered"
               type="text"
               id="first_name"
               name="first_name"
               placeholder="Fornavn"
             />
             <input
-              className="input w-full max-w-2xs text-black input-field"
+              className="input w-full max-w-2xs text-black input-field input-bordered"
               type="text"
               id="last_name"
               name="last_name"
@@ -60,7 +60,7 @@ function CreateUserForm() {
             />
             <br />
             <input
-              className="input w-full max-w-xs text-black"
+              className="input w-full max-w-xs text-black input-bordered"
               type="email"
               id="email"
               name="email"
@@ -68,7 +68,7 @@ function CreateUserForm() {
             />
             <br />
             <input
-              className="input w-full max-w-xs text-black"
+              className="input w-full max-w-xs text-black input-bordered"
               type="text"
               id="username"
               name="username"
@@ -76,23 +76,28 @@ function CreateUserForm() {
             />
             <br />
             <input
-              className="input w-full max-w-xs text-black"
+              className="input w-full max-w-xs text-black input-bordered"
               type="password"
               id="password"
               name="password"
               placeholder="Adgangskode"
             />
             <br />
-            <label htmlFor="birthdate" className="birthdate-styling">
-              Fødselsdag:
-            </label>
-            <input className="birthdate-input-field" name="birthdate" type="date" />
+              <label htmlFor="birthdate" className="text-lg mx-5">
+                Fødselsdag:
+              </label>
+              <input
+                className="birthdate-input-field"
+                name="birthdate"
+                type="date"
+              />
             <div className="create-user-button-container">
-              <button type="submit" className="button-30 create-user-button">
+              <button type="submit" className="btn btn-success button-30 text-white">
                 Opret bruger
               </button>
             </div>
           </form>
+          <div className="divider text-sm">ELLER</div>
           <LoginModal />
         </section>
       </div>

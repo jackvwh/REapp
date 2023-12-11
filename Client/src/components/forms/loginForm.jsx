@@ -47,8 +47,10 @@ function LoginModal() {
   return (
     <div>
       <div className="login-button-container">
-        <p>Har du allerede en profil?</p>
-        <button onClick={openModal} className="button-30 login-button">
+        <p className="text-sm my-0">Har du allerede en profil?</p>
+        <button
+          onClick={openModal}
+          className="btn btn-success button-30 my-4 text-white">
           Log ind
         </button>
       </div>
@@ -77,12 +79,12 @@ function LoginModal() {
                   placeholder="Adgangskode"
                 />
                 <br />
-                <button className="button-30 login-button">Log ind</button>
+                <button className="btn btn-success button-30 text-white">Log ind</button>
               </form>
             </div>
             <div className="modal-footer">
               <button
-                className="button-30 close-login-modal-button"
+                className="btn btn-error button-30 text-white"
                 onClick={closeModal}>
                 Luk
               </button>
