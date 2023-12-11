@@ -226,7 +226,15 @@ class UserModels {
       `;
 
     try {
-      const results = await this.query(sql, [profileId, profileId, profileId, profileId ,profileId, profileId, profileId]);
+      const results = await this.query(sql, [
+        profileId,
+        profileId,
+        profileId,
+        profileId,
+        profileId,
+        profileId,
+        profileId,
+      ]);
       return results;
     } catch (error) {
       console.error('Error deleting user profile:', error);
