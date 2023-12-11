@@ -21,7 +21,7 @@ function UserProfileDetails() {
     // calculate age from milliseconds
     return Math.floor((Date.now() - birthday) / 31557600000);
   }
-
+  
   return (
     <div>
       <dialog id="daily" className="modal">

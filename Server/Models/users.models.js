@@ -141,18 +141,21 @@ class UserModels {
 
   static async deleteUser(profileId) {
     const sql = `
-        START TRANSACTION;
-    
-        DELETE FROM user_activities WHERE profile_id = ?;
-        
-        DELETE FROM user_profiles WHERE profile_id = ?;
-    
-        COMMIT;
+    START TRANSACTION;
+
+    DELETE FROM user_activities WHERE profile_id = ?;
+    DELETE FROM post_likes WHERE profile_id = ?;
+    DELETE FROM answers WHERE feedback_id IN (SELECT feedback_id FROM feedback WHERE profile_id = ?);
+    DELETE FROM calender WHERE profile_id = ?;
+    DELETE FROM event_comments WHERE profile_id = ?;
+    DELETE FROM feedback WHERE profile_id = ?;
+    DELETE FROM user_profiles WHERE profile_id = ?;
+
+    COMMIT;
       `;
 
     try {
-      const results = await this.query(sql, [profileId, profileId]);
-
+      const results = await this.query(sql, [profileId, profileId, profileId, profileId ,profileId, profileId, profileId]);
       return results;
     } catch (error) {
       console.error('Error deleting user profile:', error);

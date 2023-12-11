@@ -70,7 +70,7 @@ export default class UserController {
   }
 
   static async deleteUser(req, res) {
-    const id = req.params.id;
+    const id = req.params.userId;
     try {
       const deletedUser = await UserModels.deleteUser(id);
       res.status(200).json(deletedUser);
