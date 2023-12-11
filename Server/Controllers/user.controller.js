@@ -75,7 +75,7 @@ export default class UserController {
       email,
       birthdate,
       privilege,
-      signup_date,
+      
     } = req.body;
 
     try {
@@ -87,7 +87,6 @@ export default class UserController {
         email,
         birthdate,
         privilege,
-        signup_date
       );
       const token = jwt.sign({ username }, process.env.JWT_SECRET, {
         expiresIn: '1h',
