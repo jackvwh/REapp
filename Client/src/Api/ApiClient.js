@@ -26,7 +26,7 @@ async function getAuth(endpoint) {
 
   try {
     const response = await fetch(base_url + endpoint, {
-      method: 'GET', 
+      method: 'GET',
       credentials: 'include', // Include credentials for cookies, the special sauce
       headers: { 'Content-Type': 'application/json' },
     });

@@ -11,7 +11,6 @@ const app = express();
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001;
 
-
 // CORS configuration, this is used for cookies
 const corsOptions = {
   origin: 'http://localhost:3000', // Replace with your client's URL(frontpage url)
@@ -22,7 +21,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(router);
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

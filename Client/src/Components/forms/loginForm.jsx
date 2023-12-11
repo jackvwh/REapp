@@ -18,7 +18,7 @@ function LoginModal() {
     event.preventDefault();
 
     const username = event.target.username.value;
-
+    // TODO: might need to be run through useAPIClient instead
     try {
       const response = await fetch(`${serverEndpoint}/user/${username}`, {
         method: 'GET',
@@ -77,8 +77,7 @@ function LoginModal() {
             <div className="modal-footer">
               <button
                 className="button-30 close-login-modal-button"
-                onClick={closeModal}
-              >
+                onClick={closeModal}>
                 Luk
               </button>
             </div>

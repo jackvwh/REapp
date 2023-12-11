@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import UserController from '../../Controllers/user.controller.js';
-import { authenticateToken } from '../../Controllers/auhentication.controller.js'; 
+import { authenticateToken } from '../../Controllers/auhentication.controller.js';
 
 export default Router()
-  
   .post('/', UserController.createUser)
   .get('/profile', authenticateToken, UserController.getUserProfile)
   .post('/login', UserController.LoginUser)

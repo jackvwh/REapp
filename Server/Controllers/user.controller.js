@@ -26,7 +26,9 @@ export default class UserController {
       res.status(200).json(user);
     } catch (error) {
       console.error('Error getting user profile:', error);
-      res.status(500).json({ error: 'An error occurred while getting user profile' });
+      res
+        .status(500)
+        .json({ error: 'An error occurred while getting user profile' });
     }
   }
 
@@ -37,32 +39,32 @@ export default class UserController {
       const user = await UserModels.ValidateUser(username, password);
 
       if (user) {
-        //TODO: cube makes a good point if userID is necessary here 
+        //TODO: cube makes a good point if userID is necessary here
         //Generate a JWT token
-        const token = jwt.sign({ userId: user.profile_id }, process.env.JWT_SECRET, {expiresIn: '8h' });
+        const token = jwt.sign({ userId: user.profile_id }, process.env.JWT_SECRET, {
+          expiresIn: '8h',
+        });
 
         res.cookie('token', token, {
-         // httpOnly: true, //this little bitch here is all or nothing i hate it
+          // httpOnly: true, //this little bitch here is all or nothing i hate it
           secure: true,
           sameSite: 'Lax',
-          maxAge: 8 * 60 * 60 * 1000 // 8 hours
+          maxAge: 8 * 60 * 60 * 1000, // 8 hours
         });
         res.status(200).json({ message: 'Logged in successfully' });
       } else {
-        res.status(401).json({ message: 'Invalid username or password' })
+        res.status(401).json({ message: 'Invalid username or password' });
       }
-    }catch (error){
+    } catch (error) {
       console.error('Error during user login:', error);
       res.status(500).json({ error: 'An error occurred during login' });
     }
   }
 
-  static async Logout(req, res){
+  static async Logout(req, res) {
     res.clearCookie('token');
-    res.status(200).send('Logged out successfully')
+    res.status(200).send('Logged out successfully');
   }
-  
-  
 
   static async createUser(req, res) {
     const {
@@ -87,8 +89,10 @@ export default class UserController {
         privilege,
         signup_date
       );
-      const token = jwt.sign({username}, process.env.JWT_SECRET,{expiresIn: '1h'}); //TODO: is this nessacary or is it for first time login only?
-      res.status(200).json({user: newUser, token});
+      const token = jwt.sign({ username }, process.env.JWT_SECRET, {
+        expiresIn: '1h',
+      }); //TODO: is this nessacary or is it for first time login only?
+      res.status(200).json({ user: newUser, token });
     } catch (error) {
       console.error('error creating user', error);
       res

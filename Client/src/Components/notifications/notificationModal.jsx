@@ -7,7 +7,8 @@ function NotificationModal() {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
         className="btn btn-sm btn-primary"
-        onClick={() => document.getElementById('my_modal_2').showModal()}>
+        onClick={() => document.getElementById('my_modal_2').showModal()}
+      >
         Open
       </button>
       <dialog id="my_modal_2" className="modal">
@@ -25,7 +26,7 @@ function NotificationModal() {
             explicabo.
           </span>
           <br />
-          <div className='btn-styling-container'>
+          <div className="btn-styling-container">
             <button className="btn btn-success btn-styling">Ja!</button>
           </div>
         </div>

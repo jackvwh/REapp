@@ -66,7 +66,7 @@ const QuestionForm = () => {
           </select>
         </label>
 
-        <button type="submit" onSubmit={onSubmit}>
+        <button type="submit" onSubmit={onSubmit} className='btn btn-primary'>
           Tilføj spørgsmål
         </button>
       </form>

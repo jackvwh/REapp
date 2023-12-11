@@ -7,7 +7,6 @@ import NotificationMessage from '../Components/notifications/notificationMessage
 
 //Might add a "Goddag, <user>" here later on
 function UserProfile() {
-  
   return (
     <div>
       <UserProfileHeader />
@@ -44,7 +43,6 @@ function UserProfile() {
           </nav>
         </footer>
       </div>
-      
     </div>
   );
 }

@@ -11,7 +11,8 @@ const Calendar = () => {
     timeRangeSelectedHandling: 'Enabled',
     cellHeight: 60,
     eventMoveHandling: 'Update', // Added event move handling
-    onEventMoved: async args => {  // Added onEventMoved handler
+    onEventMoved: async args => {
+      // Added onEventMoved handler
       console.log('Event moved: ', args.e.text());
       const updatedEvent = {
         id: args.e.id(),
@@ -20,14 +21,17 @@ const Calendar = () => {
         text: args.e.text(),
       };
       try {
-        const response = await fetch(`http://localhost:3001/calender/events/${args.e.id()}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedEvent),
-          credentials: 'include',
-        });
+        const response = await fetch(
+          `http://localhost:3001/calender/events/${args.e.id()}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedEvent),
+            credentials: 'include',
+          }
+        );
         const data = await response.json();
         console.log('Success:', data);
       } catch (error) {
@@ -72,14 +76,17 @@ const Calendar = () => {
         text: args.e.text(),
       };
       try {
-        const response = await fetch(`http://localhost:3001/calender/events/${args.e.id()}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedEvent),
-          credentials: 'include',
-        });
+        const response = await fetch(
+          `http://localhost:3001/calender/events/${args.e.id()}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedEvent),
+            credentials: 'include',
+          }
+        );
         const data = await response.json();
         console.log('Success:', data);
       } catch (error) {

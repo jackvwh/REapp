@@ -17,12 +17,54 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/userpage" element={<ProtectedRoute><UserPage /></ProtectedRoute>} />
-          <Route path="/userProfile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-          <Route path="/notadminpage" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
-          <Route path="/ai/profilepage" element={<ProtectedRoute><AIprofilepage /></ProtectedRoute>} />
-          <Route path="/ai/frontpage/" element={<ProtectedRoute><AIfrontpage /></ProtectedRoute>} />
-          <Route path="/ai/adminpage" element={<ProtectedRoute><AIadminpage /></ProtectedRoute>} />
+          <Route
+            path="/userpage"
+            element={
+              <ProtectedRoute>
+                <UserPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/userProfile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notadminpage"
+            element={
+              <ProtectedRoute>
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ai/profilepage"
+            element={
+              <ProtectedRoute>
+                <AIprofilepage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ai/frontpage/"
+            element={
+              <ProtectedRoute>
+                <AIfrontpage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ai/adminpage"
+            element={
+              <ProtectedRoute>
+                <AIadminpage />
+              </ProtectedRoute>
+            }
+          />
           {/* Add other routes here */}
         </Routes>
       </Router>
