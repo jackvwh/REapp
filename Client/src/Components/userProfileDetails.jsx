@@ -8,6 +8,16 @@ import SurveyNotification from './surveys/daily';
 const userId = 5;
 
 function UserProfileDetails() {
+
+   // Initialize custom hook
+   const {
+    executeDelete,
+    data: deleteResponse,
+    loading: deleting,
+    error: deleteError,
+  } = useApiClient.useDelete(); 
+
+
   // get user from custom useEffect hook
   const {
     data: userData,
@@ -21,7 +31,20 @@ function UserProfileDetails() {
     // calculate age from milliseconds
     return Math.floor((Date.now() - birthday) / 31557600000);
   }
-  
+
+  const onDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await executeDelete('user/' + userData.profileId);
+        
+      if (deleteResponse) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error, deleteError);
+    }
+  };
+
   return (
     <div>
       <dialog id="daily" className="modal">
@@ -34,7 +57,7 @@ function UserProfileDetails() {
       >
         Spørgeskema
       </button>
-
+      
       <dialog id="update-form" className="modal">
         <UserUpdateForm userData={userData} />
       </dialog>
@@ -86,7 +109,11 @@ function UserProfileDetails() {
               </button>
             </div> 
             <div>
-              <button className="button">Slet bruger</button>
+              <button
+                className="button"
+                onClick= {onDelete}
+              > Slet bruger
+              </button>
             </div>
           </div>
         )}

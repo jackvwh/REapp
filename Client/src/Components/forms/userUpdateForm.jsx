@@ -15,6 +15,8 @@ export default function UserUpdateForm({ userData }) {
     error: updateError,
   } = useApiClient.usePut();
 
+  
+
   const [userActivities, setUserActivities] = useState();
   const [updatedData, setUpdatedData] = useState({
     username: '',
@@ -24,7 +26,7 @@ export default function UserUpdateForm({ userData }) {
     email: '',
     birthdate: '',
   });
-
+  
   // Set initial user details from userData prop
   useEffect(() => {
     if (userData) {
