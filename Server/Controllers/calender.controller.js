@@ -29,7 +29,7 @@ export default class CalenderController {
   static async deleteEvent(req, res) {
     try {
       const { eventId } = req.params;
-      const userId = req.user.id; // Assuming this is obtained from authenticated user
+      const userId = req.user.userId; // Assuming this is obtained from authenticated user
       await EventModel.deleteEvent(eventId, userId);
       res.status(204).send();
     } catch (err) {
@@ -41,8 +41,9 @@ export default class CalenderController {
     try {
       const { eventId } = req.params;
       const { start, end, text } = req.body;
-      const userId = req.user.id; // Assuming this is obtained from authenticated user
-
+      const userId = req.user.userId; // Assuming this is obtained from authenticated user
+      console.log("Event ID:", eventId);
+      console.log("Request body:", start, end, text);
       await EventModel.updateEvent(eventId, userId, start, end, text);
       res.status(200).json({ message: 'Event updated successfully' });
     } catch (error) {

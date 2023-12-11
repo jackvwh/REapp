@@ -53,6 +53,7 @@ class CalenderModels {
         WHERE event_id = ? AND profile_id = ?;
     `;
     try {
+      console.log("Values:", [start, end, text, eventId, userId]);
       await this.query(sql, [start, end, text, eventId, userId]);
     } catch (error) {
       console.error('Error updating event', error);
