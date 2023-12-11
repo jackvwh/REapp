@@ -34,49 +34,7 @@ class UserModels {
     }
   }
 
-  // static async getUserById(profile_id) {
-  //   console.log("Received profile_id:", profile_id);
-  //   const sql = `
-  //     SELECT
-  //       profile_id,
-  //       username,
-  //       first_name,
-  //       last_name,
-  //       email,
-  //       birthdate,
-  //       privilege,
-  //       signup_date
-  //     FROM
-  //       user_profiles
-  //     WHERE
-  //       profile_id = ?;
-  //   `;
-
-  //   try {
-  //     const result = await this.query(sql, [profile_id]);
-  //     if (result.length === 0) {
-  //       throw new Error('User not found');
-  //     }
-
-  //     // Assuming you want to return the first result
-  //     const user = result[0];
-  //     return {
-  //       profileId: user.profile_id,
-  //       username: user.username,
-  //       firstName: user.first_name,
-  //       lastName: user.last_name,
-  //       email: user.email,
-  //       birthdate: user.birthdate,
-  //       privilege: user.privilege,
-  //       signupDate: user.signup_date
-  //     };
-  //   } catch (error) {
-  //     console.error('Error getting user by ID:', error);
-  //     throw new Error(error);
-  //   }
-  // }
-
-  static async getUserById(profile_id) {
+   static async getUserById(profile_id) {
     console.log('%d', profile_id);
     const sql = `SELECT 
         user_profiles.*,
@@ -121,6 +79,18 @@ class UserModels {
     } catch (error) {
       console.error('error getting user', error);
       throw new Error(error);
+    }
+  }
+
+  static async updateUserPrivilege(username, privilege) {
+    const sql = `UPDATE user_profiles SET privilege = ? WHERE username = ?;`;
+    try {
+      const result = await this.query(sql, [privilege, username]);
+      console.log(`User privilege updated for ${username}`);
+      return result;
+    } catch (error) {
+      console.error('Error updating user privilege:', error);
+      throw new Error('Error updating user privilege');
     }
   }
 

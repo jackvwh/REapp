@@ -136,4 +136,15 @@ export default class UserController {
         .json({ error: 'An error occurred while deleting user' + error });
     }
   }
+  static async updatePrivilege(req, res) {
+    try {
+      const { username, privilege } = req.body;
+      await UserModels.updateUserPrivilege(username, privilege);
+      res.status(200).json({ message: 'User privilege updated successfully' });
+    } catch (error) {
+      console.error('Error updating user privilege:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  }
+  
 }
