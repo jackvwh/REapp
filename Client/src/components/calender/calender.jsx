@@ -27,7 +27,7 @@ const Calendar = () => {
       dp.events.add(newEvent);
 
       try {
-        const response = await fetch('http://localhost:5000/calender', {
+        const response = await fetch('http://localhost:3001/calender', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const Calendar = () => {
     onEventResized: async args => {
       console.log('Event resized: ', args.e.text());
       try {
-        const response = await fetch(`http://localhost:5000/calender/${args.e.id()}`, {
+        const response = await fetch(`http://localhost:3001/calender/${args.e.id()}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const Calendar = () => {
     const fetchEvents = async () => {
       try {
         // Make a GET request to fetch the events
-        const response = await fetch('http://localhost:3000/calender');
+        const response = await fetch('http://localhost:3001/calender');
 
         const data = await response.json();
         console.log('Success:', data);

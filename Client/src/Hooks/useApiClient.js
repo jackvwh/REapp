@@ -95,9 +95,40 @@ function useDelete() {
 
   return { executeDelete, data, loading, error };
 }
+function useGetAuth(endpoint) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchData = async () => {
+      try {
+        const result = await ApiClient.getAuth(endpoint);
+        if (isMounted) {
+          setData(result);
+          setLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err);
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+    return () => {
+      isMounted = false;
+    };
+  }, [endpoint]);
+
+  return { data, loading, error };
+}
 
 export const useApiClient = {
   useGet,
+  useGetAuth,
   usePost,
   usePut,
   useDelete,

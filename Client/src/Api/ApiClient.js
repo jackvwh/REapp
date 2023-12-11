@@ -110,6 +110,7 @@ async function del(endpoint) {
 
 export const ApiClient = {
   get,
+  getAuth,
   post,
   put,
   del,

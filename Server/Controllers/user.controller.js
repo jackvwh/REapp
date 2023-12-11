@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default class UserController {
+  //this is used for login currently
   static async getUserById(req, res) {
     try {
       const user = await UserModels.getUserById(req.params.userId);
@@ -17,6 +18,18 @@ export default class UserController {
     }
   }
 
+  static async getUserProfile(req, res) {
+    try {
+      // Extract userId from JWT token, not from route parameters
+      const userId = req.user.userId;
+      const user = await UserModels.getUserById(userId);
+      res.status(200).json(user);
+    } catch (error) {
+      console.error('Error getting user profile:', error);
+      res.status(500).json({ error: 'An error occurred while getting user profile' });
+    }
+  }
+
   static async LoginUser(req, res) {
     const { username, password } = req.body;
 
@@ -26,12 +39,13 @@ export default class UserController {
       if (user) {
         //TODO: cube makes a good point if userID is necessary here 
         //Generate a JWT token
-        const token = jwt.sign({ username: user.username, userId: user.userId }, process.env.JWT_SECRET, {expiresIn: '8h' });
+        const token = jwt.sign({ userId: user.profile_id }, process.env.JWT_SECRET, {expiresIn: '8h' });
 
         res.cookie('token', token, {
-          secure: true,  // Use HTTPS in production
-          sameSite: 'Lax',  // Strictly same site
-          maxAge: 8 * 60 * 60 * 1000  // Cookie expiry in milliseconds, same as JWT, but this is 8 hours
+          httpOnly: true,
+          secure: true,
+          sameSite: 'Lax',
+          maxAge: 8 * 60 * 60 * 1000 // 8 hours
         });
         res.status(200).json({ message: 'Logged in successfully' });
       } else {

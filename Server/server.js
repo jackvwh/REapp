@@ -4,11 +4,12 @@ import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './Api/router.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const app = express();
 // eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 
 // CORS configuration, this is used for cookies
@@ -19,7 +20,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 app.use(router);
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

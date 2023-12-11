@@ -8,7 +8,6 @@ import AIprofilepage from './pages/aiProfilepage.jsx';
 import AIfrontpage from './pages/aiFrontpage.jsx';
 import AIadminpage from './pages/aiAdminpage.jsx';
 import UserPage from './pages/userHomePage.jsx';
-import UserPage from './pages/userpage.jsx';
 import ProtectedRoute from './components/protectedRoute.jsx';
 
 //TODO: make sure, you cant navigate to login through either url or buttons

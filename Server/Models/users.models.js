@@ -35,9 +35,54 @@ class UserModels {
   }
 }
 
+// static async getUserById(profile_id) {
+//   console.log("Received profile_id:", profile_id);
+//   const sql = `
+//     SELECT 
+//       profile_id,
+//       username,
+//       first_name,
+//       last_name,
+//       email,
+//       birthdate,
+//       privilege,
+//       signup_date
+//     FROM 
+//       user_profiles
+//     WHERE 
+//       profile_id = ?;
+//   `;
+
+//   try {
+//     const result = await this.query(sql, [profile_id]);
+//     if (result.length === 0) {
+//       throw new Error('User not found');
+//     }
+
+//     // Assuming you want to return the first result
+//     const user = result[0];
+//     return {
+//       profileId: user.profile_id,
+//       username: user.username,
+//       firstName: user.first_name,
+//       lastName: user.last_name,
+//       email: user.email,
+//       birthdate: user.birthdate,
+//       privilege: user.privilege,
+//       signupDate: user.signup_date
+//     };
+//   } catch (error) {
+//     console.error('Error getting user by ID:', error);
+//     throw new Error(error);
+//   }
+// }
+
+
+//TODO: idk why it looks like this, i dont remember doing it like, why does it have activities and eveything, ask jack what this is?
   static async getUserById(profile_id) {
-    const sql = `
-      SELECT 
+    console.log('%d',profile_id);
+    const sql =     
+    `SELECT 
         user_profiles.*,
         activities.*,
         user_activities.*
@@ -50,6 +95,9 @@ class UserModels {
       `;
     try {
       const result = await this.query(sql, [profile_id]);
+      if (result.length === 0) {
+        throw new Error('User not found');
+      }
       // convert the flat array of objects to a user objects with nested activities
       const user = {
         profileId: result[0].profile_id || Number(profile_id),

@@ -2,23 +2,31 @@ import React from 'react';
 import { useApiClient } from '../Hooks/useApiClient';
 import UserUpdateForm from './forms/userUpdateForm';
 
-// const userId = localStorage.getItem('userId')
-
-const userId = 5;
-
 function UserProfileDetails() {
-  // get user from custom useEffect hook
+  // getAuth user from custom useEffect hook
   const {
     data: userData,
     loading: userIsLoading,
     error: userError,
-  } = useApiClient.useGet('user/profile');
+  } = useApiClient.useGetAuth('user/profile');
 
   function calcAge(dateString) {
     // + sign converts date string to number(milliseconds since 1970)
     const birthday = +new Date(dateString);
     // calculate age from milliseconds
     return Math.floor((Date.now() - birthday) / 31557600000);
+  }
+
+  if (userIsLoading) {
+    return <p>Loading...</p>; // Loading state
+  }
+
+  if (userError) {
+    return <p>Error: {userError.message}</p>; // Display error message
+  }
+
+  if (!userData) {
+    return <p>No user data found.</p>; // Handle no data state
   }
 
   return (
