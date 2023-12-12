@@ -1,15 +1,19 @@
-FROM node:14.15.4-alpine3.12 as base
-
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+# Stage 1
+FROM node:18.16.0-bullseye-slim as build-stage
 
 WORKDIR /Client
-COPY . .
+COPY package*.json ./
 RUN npm install
-EXPOSE 5000
+COPY . .
+ARG REACT_APP_API_BASE_URL
+ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
-FROM base as production
-
-ENV NODE_ENV=production
 RUN npm run build
-CMD ["dumb-init", "node", "dist/index.js"]
 
+# Stage 2
+FROM nginx:1.17.0-alpine
+
+COPY --from=build-stage /Client/build /usr/share/nginx/html
+EXPOSE $REACT_DOCKER_PORT
+
+CMD nginx -g 'daemon off;'

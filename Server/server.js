@@ -9,11 +9,11 @@ import cookieParser from 'cookie-parser';
 dotenv.config();
 const app = express();
 // eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.NODE_DOCKER_PORT || 5000;
 
 // CORS configuration, this is used for cookies
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with your client's URL(frontpage url)
+  origin: process.env.CLIENT_ORIGIN || 'http://localhost:5000',
   credentials: true,
 };
 

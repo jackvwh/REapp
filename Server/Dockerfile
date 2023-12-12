@@ -1,16 +1,10 @@
-FROM node:18.16.0-bullseye-slim As base
-
-RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+FROM node:18.16.0-bullseye-slim
 
 WORKDIR /Server
-COPY . .
+COPY package*.json ./
 RUN npm install
-EXPOSE 3000
+COPY . .
+CMD ["npm", "start"]
 
-FROM base as production
-
-ENV NODE_ENV=production
-RUN npm run build
-CMD ["dumb-init", "node", "dist/index.js"]
 
 
