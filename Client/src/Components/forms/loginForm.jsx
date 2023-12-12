@@ -83,7 +83,8 @@ function LoginModal() {
             <div className="modal-footer">
               <button
                 className="button-30 close-login-modal-button"
-                onClick={closeModal}>
+                onClick={closeModal}
+              >
                 Luk
               </button>
             </div>

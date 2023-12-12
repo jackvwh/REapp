@@ -11,7 +11,6 @@ import UserPage from './Pages/userHomePage.jsx';
 import ProtectedRoute from './Components/protectedRoute.jsx';
 import AdminProtectedRoute from './Components/adminProtectedRoute.jsx';
 
-
 //TODO: make sure, you cant navigate to login through either url or buttons
 function App() {
   return (

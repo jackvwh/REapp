@@ -39,11 +39,14 @@ export default class UserController {
       const user = await UserModels.ValidateUser(username, password);
 
       if (user) {
-        
         //Generate a JWT token
-        const token = jwt.sign({userId: user.profile_id, privilege: user.privilege}, process.env.JWT_SECRET, {
-          expiresIn: '8h',
-        });
+        const token = jwt.sign(
+          { userId: user.profile_id, privilege: user.privilege },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: '8h',
+          }
+        );
 
         res.cookie('token', token, {
           // httpOnly: true, //this little bitch here is all or nothing i hate it
@@ -75,7 +78,6 @@ export default class UserController {
       email,
       birthdate,
       privilege,
-      
     } = req.body;
 
     try {
@@ -86,7 +88,7 @@ export default class UserController {
         last_name,
         email,
         birthdate,
-        privilege,
+        privilege
       );
       const token = jwt.sign({ username }, process.env.JWT_SECRET, {
         expiresIn: '1h',
@@ -162,5 +164,4 @@ export default class UserController {
       res.status(500).json({ error: 'Server error' });
     }
   }
-  
 }
