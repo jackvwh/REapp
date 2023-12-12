@@ -15,7 +15,7 @@ function UserProfileHeader() {
         </div>
         <div className='flex justify-center items-center'>
         <img className="w-9" src={profileIcon} alt="" />
-        <Link to="/notadminpage" className="btn btn-ghost text-xl mx-2 m-0 p-0">Profil</Link>
+        <Link to="/user/profile" className="btn btn-ghost text-xl mx-2 m-0 p-0">Profil</Link>
         </div>
       </div>
       <button className="btn btn-ghost text-xl mx-2">Log Ud</button>
