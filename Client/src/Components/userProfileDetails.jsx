@@ -4,6 +4,14 @@ import UserUpdateForm from './forms/userUpdateForm';
 import SurveyNotification from './notifications/survey';
 
 function UserProfileDetails() {
+  // Initialize custom hook
+  const {
+    executeDelete,
+    data: deleteResponse,
+    loading: deleting,
+    error: deleteError,
+  } = useApiClient.useDelete();
+
   // getAuth user from custom useEffect hook
   const {
     data: userData,
@@ -18,6 +26,18 @@ function UserProfileDetails() {
     return Math.floor((Date.now() - birthday) / 31557600000);
   }
 
+  const onDelete = async e => {
+    e.preventDefault();
+    try {
+      await executeDelete('user/' + userData.profileId);
+
+      if (deleteResponse) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error, deleteError);
+    }
+  };
   if (userIsLoading) {
     return <p>Loading...</p>; // Loading state
   }
@@ -91,7 +111,14 @@ function UserProfileDetails() {
                 className="button"
                 onClick={() => document.getElementById('update-form').showModal()}
               >
+                {' '}
                 Opdater oplysninger
+              </button>
+            </div>
+            <div>
+              <button className="button" onClick={onDelete}>
+                {' '}
+                Slet bruger
               </button>
             </div>
           </div>

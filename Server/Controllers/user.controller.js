@@ -75,7 +75,6 @@ export default class UserController {
       email,
       birthdate,
       privilege,
-      
     } = req.body;
 
     try {
@@ -86,7 +85,7 @@ export default class UserController {
         last_name,
         email,
         birthdate,
-        privilege,
+        privilege
       );
       const token = jwt.sign({ username }, process.env.JWT_SECRET, {
         expiresIn: '1h',
@@ -125,7 +124,7 @@ export default class UserController {
   }
 
   static async deleteUser(req, res) {
-    const id = req.params.id;
+    const id = req.params.userId;
     try {
       const deletedUser = await UserModels.deleteUser(id);
       res.status(200).json(deletedUser);

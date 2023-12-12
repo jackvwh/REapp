@@ -81,7 +81,14 @@ function LoginModal() {
                   Log ind
                 </button>
               </form>
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeModal}>✕</button>
+            </div>
+            <div className="modal-footer">
+              <button
+                className="button-30 close-login-modal-button"
+                onClick={closeModal}
+              >
+                Luk
+              </button>
             </div>
           </div>
         </div>

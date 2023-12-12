@@ -77,7 +77,7 @@ function usePut() {
 
 // Function for DELETE requests. Returns a function that can be called with the endpoint
 function useDelete() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([] || null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
