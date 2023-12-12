@@ -40,7 +40,6 @@ export default function UserUpdateForm({ userData }) {
     }
   }, [userData]);
 
-
   // options list from server
   const { data: activityOptions } = useApiClient.useGet('activities/options');
 
@@ -65,13 +64,12 @@ export default function UserUpdateForm({ userData }) {
         ...updatedData,
         activities: userActivities,
       });
-        
+
       if (updateResponse) {
         console.log(updateResponse);
         window.location.reload();
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error, updateError);
     }
   };
@@ -127,8 +125,7 @@ export default function UserUpdateForm({ userData }) {
         <label className="labelStyle">Fødselsdato:</label>
         <div
           tabIndex={0}
-          className="collapse collapse-arrow border border-base-300 "
-        >
+          className="collapse collapse-arrow border border-base-300 ">
           <input type="checkbox" />
           <div className="collapse-title">
             <p>
@@ -169,13 +166,17 @@ export default function UserUpdateForm({ userData }) {
             }
           />
         </div>
-        <button className="button" onClick={onSubmit} disabled={updating} >
-          {updating ? <Spinner /> : 'Gem'}
-        </button>
+        <div className='flex justify-center'>
+          <button
+            className="btn btn-success text-white"
+            onClick={onSubmit}
+            disabled={updating}>
+            {updating ? <Spinner /> : 'Gem'}
+          </button>
+        </div>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('update-form').close()}
-        >
+          onClick={() => document.getElementById('update-form').close()}>
           X
         </button>
       </form>
