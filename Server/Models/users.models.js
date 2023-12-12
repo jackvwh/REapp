@@ -33,7 +33,7 @@ class UserModels {
       console.error('Error validating user', error);
     }
   }
-
+  //TODO: this code has a bad name, it does a lot not just get a user by id
    static async getUserById(profile_id) {
     console.log('%d', profile_id);
     const sql = `SELECT 
