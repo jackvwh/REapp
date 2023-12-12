@@ -6,7 +6,7 @@ function NotificationModal() {
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
-        className="btn btn-sm btn-primary"
+        className="btn btn-sm text-black bg-sky-500/50 hover:bg-sky-500/100"
         onClick={() => document.getElementById('my_modal_2').showModal()}
       >
         Open

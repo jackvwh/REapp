@@ -11,7 +11,9 @@ function UserProfile() {
       <UserProfileHeader />
       <div className="grid-container">
         <section className="notification-styling">
-          <h1 className="bg-primary text-white text-xl p-4 rounded-lg">
+          <h1 className="bg-primary text-black text-xl p-4 rounded-lg bg-sky-500/50
+
+">
             Notifikationer
           </h1>
           <div>
@@ -19,7 +21,7 @@ function UserProfile() {
           </div>
         </section>
         <Calender />
-        <footer className="footer footer-styling">
+        <footer className="footer footer-styling bg-sky-500/50">
           <nav>
             <header className="footer-title">Services</header>
             <a className="link link-hover">Branding</a>

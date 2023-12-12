@@ -1,15 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import logoImage from '../assets/logo.png';
+import homeIcon from '../assets/homeIcon.svg';
+import profileIcon from '../assets/profileIcon.svg';
 
 function UserProfileHeader() {
   return (
-    <header className="bg-blue-400 text-white p-4 flex justify-between items-center">
-      <h1 className="text-4xl font-bold">REapp</h1> {/* Adjusted font size */}
-      <div className="flex">
-        <button className="btn-blue 400 btn-primary mx-2">Ressourcer</button>
-        <button className="btn-blue 400 btn-secondary mx-2">Forside</button>
-        <button className="btn-blue 400 btn-accent mx-2">Fællesskab</button>
+    <div className="navbar bg-sky-500/50 p-2 flex justify-between items-center">
+      <img className="w-20" src={logoImage} alt="reapp-logo" />
+      <div className="flex justify-center items-center space-x-10">
+        <div className='flex justify-center items-center'>
+          <img className="w-8" src={homeIcon} alt="" />
+          <Link to="/userpage" className="btn btn-ghost text-xl mx-2 m-0 p-0">Home</Link>
+        </div>
+        <div className='flex justify-center items-center'>
+        <img className="w-9" src={profileIcon} alt="" />
+        <Link to="/profile" className="btn btn-ghost text-xl mx-2 m-0 p-0">Profil</Link>
+        </div>
       </div>
-    </header>
+      <button className="btn btn-ghost text-xl mx-2">Log Ud</button>
+    </div>
   );
 }
 
