@@ -38,7 +38,7 @@ function LoginModal() {
 
       const user = await response.json();
       console.log(`Succesfully logged into ${username}`, user);
-      navigate('/notadminpage', { replace: true }); //TODO: change to the homepage, when done
+      navigate('/userpage', { replace: true }); //TODO: change to the homepage, when done
     } catch (err) {
       console.error(err);
     }

@@ -1,11 +1,13 @@
 import React from 'react';
 import LoginModal from './loginForm';
+import { useNavigate } from 'react-router-dom';
 import '../../Styles/homepage.css';
 
 function CreateUserForm() {
   // 
-  const serverEndpoint = process.env.REACT_APP_API_URL || 'http://localhost:3001/';
+  const serverEndpoint ='http://localhost:3001';
   const formRef = React.createRef();
+  const navigate = useNavigate();
 
   const createUser = async event => {
     event.preventDefault();
@@ -20,7 +22,7 @@ function CreateUserForm() {
     };
     // TODO: might need to be run through useAPIClient instead
     try {
-      const response = await fetch(`${serverEndpoint}/user/`, {
+      const response = await fetch(`${serverEndpoint}/user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,8 +31,8 @@ function CreateUserForm() {
       });
 
       if (response.ok) {
-        console.log(`User created: ${formData.username}`);
         formRef.current.reset();
+        navigate('/userpage')
       } else {
         console.error('Failed to create user:', response.statusText);
       }
