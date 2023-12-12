@@ -12,15 +12,7 @@ export default class testdataController {
     });
 
     users.forEach(async user => {
-      await UserModels.createUser(
-        user.username,
-        user.password,
-        user.first_name,
-        user.last_name,
-        user.email,
-        user.birthdate,
-        user.privilege
-      );
+      await createUser(user);
     });
 
     questions.forEach(async question => {
@@ -49,6 +41,28 @@ export default class testdataController {
     res.status(200).json({ message: 'Test data inserted successfully' });
   }
 }
+
+async function createUser(user) {
+  const { username, password, first_name, last_name, email, birthdate, privilege } =
+    user;
+
+  try {
+    await UserModels.createUser(
+      username,
+      password,
+      first_name,
+      last_name,
+      email,
+      birthdate,
+      privilege
+    );
+    console.log('user added');
+  } catch (error) {
+    console.error('error creating user', error);
+  }
+}
+
+// TEST DATA SET
 const priviliges = [
   { title: 'user', privilige: 'read, write' },
   { title: 'admin', privilige: 'read, write, delete' },
