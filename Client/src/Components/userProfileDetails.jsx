@@ -146,7 +146,7 @@ function UserProfileDetails() {
             </div>
             <div>
               <button
-                className="btn btn-warning text-lg mb-5 w-60"
+                className="btn btn-primary text-lg mb-5 w-60"
                 onClick={() => document.getElementById('update-form').showModal()}>
                 Opdater oplysninger
               </button>
