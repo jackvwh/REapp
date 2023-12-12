@@ -12,8 +12,6 @@ RUN npm run build
 
 # Stage 2
 FROM nginx:1.17.0-alpine
-
+EXPOSE 3000
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /Client/build /usr/share/nginx/html
-EXPOSE $REACT_DOCKER_PORT
-
-CMD nginx -g 'daemon off;'
