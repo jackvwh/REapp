@@ -40,6 +40,7 @@ export default function UserUpdateForm({ userData }) {
     }
   }, [userData]);
 
+
   // options list from server
   const { data: activityOptions } = useApiClient.useGet('activities/options');
 
@@ -64,14 +65,14 @@ export default function UserUpdateForm({ userData }) {
         ...updatedData,
         activities: userActivities,
       });
+        
       if (updateResponse) {
-        // close modal
-        document.getElementById('my_modal_4').close();
-        // reload page
+        console.log(updateResponse);
         window.location.reload();
       }
-    } catch (error) {
-      console.log(error, updateError);
+    }
+    catch (error) {
+      console.error(error, updateError);
     }
   };
   return (
@@ -168,7 +169,7 @@ export default function UserUpdateForm({ userData }) {
             }
           />
         </div>
-        <button className="button" onClick={onSubmit} disabled={updating}>
+        <button className="button" onClick={onSubmit} disabled={updating} >
           {updating ? <Spinner /> : 'Gem'}
         </button>
         <button
