@@ -12,9 +12,17 @@ export default class testdataController {
     });
 
     users.forEach(async user => {
-      await createUser(user);
+      try {
+        const userId = await createUser(user);
+        console.log(`User created: ${JSON.stringify(user)}, ID: ${userId}`);
+      } catch (error) {
+        console.error('Error in user creation:', error);
+      }
     });
+    res.status(200).json({ message: 'Test data inserted successfully' });
+  }
 
+  static async insertRestOfData(req, res) {
     questions.forEach(async question => {
       await QuestionModel.createOne(question.question, question.answerType);
     });
@@ -37,7 +45,6 @@ export default class testdataController {
         activity.activityDescription
       );
     });
-
     res.status(200).json({ message: 'Test data inserted successfully' });
   }
 }
@@ -257,43 +264,43 @@ const activities = [
 const users = [
   {
     username: 'user1',
-    password: '12345',
+    password: 'abcde',
     first_name: 'John',
     last_name: 'Doe',
     email: 'john.doe@example.com',
     birthdate: '1990-01-15',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user2',
-    password: '67890',
+    password: 'abcde',
     first_name: 'Alice',
     last_name: 'Smith',
     email: 'alice.smith@example.com',
     birthdate: '1985-05-20',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user3',
-    password: '13579',
+    password: 'abcde',
     first_name: 'Ella',
     last_name: 'Johnson',
     email: 'ella.johnson@example.com',
     birthdate: '1993-11-30',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user4',
-    password: '24680',
+    password: 'abcde',
     first_name: 'Michael',
     last_name: 'Brown',
     email: 'michael.brown@example.com',
     birthdate: '1988-07-12',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user5',
-    password: '98765',
+    password: 'abcde',
     first_name: 'Olivia',
     last_name: 'Wilson',
     email: 'olivia.wilson@example.com',
@@ -302,47 +309,47 @@ const users = [
   },
   {
     username: 'user6',
-    password: '54321',
+    password: 'abcde',
     first_name: 'James',
     last_name: 'Lee',
     email: 'james.lee@example.com',
     birthdate: '1982-09-05',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user7',
-    password: '112233',
+    password: 'abcde',
     first_name: 'Ava',
     last_name: 'Anderson',
     email: 'ava.anderson@example.com',
     birthdate: '1991-12-08',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user8',
-    password: '445566',
+    password: 'abcde',
     first_name: 'William',
     last_name: 'Garcia',
     email: 'william.garcia@example.com',
     birthdate: '1987-04-17',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user9',
-    password: '998877',
+    password: 'abcde',
     first_name: 'Sophia',
     last_name: 'Martinez',
     email: 'sophia.martinez@example.com',
     birthdate: '1994-06-03',
-    privilege: '1',
+    privilege: 1,
   },
   {
     username: 'user10',
-    password: '556677',
+    password: 'abcde',
     first_name: 'Liam',
     last_name: 'Robinson',
     email: 'liam.robinson@example.com',
     birthdate: '1989-10-22',
-    privilege: '1',
+    privilege: 1,
   },
 ];

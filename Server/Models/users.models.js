@@ -110,25 +110,18 @@ class UserModels {
         START TRANSACTION;
 
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
-        VALUES (?, ?, ?, ?, ?, ?, 1);
+        VALUES (?, ?, ?, ?, ?, ?, ?);
         
         COMMIT;
       `;
-
+      const params = [username, hashedPassword, first_name, last_name, email, birthdate, privilege];
     try {
-      const result = await this.query(sql, [
-        username,
-        hashedPassword,
-        first_name,
-        last_name,
-        email,
-        birthdate,
-        privilege,
-      ]);
+      console.log(`Attempting to create user with parameters: ${JSON.stringify(params)}`);
+      const result = await this.query(sql, params);      
       console.log(`User ${username} created`);
       return result;
     } catch (error) {
-      console.error('error creating user', error);
+      console.error('Error creating user:', error);
       throw new Error(error);
     }
   }

@@ -126,22 +126,6 @@ export default class UserController {
     }
   }
 
-  static async checkAdmin(req, res) {
-    try {
-      const userId = req.user.userId; // Assuming you extract this from the token
-      const user = await UserModel.getUserById(userId); // Retrieve user details
-
-      if (user && user.privilege === 2) {
-        res.json({ isAdmin: true });
-      } else {
-        res.json({ isAdmin: false });
-      }
-    } catch (error) {
-      console.error('Error in checking admin status:', error);
-      res.status(500).json({ error: 'Server error' });
-    }
-  }
-
   static async deleteUser(req, res) {
     const id = req.params.id;
     try {

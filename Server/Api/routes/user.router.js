@@ -8,7 +8,6 @@ export default Router()
   .post('/login', UserController.LoginUser)
   .post('/logout', UserController.Logout)
   .get('/:userId', UserController.getUserById)
-  .get('/check-admin', authenticateToken, UserController.checkAdmin)
   .put('/update-privilege', UserController.updatePrivilege)
   .put('/:userId', UserController.updateUser)
   .delete('/:userId', UserController.deleteUser);
