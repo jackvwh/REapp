@@ -15,13 +15,28 @@ const dbconfig = {
   multipleStatements: true,
 };
 
-const mysqlConnection = mysql.createConnection(dbconfig);
+const connectWithRetry = () => {
+  const mysqlConnection = mysql.createConnection(dbconfig);
 
-mysqlConnection.connect(function (err) {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
-  console.log('Connected to the MySQL server.');
-});
+  mysqlConnection.connect(err => {
+    if (err) {
+      console.error('Error connecting to MySQL, retrying in 1 seconds:', err);
+      setTimeout(connectWithRetry, 1000); // Retry after 1 seconds
+    } else {
+      console.log('Connected to the MySQL server.');
+    }
+  });
+
+  mysqlConnection.on('error', err => {
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      console.error('MySQL connection lost. Reconnecting...');
+      connectWithRetry(); // Reconnect if the connection to the DB is lost
+    }
+  });
+
+  return mysqlConnection;
+};
+
+const mysqlConnection = connectWithRetry();
 
 export default mysqlConnection;
