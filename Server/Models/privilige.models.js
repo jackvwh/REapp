@@ -20,7 +20,13 @@ export default class PrivilegeModels {
         VALUES (?, ?)
         `;
     const params = [privilege.title, privilege.privilige];
-    const result = await this.query(sql, params);
-    return result.insertId;
+    try {
+      const result = await this.query(sql, params);
+      console.log(`Privilege created: ${JSON.stringify(privilege)}, ID: ${result.insertId}`);
+      return result.insertId;
+    } catch (error) {
+      console.error('Error creating privilege:', error);
+      throw error;
+    }
   }
 }

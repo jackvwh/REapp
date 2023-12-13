@@ -39,11 +39,14 @@ export default class UserController {
       const user = await UserModels.ValidateUser(username, password);
 
       if (user) {
-        //TODO: cube makes a good point if userID is necessary here
         //Generate a JWT token
-        const token = jwt.sign({ userId: user.profile_id }, process.env.JWT_SECRET, {
-          expiresIn: '8h',
-        });
+        const token = jwt.sign(
+          { userId: user.profile_id, privilege: user.privilege },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: '8h',
+          }
+        );
 
         res.cookie('token', token, {
           // httpOnly: true, //this little bitch here is all or nothing i hate it
@@ -133,6 +136,16 @@ export default class UserController {
       res
         .status(500)
         .json({ error: 'An error occurred while deleting user' + error });
+    }
+  }
+  static async updatePrivilege(req, res) {
+    try {
+      const { username, privilege } = req.body;
+      await UserModels.updateUserPrivilege(username, privilege);
+      res.status(200).json({ message: 'User privilege updated successfully' });
+    } catch (error) {
+      console.error('Error updating user privilege:', error);
+      res.status(500).json({ error: 'Server error' });
     }
   }
 }

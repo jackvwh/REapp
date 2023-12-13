@@ -173,7 +173,6 @@ export default class FeedbackModels {
 
   static async createFeedback(userId, surveyId) {
     const sql = `
-
       START TRANSACTION;
 
       INSERT INTO feedback (profile_id, survey_id)
@@ -182,11 +181,13 @@ export default class FeedbackModels {
       COMMIT;`;
     try {
       const result = await this.query(sql, [userId, surveyId]);
+      console.log(`Feedback created for profile ID: ${userId}, survey ID: ${surveyId}, Feedback ID: ${result.insertId}`);
       return result;
     } catch (error) {
       throw new Error(error);
     }
-  }
+  
+}
 
   static async deleteFeedback(feedback_id) {
     const sql = `
