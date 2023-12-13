@@ -7,62 +7,61 @@ import PrivilegeModels from '../Models/privilige.models.js';
 
 export default class testdataController {
   static async insertTestData(req, res) {
-    priviliges.forEach(async privilige => {
-      await PrivilegeModels.insertPrivilege(privilige);
-    });
+    await Promise.all(
+      priviliges.map(privilige => PrivilegeModels.insertPrivilege(privilige))
+    );
 
-    users.forEach(async user => {
-      try {
-        const userId = await createUser(user);
-        console.log(`User created: ${JSON.stringify(user)}, ID: ${userId}`);
-      } catch (error) {
-        console.error('Error in user creation:', error);
-      }
-    });
-    res.status(200).json({ message: 'Test data inserted successfully' });
-  }
+    await Promise.all(
+      users.map(user =>
+        UserModels.createUser(
+          user.username,
+          user.password,
+          user.first_name,
+          user.last_name,
+          user.email,
+          user.birthdate,
+          user.privilege
+        )
+      )
+    );
 
-  static async insertRestOfData(req, res) {
-    questions.forEach(async question => {
-      await QuestionModel.createOne(question.question, question.answerType);
-    });
-    surveys.forEach(async survey => {
-      await SurveyModel.createOne(
-        survey.surveyTitle,
-        survey.description,
-        survey.questions
-      );
-    });
-    FeedbackModels.createFeedback(3, 4);
-    FeedbackModels.createFeedback(4, 3);
+    await Promise.all(
+      questions.map(question =>
+        QuestionModel.createOne(question.question, question.answerType)
+      )
+    );
+
+    await Promise.all(
+      surveys.map(survey =>
+        SurveyModel.createOne(
+          survey.surveyTitle,
+          survey.description,
+          survey.questions
+        )
+      )
+    );
+
+    FeedbackModels.createFeedback(
+      'john.doe@example.com',
+      'Employee Satisfaction Survey'
+    );
+    FeedbackModels.createFeedback(
+      'alice.smith@example.com',
+      'Customer Feedback Survey'
+    );
 
     await FeedbackModels.insertFeedbackAnswers(1, answers1);
     await FeedbackModels.insertFeedbackAnswers(2, answers2);
 
-    activities.forEach(async activity => {
-      await ActivityModels.insertActivity(
-        activity.activityType,
-        activity.activityDescription
-      );
-    });
-    res.status(200).json({ message: 'Test data inserted successfully' });
-  }
-}
-
-async function createUser(user) {
-  try {
-    const result = await UserModels.createUser(
-      user.username,
-      user.password,
-      user.first_name,
-      user.last_name,
-      user.email,
-      user.birthdate,
-      user.privilege
+    await Promise.all(
+      activities.map(activity =>
+        ActivityModels.insertActivity(
+          activity.activityType,
+          activity.activityDescription
+        )
+      )
     );
-    console.log('user added', result);
-  } catch (error) {
-    console.error('error creating user', error);
+    res.status(200).json({ message: 'Test data inserted successfully' });
   }
 }
 
@@ -269,7 +268,7 @@ const users = [
     last_name: 'Doe',
     email: 'john.doe@example.com',
     birthdate: '1990-01-15',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user2',
@@ -278,7 +277,7 @@ const users = [
     last_name: 'Smith',
     email: 'alice.smith@example.com',
     birthdate: '1985-05-20',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user3',
@@ -287,7 +286,7 @@ const users = [
     last_name: 'Johnson',
     email: 'ella.johnson@example.com',
     birthdate: '1993-11-30',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user4',
@@ -296,7 +295,7 @@ const users = [
     last_name: 'Brown',
     email: 'michael.brown@example.com',
     birthdate: '1988-07-12',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user5',
@@ -305,7 +304,7 @@ const users = [
     last_name: 'Wilson',
     email: 'olivia.wilson@example.com',
     birthdate: '1996-03-25',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user6',
@@ -314,7 +313,7 @@ const users = [
     last_name: 'Lee',
     email: 'james.lee@example.com',
     birthdate: '1982-09-05',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user7',
@@ -323,7 +322,7 @@ const users = [
     last_name: 'Anderson',
     email: 'ava.anderson@example.com',
     birthdate: '1991-12-08',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user8',
@@ -332,7 +331,7 @@ const users = [
     last_name: 'Garcia',
     email: 'william.garcia@example.com',
     birthdate: '1987-04-17',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user9',
@@ -341,7 +340,7 @@ const users = [
     last_name: 'Martinez',
     email: 'sophia.martinez@example.com',
     birthdate: '1994-06-03',
-    privilege: 1,
+    privilege: 'user',
   },
   {
     username: 'user10',
@@ -350,6 +349,6 @@ const users = [
     last_name: 'Robinson',
     email: 'liam.robinson@example.com',
     birthdate: '1989-10-22',
-    privilege: 1,
+    privilege: 'admin',
   },
 ];

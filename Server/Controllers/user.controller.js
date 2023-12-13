@@ -1,7 +1,6 @@
 import UserModels from '../Models/users.models.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-
 dotenv.config();
 
 export default class UserController {

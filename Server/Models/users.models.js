@@ -14,8 +14,6 @@ class UserModels {
     });
   }
 
-  //we dont like the position of this. we want it somewhere else
-  //but currently this is how you would do it in the documnetation we have read :)
   static async ValidateUser(username, password) {
     const sql = `SELECT * FROM user_profiles WHERE username = ?`;
 
@@ -33,7 +31,6 @@ class UserModels {
       console.error('Error validating user', error);
     }
   }
-  //TODO: this code has a bad name, it does a lot not just get a user by id
   static async getUserById(profile_id) {
     console.log('%d', profile_id);
     const sql = `SELECT 
@@ -108,16 +105,23 @@ class UserModels {
 
     const sql = ` 
         START TRANSACTION;
-
+        
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
-        VALUES (?, ?, ?, ?, ?, ?, ?);
+        VALUES (?, ?, ?, ?, ?, ?, (SELECT id FROM priviliges WHERE title = ?));
         
         COMMIT;
       `;
-      const params = [username, hashedPassword, first_name, last_name, email, birthdate, privilege];
+    const params = [
+      username,
+      hashedPassword,
+      first_name,
+      last_name,
+      email,
+      birthdate,
+      privilege,
+    ];
     try {
-      console.log(`Attempting to create user with parameters: ${JSON.stringify(params)}`);
-      const result = await this.query(sql, params);      
+      const result = await this.query(sql, params);
       console.log(`User ${username} created`);
       return result;
     } catch (error) {

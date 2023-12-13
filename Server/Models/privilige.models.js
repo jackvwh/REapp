@@ -22,7 +22,6 @@ export default class PrivilegeModels {
     const params = [privilege.title, privilege.privilige];
     try {
       const result = await this.query(sql, params);
-      console.log(`Privilege created: ${JSON.stringify(privilege)}, ID: ${result.insertId}`);
       return result.insertId;
     } catch (error) {
       console.error('Error creating privilege:', error);

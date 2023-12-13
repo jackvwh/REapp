@@ -171,23 +171,24 @@ export default class FeedbackModels {
     }
   }
 
-  static async createFeedback(userId, surveyId) {
+  static async createFeedback(userMail, surveyTitle) {
     const sql = `
       START TRANSACTION;
 
       INSERT INTO feedback (profile_id, survey_id)
-      VALUES (?, ?);
+      VALUES (
+        (SELECT profile_id FROM user_profiles WHERE email = ?),
+        (SELECT survey_id FROM surveys WHERE survey_title= ?)
+      );
           
       COMMIT;`;
     try {
-      const result = await this.query(sql, [userId, surveyId]);
-      console.log(`Feedback created for profile ID: ${userId}, survey ID: ${surveyId}, Feedback ID: ${result.insertId}`);
+      const result = await this.query(sql, [userMail, surveyTitle]);
       return result;
     } catch (error) {
       throw new Error(error);
     }
-  
-}
+  }
 
   static async deleteFeedback(feedback_id) {
     const sql = `

@@ -3,7 +3,8 @@ import '../../Styles/homepage.css';
 import { useNavigate } from 'react-router-dom';
 
 function LoginModal() {
-  const serverEndpoint = 'http://localhost:3001';
+  const serverEndpoint =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
   const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
