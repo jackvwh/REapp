@@ -1,24 +1,12 @@
-import mysqlConnection from '../Db/db.js';
+import query from '../Db/query.js';
 import bcrypt from 'bcrypt';
 
 class UserModels {
-  static async query(sql, params) {
-    return new Promise((resolve, reject) => {
-      mysqlConnection.query(sql, params, (err, results) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-  }
-
   static async ValidateUser(username, password) {
     const sql = `SELECT * FROM user_profiles WHERE username = ?`;
 
     try {
-      const result = await this.query(sql, [username]);
+      const result = await query(sql, [username]);
       //maybe check for multiple users and return an error
       if (result.length > 0) {
         const user = result[0];
@@ -45,7 +33,7 @@ class UserModels {
 
       `;
     try {
-      const result = await this.query(sql, [profile_id]);
+      const result = await query(sql, [profile_id]);
       if (result.length === 0) {
         throw new Error('User not found');
       }
@@ -82,7 +70,7 @@ class UserModels {
   static async updateUserPrivilege(username, privilege) {
     const sql = `UPDATE user_profiles SET privilege = ? WHERE username = ?;`;
     try {
-      const result = await this.query(sql, [privilege, username]);
+      const result = await query(sql, [privilege, username]);
       console.log(`User privilege updated for ${username}`);
       return result;
     } catch (error) {
@@ -121,7 +109,7 @@ class UserModels {
       privilege,
     ];
     try {
-      const result = await this.query(sql, params);
+      const result = await query(sql, params);
       console.log(`User ${username} created`);
       return result;
     } catch (error) {
@@ -158,7 +146,7 @@ class UserModels {
       `;
 
     try {
-      const results = await this.query(sql, [
+      const results = await query(sql, [
         username,
         password,
         first_name,
@@ -189,7 +177,7 @@ class UserModels {
       `;
 
     try {
-      const results = await this.query(sql, [profileId, profileId]);
+      const results = await query(sql, [profileId, profileId]);
 
       return results;
     } catch (error) {

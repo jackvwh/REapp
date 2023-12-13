@@ -1,17 +1,6 @@
-import mysqlConnection from '../Db/db.js';
+import query from "../Db/query.js";
 
 export default class FeedbackModels {
-  static async query(sql, params) {
-    return new Promise((resolve, reject) => {
-      mysqlConnection.query(sql, params, (err, results) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-  }
   static async getAllFeedbacks() {
     const sql = `
     SELECT 
@@ -26,7 +15,7 @@ export default class FeedbackModels {
         LEFT JOIN questions ON answers.question_id = questions.question_id
           `;
     try {
-      const result = await this.query(sql);
+      const result = await query(sql);
       // convert the result to an array of objects
       const feedbacks = [];
       while (result.length > 0) {
@@ -81,7 +70,7 @@ export default class FeedbackModels {
         feedback.profile_id = ?;
           `;
     try {
-      const result = await this.query(sql, userId);
+      const result = await query(sql, userId);
       // convert the result to an array of objects
       const feedbacks = [];
       while (result.length > 0) {
@@ -135,7 +124,7 @@ export default class FeedbackModels {
         
       `;
     try {
-      const result = await this.query(sql, [feedbackId]);
+      const result = await query(sql, [feedbackId]);
 
       // convert the result to an array of objects
       const feedback = {
@@ -183,7 +172,7 @@ export default class FeedbackModels {
           
       COMMIT;`;
     try {
-      const result = await this.query(sql, [userMail, surveyTitle]);
+      const result = await query(sql, [userMail, surveyTitle]);
       return result;
     } catch (error) {
       throw new Error(error);
@@ -203,7 +192,7 @@ export default class FeedbackModels {
     `;
 
     try {
-      const result = await this.query(sql, feedback_id);
+      const result = await query(sql, feedback_id);
       return result;
     } catch (error) {
       throw new Error(error);
@@ -227,7 +216,7 @@ export default class FeedbackModels {
       ]);
 
       // Perform the bulk insert
-      const result = await this.query(sql, [values]);
+      const result = await query(sql, [values]);
       return result;
     } catch (error) {
       throw new Error(error);
