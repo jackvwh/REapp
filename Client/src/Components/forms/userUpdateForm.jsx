@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useApiClient } from '../../Hooks/useApiClient';
+import '../../Styles/userProfile.css';
 
 const Spinner = () => {
   return <span className="loading loading-spinner loading-xs"></span>;
@@ -74,8 +75,8 @@ export default function UserUpdateForm({ userData }) {
     }
   };
   return (
-    <div className="modal-box">
-      <h3 className="font-bold text-lg">Opdater bruger</h3>
+    <div className="modal-box w-96">
+      <h3 className="font-bold text-2xl flex justify-center my-5">Opdater bruger</h3>
       <form method="dialog">
         <label className="labelStyle">Brugernavn:</label>
         <input
@@ -83,7 +84,7 @@ export default function UserUpdateForm({ userData }) {
           name="username"
           value={updatedData.username}
           onChange={handleInputChange}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs mb-5"
         />
 
         <label className="labelStyle">Password:</label>
@@ -92,7 +93,7 @@ export default function UserUpdateForm({ userData }) {
           name="password"
           value={updatedData.password}
           onChange={handleInputChange}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs mb-5"
         />
 
         <label className="labelStyle">Førstenavn:</label>
@@ -101,7 +102,7 @@ export default function UserUpdateForm({ userData }) {
           name="firstName"
           value={updatedData.firstName}
           onChange={handleInputChange}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs mb-5"
         />
 
         <label className="labelStyle">Efternavn:</label>
@@ -110,7 +111,7 @@ export default function UserUpdateForm({ userData }) {
           name="lastName"
           value={updatedData.lastName}
           onChange={handleInputChange}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs mb-5"
         />
 
         <label className="labelStyle">Email:</label>
@@ -119,13 +120,13 @@ export default function UserUpdateForm({ userData }) {
           name="email"
           value={updatedData.email}
           onChange={handleInputChange}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full max-w-xs mb-5"
         />
 
         <label className="labelStyle">Fødselsdato:</label>
         <div
           tabIndex={0}
-          className="collapse collapse-arrow border border-base-300 ">
+          className="collapse collapse-arrow border border-base-300 mb-5">
           <input type="checkbox" />
           <div className="collapse-title">
             <p>
@@ -168,7 +169,7 @@ export default function UserUpdateForm({ userData }) {
         </div>
         <div className='flex justify-center'>
           <button
-            className="btn btn-success text-white"
+            className="btn btn-success text-white mt-5"
             onClick={onSubmit}
             disabled={updating}>
             {updating ? <Spinner /> : 'Gem'}
