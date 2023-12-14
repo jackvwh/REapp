@@ -2,11 +2,11 @@ version: '3.9'
 
 services:
   mysqldb:
-    image: mysql:8.0.25
+    image: mysql:latest
     restart: always
     cap_add:
       - SYS_NICE
-    env_file: ./.env
+    env_file: ./.env.production
     command: --default-authentication-plugin=mysql_native_password
     environment:
       - MYSQL_ROOT_PASSWORD=hardpassword
@@ -27,6 +27,7 @@ services:
       context: ./nginx
     ports:
       - $NGINX_HOST:$NGINX_PORT
+      
   api:
     depends_on:
       - mysqldb
@@ -34,7 +35,7 @@ services:
       dockerfile: Dockerfile
       context: './Server'
     restart: unless-stopped
-    env_file: ./.env
+    env_file: ./.env.production
     volumes:
       - /app/node_modules
       - ./Server:/app

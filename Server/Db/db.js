@@ -13,14 +13,24 @@ const mysqlconnection = mysql.createPool({
   queueLimit: 0,
 });
 
-// check connection and log
-async function checkDatabaseConnection() {
-  try {
-    const connection = await mysqlconnection.getConnection();
-    console.log('Connected to the mysql server');
-    connection.release(); // Release the connection back to the pool
-  } catch (err) {
-    console.error('Error connecting to database:', err);
+async function checkDatabaseConnection(retries = 5, delay = 2000) {
+  while (retries) {
+    try {
+      const connection = await mysqlconnection.getConnection();
+      console.log('Connected to the mysql server');
+      connection.release();
+      break; // Break the loop if connection is successful
+    } catch (err) {
+      console.error('Error connecting to database:', err);
+      retries -= 1; // Decrement the retry counter
+      console.log(`Retrying to connect... (${retries} retries left)`);
+      await new Promise(res => setTimeout(res, delay)); // Wait for a specified delay
+    }
+  }
+
+  if (retries === 0) {
+    // Handle the case when all retries are exhausted
+    throw new Error('Failed to connect to the database after multiple attempts');
   }
 }
 
