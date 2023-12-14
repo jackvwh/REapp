@@ -1,48 +1,48 @@
-# REapp: A Social Platform for Abstinence Practitioners
+# REapp: Et socialt netværk for afholdenhedspraktikere
 
-## Introduction
+## Introduktion
 
-REapp is a unique social platform designed for individuals who practice abstinence from alcohol, smoking, or drugs. In a society where such habits are prevalent, finding a supportive community can be challenging. This platform offers a safe and understanding environment for those committed to an abstinent lifestyle, facilitating connections with like-minded individuals.
+REapp er et helt unikt socialt netværk skabt til folk, der lever uden alkohol, rygning eller stoffer. Det kan være svært at finde et fællesskab, der støtter en, når man lever afholdende – men det er lige præcis, hvad REapp tilbyder.
 
-## Features
+## Funktioner
 
-- **Personalized Guidance:** Tailored advice and resources to support each user's journey in abstinence.
-- **Calendar System:** A tool for organizing and tracking abstinence-related events, milestones, and personal goals.
-- **Chat and Post System:** A space for users to communicate, share experiences, and offer support to each other.
-- **Surveys for Feedback:** Regular user surveys to understand the community's needs and enhance the platform's features.
+- **Personlig vejledning:** Få skræddersyet rådgivning og støtte til din afholdenhedsrejse.
+- **Kalendersystem:** Hold styr på vigtige datoer og personlige mål.
+- **Chat og opslag:** Snak med andre brugere, del dine oplevelser og giv hinanden støtte.
+- **Brugerundersøgelser:** Dine meninger hjælper os med at gøre REapp endnu bedre.
 
-## Getting Started
+## Kom godt i gang
 
-### Prerequisites
+### Forudsætninger
 
-- Ensure you have a stable internet connection for uninterrupted access to the platform.
-- Compatible with modern web browsers.
+- En stabil internetforbindelse.
+- Virker på alle moderne webbrowsere.
 
-### Registration and Login
+### Registrering og Login
 
-- Users can register using a simple sign-up form.
-- After registration, log in to access all the features of REapp.
+- Nem tilmelding via vores formular.
+- Log ind og udforsk alle REapps funktioner.
 
 ### Navigation
 
-- The user-friendly interface ensures easy navigation through various sections like chat rooms, posts, and the calendar system.
+- Nem og intuitiv brugerflade, der gør det let at finde rundt.
 
-## Community Guidelines
+## Fællesskabsregler
 
-REapp is committed to maintaining a respectful and supportive environment. We encourage all users to:
+Vi går meget op i at holde REapp venligt og støttende. Husk derfor at:
 
-- Share experiences and tips in a positive and encouraging manner.
-- Respect the privacy and boundaries of other members.
-- Refrain from judgmental or negative comments.
-- Report any inappropriate behavior to the platform moderators.
+- Være positiv og opmuntrende i din kommunikation.
+- Respektere andres privatliv og grænser.
+- Undgå negative kommentarer.
+- Rapportere alt upassende til vores moderatorer.
 
-## Feedback and Support
+## Feedback og Support
 
-We continuously strive to improve REapp. Your feedback is invaluable. Please use the in-built survey feature to share your thoughts or contact our support team for assistance.
+Dine tanker og idéer er guld værd for os. Brug vores indbyggede undersøgelsesfunktion til at give feedback eller kontakt vores supportteam for hjælp.
 
-## Conclusion
+## Konklusion
 
-REapp is more than just a platform; it's a community. It's a place where abstinence is not only understood but celebrated. Join us in creating a supportive network for those choosing a lifestyle of abstinence in a modern society.
+REapp er mere end bare en app – det er et fællesskab, hvor afholdenhed er i centrum. Vær med til at skabe et netværk, der støtter et afholdende liv i en moderne verden.
 
 # Developer Setup Guide for REapp
 
@@ -63,18 +63,52 @@ Ensure the following are installed:
 - Node.js (Version 14+)
 - Docker (Version 20+)
 
-### Installation
+## Database Setup with Docker
+
+1. **Prepare Database Directory:**
+
+   - Create `./test_data/data/db`.
+   - Include `DDL_schema.sql` in the `test_data` directory.
+     - Download from:
+       https://drive.google.com/file/d/1lpCQkcZeAcf69Y12LYRyKaNqtQfpMhXx/view?usp=drive_link
+   - Ensure directory structure resembles:
+
+     ```
+     ./
+       -- reapp (root directory)
+            -- client
+            -- server
+            -- package.json
+            -- docker-compose.dev.yml
+       -- test_data
+            -- DDL_schema.sql
+            -- data
+                  -- db // empty directory
+     ```
+
+### Project Setup
 
 1. **Clone Repository:**
 
    - Via SSH: `git clone git@github.com:jackvwh/REapp.git`
    - Via HTTPS: `git clone https://github.com/jackvwh/REapp.git`
 
-2. **Install Dependencies:**
+2. **Environment Configuration:**
 
-   - In the project directory, execute `npm install`.
+   - Create a `.env` file in root directory with necessary configurations.
 
-3. **Environment Configuration:**
+   ```
+   /.env
+   MYSQL_USER=user
+   MYSQL_PASSWORD=madeinchina
+   MYSQL_DATABASE=test_db
+   MYSQL_HOST=localhost
+   MYSQL_PORT=3306
+
+   # for development
+   MYSQL_LOCAL_PORT=3306
+   MYSQL_DOCKER_PORT=3306
+   ```
 
    - Create a `.env` file in Server directory with necessary configurations.
 
@@ -82,68 +116,48 @@ Ensure the following are installed:
    /Server/.env
    MYSQL_HOST: localhost
    MYSQL_PORT: 3306
-   MYSQL_USER: root
-   MYSQL_PASSWORD: root
+   MYSQL_USER: user
+   MYSQL_PASSWORD: madeinchina
    MYSQL_DATABASE: test_db
    PORT : 3001
    ```
 
-## Database Setup with Docker
+## Initialise database with Docker
 
-1. **Prepare Database Directory:**
+3. **Manage Docker Container:**
 
-   - Create `./test_database/test_data/mysql_db`.
-   - Include `DDL_schema.sql` in the `test_database` directory.
-   - Ensure directory structure resembles:
+   - Start: In the root directory, run `docker compose -f docker-compose.dev.yml up -d`.
 
-     ```
-     /someDirectory
-       -- reapp (root directory)
-            -- client
-            -- server
-       -- test_database
-            -- DDL_schema.sql
-            -- test_data
-                  -- mysql_db
-     ```
+   - Stop: Execute `docker compose -f docker-compose.dev.yml down`.
 
-2. **Manage Docker Container:**
-
-   - Start: In the root directory, run `docker compose up -d`.
-   - Stop: Execute `docker compose down`.
-
-3. **MySQL Connection:**
+4. **MySQL Connection:**
    - Connect via MySQL client using:
-     - User: `root`
-     - Password: `root`
+     - User: `user`
+     - Password: `madeinchina`
      - Database: `test_db`
      - Port: `3306`
 
-### Database Reset Procedure
-
-1. **Stop Container:** `docker compose down`.
-2. **Recreate Directory:**
-
-   - Delete and recreate the `test_data` folder.
-   - Add a new subfolder named `mysql_db`.
-   - Optionally, update the `DDL_schema.sql` file.
-
-3. **Restart Container:**
-   - Start a new instance with `docker compose up -d`.
-
 ## Running the Application
 
-1. **Start the Backend Server:**
+1. **Install Dependencies:**
 
-   - In the project directory, run:
+   - In the project root directory, run:
      ```
-     npm run server
+     npm install
      ```
-   - The server will be available at `http://localhost:3001`.
 
 2. **Start the Frontend Server:**
-   - In the project directory, run:
+
+   - In the project root directory, run:
      ```
      npm run client
      ```
    - The client will be available at `http://localhost:3000`.
+
+3. **Start the Backend Server:**
+
+   - In the project root directory, run:
+     ```
+     npm run server
+     ```
+   - The server will be available at `http://localhost:3001`.
