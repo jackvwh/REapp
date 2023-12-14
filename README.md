@@ -114,58 +114,67 @@ Ensure the following are installed:
 
    ```
    /Server/.env
-   MYSQL_HOST: localhost
-   MYSQL_PORT: 3306
-   MYSQL_USER: user
-   MYSQL_PASSWORD: madeinchina
-   MYSQL_DATABASE: test_db
-   PORT : 3001
+   MYSQL_PORT=3306
+   MYSQL_USER=user
+   MYSQL_PASSWORD=madeinchina
+   MYSQL_DATABASE=test_db
+   MYSQL_HOST=localhost
+
+   JWT_SECRET=very-secret-key
+
+   NODE_DOCKER_PORT=3001
+   CLIENT_ORIGIN=http://localhost:3000
    ```
 
 ## Initialise database with Docker
 
 3. **Manage Docker Container:**
 
-   - Start: In the root directory, run `docker compose -f docker-compose.dev.yml up -d`.
+- Start: In the root directory, run `docker compose -f docker-compose.dev.yml up -d`.
 
-   - Stop: Execute `docker compose -f docker-compose.dev.yml down`.
+- Stop: Execute `docker compose -f docker-compose.dev.yml down`.
 
 4. **MySQL Connection:**
-   - Connect via MySQL client using:
-     - User: `user`
-     - Password: `madeinchina`
-     - Database: `test_db`
-     - Port: `3306`
+
+- Connect via MySQL client using:
+  - User: `user`
+  - Password: `madeinchina`
+  - Database: `test_db`
+  - Port: `3306`
 
 ## Running the Application
 
 1. **Install Dependencies:**
 
-   - In the project root directory, run:
-     ```
-     npm install
-     ```
+- In the project root directory, run:
+  ```
+  npm install
+  ```
 
 2. **Start the Frontend Server:**
 
-   - In the project root directory, run:
-     ```
-     npm run client
-     ```
-   - The client will be available at `http://localhost:3000`.
+- In the project root directory, run:
+  ```
+  npm run client
+  ```
+- The client will be available at `http://localhost:3000`.
 
 3. **Start the Backend Server:**
 
-   - In the project root directory, run:
-     ```
-     npm run server
-     ```
-   - The server will be available at `http://localhost:3001`.
+- In the project root directory, run:
+  ```
+  npm run server
+  ```
+- The server will be available at `http://localhost:3001`.
 
-   #### Please before testing the application insert test data into the database with this GET request:
+#### Please before testing the application insert test data into the database with this GET request:
 
-   ```
-   http://localhost:3001/testdata
-   ```
+````
 
-   from your browser or Postman. A message will be displayed if the data is successfully inserted.
+http://localhost:3001/testdata
+
+```
+
+from your browser or Postman. A message will be displayed if the data is successfully inserted.
+```
+````
