@@ -11,9 +11,11 @@ function UserProfile() {
       <UserProfileHeader />
       <div className="grid-container">
         <section className="notification-styling">
-          <h1 className="bg-primary text-black text-xl p-4 rounded-lg bg-sky-500/50
+          <h1
+            className="bg-primary text-black text-xl p-4 rounded-lg bg-sky-500/50
 
-">
+"
+          >
             Notifikationer
           </h1>
           <div>

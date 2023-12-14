@@ -32,7 +32,7 @@ function CreateUserForm() {
 
       if (response.ok) {
         formRef.current.reset();
-        navigate('/userpage')
+        navigate('/userpage');
       } else {
         console.error('Failed to create user:', response.statusText);
       }
@@ -43,7 +43,7 @@ function CreateUserForm() {
 
   return (
     <div className="create-user-container text-black">
-      <h2 className='my-1'>Tilmeld dig nu</h2>
+      <h2 className="my-1">Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
           <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
@@ -86,14 +86,10 @@ function CreateUserForm() {
               placeholder="Adgangskode"
             />
             <br />
-              <label htmlFor="birthdate" className="text-lg mx-5">
-                Fødselsdag:
-              </label>
-              <input
-                className="birthdate-input-field"
-                name="birthdate"
-                type="date"
-              />
+            <label htmlFor="birthdate" className="text-lg mx-5">
+              Fødselsdag:
+            </label>
+            <input className="birthdate-input-field" name="birthdate" type="date" />
             <div className="create-user-button-container">
               <button type="submit" className="btn btn-success button-30 text-white">
                 Opret bruger

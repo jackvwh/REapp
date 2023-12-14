@@ -1,4 +1,4 @@
-import query from "../Db/query.js";
+import query from '../Db/query.js';
 
 export default class PrivilegeModels {
   static async insertPrivilege(privilege) {

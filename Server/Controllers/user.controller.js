@@ -78,7 +78,7 @@ export default class UserController {
         first_name,
         last_name,
         email,
-        birthdate,
+        birthdate
       );
       //needs to work like a a login and set a token and cookie
       const token = jwt.sign(
@@ -90,7 +90,7 @@ export default class UserController {
       );
 
       res.cookie('token', token, {
-        // httpOnly: true, 
+        // httpOnly: true,
         secure: true,
         sameSite: 'Lax',
         maxAge: 8 * 60 * 60 * 1000, // 8 hours

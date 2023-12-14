@@ -1,4 +1,4 @@
-import query from "../Db/query.js";
+import query from '../Db/query.js';
 
 class CalenderModels {
   static async getEventsByUserId(userId) {
