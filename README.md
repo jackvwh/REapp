@@ -161,3 +161,11 @@ Ensure the following are installed:
      npm run server
      ```
    - The server will be available at `http://localhost:3001`.
+
+   #### Please insert test data into the database with this GET request:
+
+   ```
+   http://localhost:3001/testdata
+   ```
+
+   from your browser or Postman. A message will be displayed if the data is successfully inserted.
