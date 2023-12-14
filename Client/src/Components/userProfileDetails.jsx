@@ -5,6 +5,7 @@ import SurveyNotification from './notifications/survey.jsx';
 import '../Styles/userProfile.css';
 
 function UserProfileDetails() {
+  const serverEndpoint = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
   // Initialize custom hook
   const {
     executeDelete,
@@ -33,7 +34,19 @@ function UserProfileDetails() {
       await executeDelete('/user/' + userData.profileId);
 
       if (deleteResponse) {
-        window.location.reload();
+        
+        fetch(`${serverEndpoint}/user/logout`, {
+          method: 'POST',
+          credentials: 'include',
+        })
+        .then(response => {
+          if (response.ok) {
+            window.location.href = '/';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
       }
     } catch (error) {
       console.error(error, deleteError);

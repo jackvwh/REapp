@@ -1,6 +1,7 @@
 import query from '../Db/query.js';
 import bcrypt from 'bcrypt';
 
+
 class UserModels {
   static async ValidateUser(username, password) {
     const sql = `SELECT * FROM user_profiles WHERE username = ?`;
@@ -19,6 +20,29 @@ class UserModels {
       console.error('Error validating user', error);
     }
   }
+  static async getUserByUsername(username) {
+    const sql = `SELECT * FROM user_profiles WHERE username = ?;`;
+    try {
+      const result = await query(sql, [username]);
+      if (result.length === 0) {
+        throw new Error('User not found');
+      }
+      const user = {
+        profileId: result[0].profile_id,
+        username: result[0].username,
+        firstName: result[0].first_name,
+        lastName: result[0].last_name,
+        email: result[0].email,
+        birthdate: result[0].birthdate,
+        // Add any other fields you need
+      };
+      return user;
+    } catch (error) {
+      console.error('error getting user by username', error);
+      throw new Error(error);
+    }
+}
+  //should be getUserProfile, but scared to change it now i case of unknown usage.
   static async getUserById(profile_id) {
     const sql = `
     
@@ -88,36 +112,37 @@ class UserModels {
     email,
     birthdate,
     privilege
-  ) {
+) {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const sql = ` 
+    const sql = `
         START TRANSACTION;
         
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
         VALUES (?, ?, ?, ?, ?, ?, ?);
-        
         COMMIT;
-      `;
+        
+        
+    `;
     const params = [
-      username,
-      hashedPassword,
-      first_name,
-      last_name,
-      email,
-      birthdate,
-      privilege,
+        username,
+        hashedPassword,
+        first_name,
+        last_name,
+        email,
+        birthdate,
+        privilege,
     ];
     try {
-      const result = await query(sql, params);
-      console.log(`User ${username} created`);
-      return result;
+        const result = await query(sql, params);
+        console.log(`User ${username} created`);
+        return { ...result[1][0], username, first_name, last_name, email, birthdate, privilege };
     } catch (error) {
-      console.error('Error creating user:', error);
-      throw new Error(error);
+        console.error('Error creating user:', error);
+        throw new Error(error);
     }
-  }
+}
 
   static async updateUser(
     profileId,
@@ -182,7 +207,7 @@ class UserModels {
       `;
 
     try {
-      const results = await this.query(sql, [
+      const results = await query(sql, [
         profileId,
         profileId,
         profileId,

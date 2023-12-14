@@ -73,38 +73,29 @@ export default class UserController {
     const privilege = 2; // standard user privilege
 
     try {
-      const newUser = await UserModels.createUser(
-        username,
-        password,
-        first_name,
-        last_name,
-        email,
-        birthdate,
-        privilege
-      );
-      //needs to work like a a login and set a token and cookie
+      await UserModels.createUser(username, password, first_name, last_name, email, birthdate, privilege);
+
+      // Retrieve the user to get the profile_id, cause ELECT LAST_INSERT_ID() didnt work.
+      const createdUser = await UserModels.getUserByUsername(username);
+      
+      // Generate a token
       const token = jwt.sign(
-        { userId: newUser.profile_id, privilege: privilege },
+        { userId: createdUser.profileId, privilege: privilege },
         process.env.JWT_SECRET,
-        {
-          expiresIn: '8h',
-        }
+        { expiresIn: '8h' }
       );
 
       res.cookie('token', token, {
-        // httpOnly: true,
         secure: true,
         sameSite: 'Lax',
         maxAge: 8 * 60 * 60 * 1000, // 8 hours
       });
-      res.status(200).json({ user: newUser, token });
+      res.status(200).json({ user: createdUser, token });
     } catch (error) {
       console.error('error creating user', error);
-      res
-        .status(500)
-        .json({ error: 'An error occurred while creating a user' + error });
+      res.status(500).json({ error: 'An error occurred while creating a user' + error });
     }
-  }
+}
 
   static async updateUser(req, res) {
     const userId = req.params.userId;
@@ -134,6 +125,7 @@ export default class UserController {
     const id = req.params.userId;
     try {
       const deletedUser = await UserModels.deleteUser(id);
+
       res.status(200).json(deletedUser);
     } catch (error) {
       console.error(error);
