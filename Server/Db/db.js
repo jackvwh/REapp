@@ -14,13 +14,17 @@ const mysqlconnection = mysql.createPool({
 });
 
 // check connection and log
-mysqlconnection.getConnection((err, connection) => {
-  if (err) {
+async function checkDatabaseConnection() {
+  try {
+    const connection = await mysqlconnection.getConnection();
+    console.log('Connected to the mysql server');
+    connection.release(); // Release the connection back to the pool
+  } catch (err) {
     console.error('Error connecting to database:', err);
-    return;
   }
-  console.log('Connected to the mysql server');
-  connection.release();
-});
+}
+
+// Call the function to check the connection
+checkDatabaseConnection();
 
 export default mysqlconnection;

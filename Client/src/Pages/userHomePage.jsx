@@ -1,8 +1,8 @@
 // UserHomePage.jsx
 import React from 'react';
-import Calender from '../components/calender/calender.jsx';
-import UserProfileHeader from '../components/userProfileHeader.jsx';
-import NotificationMessage from '../components/notifications/notificationMessage.jsx';
+import Calender from '../Components/calender/calender.jsx';
+import UserProfileHeader from '../Components/userProfileHeader.jsx';
+import NotificationMessage from '../Components/notifications/notificationMessage.jsx';
 
 //Might add a "Goddag, <user>" here later on
 function UserProfile() {
@@ -11,9 +11,7 @@ function UserProfile() {
       <UserProfileHeader />
       <div className="grid-container">
         <section className="notification-styling">
-          <h1 className="bg-primary text-black text-xl p-4 rounded-lg bg-sky-500/50
-
-">
+          <h1 className="bg-primary text-black text-xl p-4 rounded-lg bg-sky-500/50">
             Notifikationer
           </h1>
           <div>

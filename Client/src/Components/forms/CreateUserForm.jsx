@@ -1,12 +1,13 @@
 import React from 'react';
 import LoginModal from './loginForm';
+import { useNavigate } from 'react-router-dom';
 import '../../Styles/homepage.css';
 
 function CreateUserForm() {
-  // 
   const serverEndpoint =
     process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
   const formRef = React.createRef();
+  const navigate = useNavigate();
 
   const createUser = async event => {
     event.preventDefault();
@@ -21,7 +22,7 @@ function CreateUserForm() {
     };
     // TODO: might need to be run through useAPIClient instead
     try {
-      const response = await fetch(`${serverEndpoint}/user/`, {
+      const response = await fetch(`${serverEndpoint}/user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,8 +31,8 @@ function CreateUserForm() {
       });
 
       if (response.ok) {
-        console.log(`User created: ${formData.username}`);
         formRef.current.reset();
+        navigate('/userpage');
       } else {
         console.error('Failed to create user:', response.statusText);
       }
@@ -42,7 +43,7 @@ function CreateUserForm() {
 
   return (
     <div className="create-user-container text-black">
-      <h2 className='my-1'>Tilmeld dig nu</h2>
+      <h2 className="my-1">Tilmeld dig nu</h2>
       <div className="sign-up-container">
         <section>
           <form id="sign-up-form" onSubmit={createUser} ref={formRef}>
@@ -85,14 +86,10 @@ function CreateUserForm() {
               placeholder="Adgangskode"
             />
             <br />
-              <label htmlFor="birthdate" className="text-lg mx-5">
-                Fødselsdag:
-              </label>
-              <input
-                className="birthdate-input-field"
-                name="birthdate"
-                type="date"
-              />
+            <label htmlFor="birthdate" className="text-lg mx-5">
+              Fødselsdag:
+            </label>
+            <input className="birthdate-input-field" name="birthdate" type="date" />
             <div className="create-user-button-container">
               <button type="submit" className="btn btn-success button-30 text-white">
                 Opret bruger

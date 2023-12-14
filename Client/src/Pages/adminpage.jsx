@@ -1,11 +1,11 @@
 import '../Styles/index.css';
 import { useApiClient } from '../Hooks/useApiClient.js';
-import StatusBar from '../components/chat/statusbar.jsx';
-import SurveyForm from '../components/forms/surveyForm.jsx';
-import QuestionForm from '../components/forms/questionForm.jsx';
-import QuestionTable from '../components/tables/questionTable.jsx';
-import SurveyTable from '../components/tables/surveyTable.jsx';
-import MenuDrawer from '../components/globals/menu-drawer.jsx';
+import StatusBar from '../Components/chat/statusbar.jsx';
+import SurveyForm from '../Components/forms/surveyForm.jsx';
+import QuestionForm from '../Components/forms/questionForm.jsx';
+import QuestionTable from '../Components/tables/questionTable.jsx';
+import SurveyTable from '../Components/tables/surveyTable.jsx';
+import MenuDrawer from '../Components/globals/menu-drawer.jsx';
 
 export default function AdminPage() {
   // get survey list from server
@@ -13,14 +13,14 @@ export default function AdminPage() {
     data: surveyData,
     loading: surveyLoading,
     error: surveyError,
-  } = useApiClient.useGet('surveys');
+  } = useApiClient.useGet('/surveys');
 
   // get question list from server
   const {
     data: questionData,
     loading: questionLoading,
     error: questionError,
-  } = useApiClient.useGet('questions');
+  } = useApiClient.useGet('/questions');
 
   if (surveyLoading || questionLoading) {
     return <div>Loading...</div>;

@@ -5,7 +5,7 @@ export default class ActivityModels {
     const sql = 'SELECT * FROM activities;';
     try {
       const result = await query(sql);
-      return result
+      return result;
     } catch (error) {
       throw new Error(error);
     }

@@ -69,15 +69,7 @@ export default class UserController {
   }
 
   static async createUser(req, res) {
-    const {
-      username,
-      password,
-      first_name,
-      last_name,
-      email,
-      birthdate,
-      privilege,
-    } = req.body;
+    const { username, password, first_name, last_name, email, birthdate } = req.body;
 
     try {
       const newUser = await UserModels.createUser(
@@ -86,12 +78,23 @@ export default class UserController {
         first_name,
         last_name,
         email,
-        birthdate,
-        privilege
+        birthdate
       );
-      const token = jwt.sign({ username }, process.env.JWT_SECRET, {
-        expiresIn: '1h',
-      }); //TODO: is this nessacary or is it for first time login only?
+      //needs to work like a a login and set a token and cookie
+      const token = jwt.sign(
+        { userId: user.profile_id, privilege: user.privilege },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: '8h',
+        }
+      );
+
+      res.cookie('token', token, {
+        // httpOnly: true,
+        secure: true,
+        sameSite: 'Lax',
+        maxAge: 8 * 60 * 60 * 1000, // 8 hours
+      });
       res.status(200).json({ user: newUser, token });
     } catch (error) {
       console.error('error creating user', error);

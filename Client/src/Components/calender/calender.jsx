@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DayPilot, DayPilotCalendar } from '@daypilot/daypilot-lite-react';
 import '../../Styles/calender.css';
 
+const serverEndpoint = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 const Calendar = () => {
   const calendarRef = useRef();
   const [config, setConfig] = useState({
@@ -22,7 +24,7 @@ const Calendar = () => {
       };
       try {
         const response = await fetch(
-          `http://localhost:3001/calender/events/${args.e.id()}`,
+          `${serverEndpoint}/calender/events/${args.e.id()}`,
           {
             method: 'PUT',
             headers: {
@@ -53,7 +55,7 @@ const Calendar = () => {
       dp.events.add(newEvent);
 
       try {
-        const response = await fetch('http://localhost:3001/calender/events', {
+        const response = await fetch(`${serverEndpoint}/calender/events`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -77,7 +79,7 @@ const Calendar = () => {
       };
       try {
         const response = await fetch(
-          `http://localhost:3001/calender/events/${args.e.id()}`,
+          `${serverEndpoint}/calender/events/${args.e.id()}`,
           {
             method: 'PUT',
             headers: {
@@ -99,7 +101,7 @@ const Calendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:3001/calender/', {
+        const response = await fetch(`${serverEndpoint}/calender/`, {
           method: 'GET',
           credentials: 'include',
         });

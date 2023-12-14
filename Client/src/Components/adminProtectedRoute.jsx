@@ -11,7 +11,7 @@ const AdminProtectedRoute = ({ children }) => {
   if (token) {
     try {
       const decodedToken = jwtDecode(token);
-      isAdmin = decodedToken.privilege === 2;
+      isAdmin = decodedToken.privilege === 1;
     } catch (error) {
       console.error('Error decoding token:', error);
       // Token is invalid or expired

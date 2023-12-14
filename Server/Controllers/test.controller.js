@@ -268,7 +268,7 @@ const users = [
     last_name: 'Doe',
     email: 'john.doe@example.com',
     birthdate: '1990-01-15',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user2',
@@ -277,7 +277,7 @@ const users = [
     last_name: 'Smith',
     email: 'alice.smith@example.com',
     birthdate: '1985-05-20',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user3',
@@ -286,7 +286,7 @@ const users = [
     last_name: 'Johnson',
     email: 'ella.johnson@example.com',
     birthdate: '1993-11-30',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user4',
@@ -295,7 +295,7 @@ const users = [
     last_name: 'Brown',
     email: 'michael.brown@example.com',
     birthdate: '1988-07-12',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user5',
@@ -304,7 +304,7 @@ const users = [
     last_name: 'Wilson',
     email: 'olivia.wilson@example.com',
     birthdate: '1996-03-25',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user6',
@@ -313,7 +313,7 @@ const users = [
     last_name: 'Lee',
     email: 'james.lee@example.com',
     birthdate: '1982-09-05',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user7',
@@ -322,7 +322,7 @@ const users = [
     last_name: 'Anderson',
     email: 'ava.anderson@example.com',
     birthdate: '1991-12-08',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user8',
@@ -331,7 +331,7 @@ const users = [
     last_name: 'Garcia',
     email: 'william.garcia@example.com',
     birthdate: '1987-04-17',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user9',
@@ -340,7 +340,7 @@ const users = [
     last_name: 'Martinez',
     email: 'sophia.martinez@example.com',
     birthdate: '1994-06-03',
-    privilege: 'user',
+    privilege: 2,
   },
   {
     username: 'user10',
@@ -349,6 +349,6 @@ const users = [
     last_name: 'Robinson',
     email: 'liam.robinson@example.com',
     birthdate: '1989-10-22',
-    privilege: 'admin',
+    privilege: 1,
   },
 ];

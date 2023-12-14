@@ -39,7 +39,7 @@ function LoginModal() {
 
       const user = await response.json();
       console.log(`Succesfully logged into ${username}`, user);
-      navigate('/notadminpage', { replace: true }); //TODO: change to the homepage, when done
+      navigate('/userpage', { replace: true }); //TODO: change to the homepage, when done
     } catch (err) {
       console.error(err);
     }
@@ -51,7 +51,8 @@ function LoginModal() {
         <p className="text-sm my-0">Har du allerede en profil?</p>
         <button
           onClick={openModal}
-          className="btn btn-success button-30 my-4 text-white">
+          className="btn btn-success button-30 my-4 text-white"
+        >
           Log ind
         </button>
       </div>
@@ -59,7 +60,7 @@ function LoginModal() {
       {showModal && (
         <div>
           <div className="modal-container">
-            <h3 className='text-6xl'>Log ind</h3>
+            <h3 className="text-6xl">Log ind</h3>
             <div className="my-9">
               <form id="login-form" onSubmit={loginUser}>
                 <input

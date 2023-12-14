@@ -4,7 +4,6 @@ dotenv.config();
 
 //this will be used to see if youre trying to navigate to pages, you dont have access to
 export function authenticateToken(req, res, next) {
-  console.log('Cookies:', req.cookies); // Check if cookies are present
   const token = req.cookies['token'];
   if (!token) {
     return res.status(401).send('Access denied');
