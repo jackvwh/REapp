@@ -26,7 +26,8 @@ services:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
-      - $NGINX_HOST:$NGINX_PORT
+      - $NGINX_HTTP_HOST:$NGINX_HTTP_PORT
+      - $NGINX_HTTPS_HOST:$NGINX_HTTPS_PORT
       
   api:
     depends_on:
