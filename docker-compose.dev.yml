@@ -3,7 +3,7 @@ version: '3.9'
 
 services:
   mysqldb:
-    image: mysql:8.0.25
+    image: mysql:latest
     restart: always
     cap_add:
       - SYS_NICE
