@@ -73,11 +73,19 @@ export default class UserController {
     const privilege = 2; // standard user privilege
 
     try {
-      await UserModels.createUser(username, password, first_name, last_name, email, birthdate, privilege);
+      await UserModels.createUser(
+        username,
+        password,
+        first_name,
+        last_name,
+        email,
+        birthdate,
+        privilege
+      );
 
       // Retrieve the user to get the profile_id, cause ELECT LAST_INSERT_ID() didnt work.
       const createdUser = await UserModels.getUserByUsername(username);
-      
+
       // Generate a token
       const token = jwt.sign(
         { userId: createdUser.profileId, privilege: privilege },
@@ -93,9 +101,11 @@ export default class UserController {
       res.status(200).json({ user: createdUser, token });
     } catch (error) {
       console.error('error creating user', error);
-      res.status(500).json({ error: 'An error occurred while creating a user' + error });
+      res
+        .status(500)
+        .json({ error: 'An error occurred while creating a user' + error });
     }
-}
+  }
 
   static async updateUser(req, res) {
     const userId = req.params.userId;

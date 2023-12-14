@@ -5,21 +5,22 @@ import homeIcon from '../assets/homeIcon.svg';
 import profileIcon from '../assets/profileIcon.svg';
 
 function UserProfileHeader() {
-  const serverEndpoint = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+  const serverEndpoint =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 
   function handleLogout() {
     fetch(`${serverEndpoint}/user/logout`, {
       method: 'POST',
       credentials: 'include',
     })
-    .then(response => {
-      if (response.ok) {
-        window.location.href = '/';
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then(response => {
+        if (response.ok) {
+          window.location.href = '/';
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
   return (
@@ -39,7 +40,11 @@ function UserProfileHeader() {
           </Link>
         </div>
       </div>
-      <button id="LogoutButton" className="btn btn-ghost text-xl mx-2" onClick={handleLogout}>
+      <button
+        id="LogoutButton"
+        className="btn btn-ghost text-xl mx-2"
+        onClick={handleLogout}
+      >
         Log Ud
       </button>
     </div>

@@ -10,7 +10,7 @@ export default class testdataController {
     await Promise.all(
       priviliges.map(privilige => PrivilegeModels.insertPrivilege(privilige))
     );
-    //TODO:Please god dont let this break with the return profile_Id change in 
+    //TODO:Please god dont let this break with the return profile_Id change in
     await Promise.all(
       users.map(user =>
         UserModels.createUser(

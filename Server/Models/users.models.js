@@ -1,7 +1,6 @@
 import query from '../Db/query.js';
 import bcrypt from 'bcrypt';
 
-
 class UserModels {
   static async ValidateUser(username, password) {
     const sql = `SELECT * FROM user_profiles WHERE username = ?`;
@@ -41,7 +40,7 @@ class UserModels {
       console.error('error getting user by username', error);
       throw new Error(error);
     }
-}
+  }
   //should be getUserProfile, but scared to change it now i case of unknown usage.
   static async getUserById(profile_id) {
     const sql = `
@@ -112,7 +111,7 @@ class UserModels {
     email,
     birthdate,
     privilege
-) {
+  ) {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -126,23 +125,31 @@ class UserModels {
         
     `;
     const params = [
+      username,
+      hashedPassword,
+      first_name,
+      last_name,
+      email,
+      birthdate,
+      privilege,
+    ];
+    try {
+      const result = await query(sql, params);
+      console.log(`User ${username} created`);
+      return {
+        ...result[1][0],
         username,
-        hashedPassword,
         first_name,
         last_name,
         email,
         birthdate,
         privilege,
-    ];
-    try {
-        const result = await query(sql, params);
-        console.log(`User ${username} created`);
-        return { ...result[1][0], username, first_name, last_name, email, birthdate, privilege };
+      };
     } catch (error) {
-        console.error('Error creating user:', error);
-        throw new Error(error);
+      console.error('Error creating user:', error);
+      throw new Error(error);
     }
-}
+  }
 
   static async updateUser(
     profileId,

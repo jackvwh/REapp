@@ -5,7 +5,8 @@ import SurveyNotification from './notifications/survey.jsx';
 import '../Styles/userProfile.css';
 
 function UserProfileDetails() {
-  const serverEndpoint = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+  const serverEndpoint =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
   // Initialize custom hook
   const {
     executeDelete,
@@ -34,19 +35,18 @@ function UserProfileDetails() {
       await executeDelete('/user/' + userData.profileId);
 
       if (deleteResponse) {
-        
         fetch(`${serverEndpoint}/user/logout`, {
           method: 'POST',
           credentials: 'include',
         })
-        .then(response => {
-          if (response.ok) {
-            window.location.href = '/';
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+          .then(response => {
+            if (response.ok) {
+              window.location.href = '/';
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
       }
     } catch (error) {
       console.error(error, deleteError);
@@ -119,7 +119,8 @@ function UserProfileDetails() {
                     userData.activities.map((activity, index) => (
                       <div
                         key={activity.activityType || index}
-                        className="justify-center text-black text-center text-xl italic bg-white self-stretch items-stretch mt-2 pl-2.5 pr-1.5 py-2.5">
+                        className="justify-center text-black text-center text-xl italic bg-white self-stretch items-stretch mt-2 pl-2.5 pr-1.5 py-2.5"
+                      >
                         {activity.activityType}
                       </div>
                     ))}
@@ -153,14 +154,16 @@ function UserProfileDetails() {
             <div>
               <button
                 className="btn btn-primary text-lg mb-5 w-60"
-                onClick={() => document.getElementById('daily').showModal()}>
+                onClick={() => document.getElementById('daily').showModal()}
+              >
                 Spørgeskema
               </button>
             </div>
             <div>
               <button
                 className="btn btn-primary text-lg mb-5 w-60"
-                onClick={() => document.getElementById('update-form').showModal()}>
+                onClick={() => document.getElementById('update-form').showModal()}
+              >
                 Opdater oplysninger
               </button>
             </div>

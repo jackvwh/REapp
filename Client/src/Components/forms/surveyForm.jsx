@@ -115,7 +115,8 @@ export default function SurveyForm({ questionData }) {
           type="submit"
           className="btn btn-primary"
           disabled={isPostLoading}
-          onClick={onSubmit}>
+          onClick={onSubmit}
+        >
           {isPostLoading ? <Spinner /> : 'Gem spørgeskema'}
         </button>
       </form>

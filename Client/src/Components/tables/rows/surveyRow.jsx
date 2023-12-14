@@ -48,12 +48,14 @@ export default function SurveyRow({ props }) {
         <td>
           <button
             onClick={handleRemoveSurvey}
-            className="btn btn-ghost btn-sm rounded-btn">
+            className="btn btn-ghost btn-sm rounded-btn"
+          >
             Slet
           </button>
           <button
             onClick={toggleQuestions}
-            className="btn btn-ghost btn-sm rounded-btn">
+            className="btn btn-ghost btn-sm rounded-btn"
+          >
             {showQuestions ? 'Skjul spørgsmål' : 'Vis spørgsmål'}
           </button>
         </td>
