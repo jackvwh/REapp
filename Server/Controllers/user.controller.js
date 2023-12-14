@@ -70,6 +70,7 @@ export default class UserController {
 
   static async createUser(req, res) {
     const { username, password, first_name, last_name, email, birthdate } = req.body;
+    const privilege = 2; // standard user privilege
 
     try {
       const newUser = await UserModels.createUser(
@@ -78,11 +79,12 @@ export default class UserController {
         first_name,
         last_name,
         email,
-        birthdate
+        birthdate,
+        privilege
       );
       //needs to work like a a login and set a token and cookie
       const token = jwt.sign(
-        { userId: user.profile_id, privilege: user.privilege },
+        { userId: newUser.profile_id, privilege: newUser.privilege },
         process.env.JWT_SECRET,
         {
           expiresIn: '8h',
