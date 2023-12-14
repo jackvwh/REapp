@@ -39,7 +39,7 @@ export default function SurveyForm({ questionData }) {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      await executePost('surveys', {
+      await executePost('/surveys', {
         ...survey,
         questions: selectedQuestions.map(question => question.question_id),
       });
@@ -115,8 +115,7 @@ export default function SurveyForm({ questionData }) {
           type="submit"
           className="btn btn-primary"
           disabled={isPostLoading}
-          onClick={onSubmit}
-        >
+          onClick={onSubmit}>
           {isPostLoading ? <Spinner /> : 'Gem spørgeskema'}
         </button>
       </form>

@@ -7,7 +7,7 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
     data: survey,
     loading: isSurveyLoading,
     error: surveyError,
-  } = useApiClient.useGet(`surveys/${surveyId}`);
+  } = useApiClient.useGet(`/surveys/${surveyId}`);
 
   // feedback state
   const {
@@ -92,8 +92,7 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
               <div className="radio-group">
                 <label
                   className="radio checked:bg-blue-500 "
-                  style={{ marginRight: '0.5rem' }}
-                >
+                  style={{ marginRight: '0.5rem' }}>
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -106,8 +105,7 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
                 </label>
                 <label
                   className="radio checked:bg-blue-500 "
-                  style={{ marginRight: '0.5rem' }}
-                >
+                  style={{ marginRight: '0.5rem' }}>
                   <input
                     type="radio"
                     name={question.answer_type}
@@ -171,14 +169,12 @@ export default function SurveyNotification({ surveyId, feedbackId }) {
           className="btn btn-primary mt-2"
           type="submit"
           disabled={isFeedbackLoading}
-          onClick={onSubmit}
-        >
+          onClick={onSubmit}>
           {isFeedbackLoading ? <Spinner /> : 'Send svar'}
         </button>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('daily').close()}
-        >
+          onClick={() => document.getElementById('daily').close()}>
           X
         </button>
       </form>

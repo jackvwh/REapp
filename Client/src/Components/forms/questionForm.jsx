@@ -22,7 +22,7 @@ const QuestionForm = () => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      await executePost('questions', question);
+      await executePost('/questions', question);
       if (postResponse) {
         window.location.reload();
         return;

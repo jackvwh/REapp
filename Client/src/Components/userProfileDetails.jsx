@@ -18,7 +18,7 @@ function UserProfileDetails() {
     data: userData,
     loading: userIsLoading,
     error: userError,
-  } = useApiClient.useGetAuth('user/profile');
+  } = useApiClient.useGetAuth('/user/profile');
 
   function calcAge(dateString) {
     // + sign converts date string to number(milliseconds since 1970)
@@ -30,7 +30,7 @@ function UserProfileDetails() {
   const onDelete = async e => {
     e.preventDefault();
     try {
-      await executeDelete('user/' + userData.profileId);
+      await executeDelete('/user/' + userData.profileId);
 
       if (deleteResponse) {
         window.location.reload();
@@ -106,8 +106,7 @@ function UserProfileDetails() {
                     userData.activities.map((activity, index) => (
                       <div
                         key={activity.activityType || index}
-                        className="justify-center text-black text-center text-xl italic bg-white self-stretch items-stretch mt-2 pl-2.5 pr-1.5 py-2.5"
-                      >
+                        className="justify-center text-black text-center text-xl italic bg-white self-stretch items-stretch mt-2 pl-2.5 pr-1.5 py-2.5">
                         {activity.activityType}
                       </div>
                     ))}
@@ -141,16 +140,14 @@ function UserProfileDetails() {
             <div>
               <button
                 className="btn btn-primary text-lg mb-5 w-60"
-                onClick={() => document.getElementById('daily').showModal()}
-              >
+                onClick={() => document.getElementById('daily').showModal()}>
                 Spørgeskema
               </button>
             </div>
             <div>
               <button
                 className="btn btn-primary text-lg mb-5 w-60"
-                onClick={() => document.getElementById('update-form').showModal()}
-              >
+                onClick={() => document.getElementById('update-form').showModal()}>
                 Opdater oplysninger
               </button>
             </div>

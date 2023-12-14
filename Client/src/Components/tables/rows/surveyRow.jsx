@@ -26,9 +26,9 @@ export default function SurveyRow({ props }) {
     if (!isConfirmed) {
       return;
     }
-    await executeDelete(`surveys/${props.survey_id}`);
+    await executeDelete(`/surveys/${props.survey_id}`);
     // remove row from table
-    document.getElementById(`survey_${props.survey_id}`).remove();
+    document.getElementById(`/survey_${props.survey_id}`).remove();
     if (surveyError) {
       console.log(surveyError);
     }
@@ -48,14 +48,12 @@ export default function SurveyRow({ props }) {
         <td>
           <button
             onClick={handleRemoveSurvey}
-            className="btn btn-ghost btn-sm rounded-btn"
-          >
+            className="btn btn-ghost btn-sm rounded-btn">
             Slet
           </button>
           <button
             onClick={toggleQuestions}
-            className="btn btn-ghost btn-sm rounded-btn"
-          >
+            className="btn btn-ghost btn-sm rounded-btn">
             {showQuestions ? 'Skjul spørgsmål' : 'Vis spørgsmål'}
           </button>
         </td>

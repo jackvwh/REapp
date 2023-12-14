@@ -101,7 +101,7 @@ const Calendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`${serverEndpoint}/calender/`, {
+        const response = await fetch(`${serverEndpoint}/calender`, {
           method: 'GET',
           credentials: 'include',
         });

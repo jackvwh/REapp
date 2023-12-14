@@ -42,7 +42,7 @@ export default function UserUpdateForm({ userData }) {
   }, [userData]);
 
   // options list from server
-  const { data: activityOptions } = useApiClient.useGet('activities/options');
+  const { data: activityOptions } = useApiClient.useGet('/activities/options');
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -61,7 +61,7 @@ export default function UserUpdateForm({ userData }) {
     e.preventDefault();
     try {
       // send updated user object to server
-      await executePut('user/' + userData.profileId, {
+      await executePut('/user/' + userData.profileId, {
         ...updatedData,
         activities: userActivities,
       });
