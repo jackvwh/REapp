@@ -1,16 +1,4 @@
-import mysqlConnection from '../Db/db.js';
-
-async function query(sql, params) {
-  return new Promise((resolve, reject) => {
-    mysqlConnection.query(sql, params, (err, result) => {
-      if (err) {
-        console.log(err);
-        reject(err);
-      }
-      resolve(result);
-    });
-  });
-}
+import query from '../Db/query.js';
 
 export default class QuestionModels {
   static async getAll() {

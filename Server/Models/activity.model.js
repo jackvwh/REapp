@@ -1,23 +1,11 @@
-import mysqlConnection from '../Db/db.js';
+import query from '../Db/query.js';
 
 export default class ActivityModels {
-  static async query(sql, params) {
-    return new Promise((resolve, reject) => {
-      mysqlConnection.query(sql, params, (err, result) => {
-        if (err) {
-          console.log(err);
-          reject(err);
-        }
-        resolve(result);
-      });
-    });
-  }
-
   static async getActivityOptions() {
     const sql = 'SELECT * FROM activities;';
     try {
-      const result = await this.query(sql);
-      return result;
+      const result = await query(sql);
+      return result
     } catch (error) {
       throw new Error(error);
     }
@@ -26,7 +14,7 @@ export default class ActivityModels {
   static async getAllActivities() {
     const sql = 'SELECT * FROM activities';
     try {
-      const result = await this.query(sql);
+      const result = await query(sql);
       return result;
     } catch (error) {
       throw new Error(error);
@@ -40,7 +28,7 @@ export default class ActivityModels {
             VALUES (?, ?)`;
 
     try {
-      const result = await this.query(sql, [activity_type, activity_description]);
+      const result = await query(sql, [activity_type, activity_description]);
       return result;
     } catch (error) {
       throw new Error(error);
@@ -60,7 +48,7 @@ export default class ActivityModels {
         `;
 
     try {
-      const result = await this.query(sql, [activity_id, activity_id]);
+      const result = await query(sql, [activity_id, activity_id]);
       return result;
     } catch (error) {
       throw new Error(error);
