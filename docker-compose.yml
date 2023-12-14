@@ -25,6 +25,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./nginx
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
       - $NGINX_HTTP_HOST:$NGINX_HTTP_PORT
       - $NGINX_HTTPS_HOST:$NGINX_HTTPS_PORT
