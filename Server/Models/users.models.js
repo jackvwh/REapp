@@ -20,8 +20,9 @@ class UserModels {
     }
   }
   static async getUserById(profile_id) {
-    console.log('%d', profile_id);
-    const sql = `SELECT 
+    const sql = `
+    
+      SELECT 
         user_profiles.*,
         activities.*,
         user_activities.*
@@ -95,7 +96,7 @@ class UserModels {
         START TRANSACTION;
         
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
-        VALUES (?, ?, ?, ?, ?, ?, (SELECT id FROM priviliges WHERE title = ?));
+        VALUES (?, ?, ?, ?, ?, ?, ?);
         
         COMMIT;
       `;

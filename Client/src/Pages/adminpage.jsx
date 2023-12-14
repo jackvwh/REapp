@@ -13,14 +13,14 @@ export default function AdminPage() {
     data: surveyData,
     loading: surveyLoading,
     error: surveyError,
-  } = useApiClient.useGet('surveys');
+  } = useApiClient.useGet('/surveys');
 
   // get question list from server
   const {
     data: questionData,
     loading: questionLoading,
     error: questionError,
-  } = useApiClient.useGet('questions');
+  } = useApiClient.useGet('/questions');
 
   if (surveyLoading || questionLoading) {
     return <div>Loading...</div>;

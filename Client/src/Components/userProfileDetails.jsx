@@ -1,5 +1,5 @@
 import React from 'react';
-import { useApiClient } from '../Hooks/useApiClient';
+import { useApiClient } from '../Hooks/useApiClient.js';
 import UserUpdateForm from './forms/userUpdateForm';
 import SurveyNotification from './notifications/survey';
 import '../Styles/userProfile.css';
