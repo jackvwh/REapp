@@ -162,7 +162,7 @@ Ensure the following are installed:
      ```
    - The server will be available at `http://localhost:3001`.
 
-   #### Please insert test data into the database with this GET request:
+   #### Please before testing the application insert test data into the database with this GET request:
 
    ```
    http://localhost:3001/testdata
