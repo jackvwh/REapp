@@ -1,16 +1,4 @@
-import mysqlConnection from '../Db/db.js';
-
-async function query(sql, params) {
-  return new Promise((resolve, reject) => {
-    mysqlConnection.query(sql, params, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(results);
-      }
-    });
-  });
-}
+import query from '../Db/query.js';
 
 export default class SurveyModels {
   static async getAll() {

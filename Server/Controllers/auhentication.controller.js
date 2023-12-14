@@ -1,6 +1,3 @@
-//TODO: we should properly put this into it´s own helper or the like, but its here in a controller until we decide on a better st
-//we decide on a better structure
-
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();

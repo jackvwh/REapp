@@ -1,26 +1,12 @@
-import mysqlConnection from '../Db/db.js';
+import query from '../Db/query.js';
 import bcrypt from 'bcrypt';
 
 class UserModels {
-  static async query(sql, params) {
-    return new Promise((resolve, reject) => {
-      mysqlConnection.query(sql, params, (err, results) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-  }
-
-  //we dont like the position of this. we want it somewhere else
-  //but currently this is how you would do it in the documnetation we have read :)
   static async ValidateUser(username, password) {
     const sql = `SELECT * FROM user_profiles WHERE username = ?`;
 
     try {
-      const result = await this.query(sql, [username]);
+      const result = await query(sql, [username]);
       //maybe check for multiple users and return an error
       if (result.length > 0) {
         const user = result[0];
@@ -33,49 +19,6 @@ class UserModels {
       console.error('Error validating user', error);
     }
   }
-
-  // static async getUserById(profile_id) {
-  //   console.log("Received profile_id:", profile_id);
-  //   const sql = `
-  //     SELECT
-  //       profile_id,
-  //       username,
-  //       first_name,
-  //       last_name,
-  //       email,
-  //       birthdate,
-  //       privilege,
-  //       signup_date
-  //     FROM
-  //       user_profiles
-  //     WHERE
-  //       profile_id = ?;
-  //   `;
-
-  //   try {
-  //     const result = await this.query(sql, [profile_id]);
-  //     if (result.length === 0) {
-  //       throw new Error('User not found');
-  //     }
-
-  //     // Assuming you want to return the first result
-  //     const user = result[0];
-  //     return {
-  //       profileId: user.profile_id,
-  //       username: user.username,
-  //       firstName: user.first_name,
-  //       lastName: user.last_name,
-  //       email: user.email,
-  //       birthdate: user.birthdate,
-  //       privilege: user.privilege,
-  //       signupDate: user.signup_date
-  //     };
-  //   } catch (error) {
-  //     console.error('Error getting user by ID:', error);
-  //     throw new Error(error);
-  //   }
-  // }
-
   static async getUserById(profile_id) {
     console.log('%d', profile_id);
     const sql = `SELECT 
@@ -90,7 +33,7 @@ class UserModels {
 
       `;
     try {
-      const result = await this.query(sql, [profile_id]);
+      const result = await query(sql, [profile_id]);
       if (result.length === 0) {
         throw new Error('User not found');
       }
@@ -124,6 +67,18 @@ class UserModels {
     }
   }
 
+  static async updateUserPrivilege(username, privilege) {
+    const sql = `UPDATE user_profiles SET privilege = ? WHERE username = ?;`;
+    try {
+      const result = await query(sql, [privilege, username]);
+      console.log(`User privilege updated for ${username}`);
+      return result;
+    } catch (error) {
+      console.error('Error updating user privilege:', error);
+      throw new Error('Error updating user privilege');
+    }
+  }
+
   static async createUser(
     username,
     password,
@@ -138,27 +93,27 @@ class UserModels {
 
     const sql = ` 
         START TRANSACTION;
-
+        
         INSERT INTO user_profiles (username, password, first_name, last_name, email, birthdate, privilege)
-        VALUES (?, ?, ?, ?, ?, ?, 1);
+        VALUES (?, ?, ?, ?, ?, ?, (SELECT id FROM priviliges WHERE title = ?));
         
         COMMIT;
       `;
-
+    const params = [
+      username,
+      hashedPassword,
+      first_name,
+      last_name,
+      email,
+      birthdate,
+      privilege,
+    ];
     try {
-      const result = await this.query(sql, [
-        username,
-        hashedPassword,
-        first_name,
-        last_name,
-        email,
-        birthdate,
-        privilege,
-      ]);
+      const result = await query(sql, params);
       console.log(`User ${username} created`);
       return result;
     } catch (error) {
-      console.error('error creating user', error);
+      console.error('Error creating user:', error);
       throw new Error(error);
     }
   }
@@ -191,7 +146,7 @@ class UserModels {
       `;
 
     try {
-      const results = await this.query(sql, [
+      const results = await query(sql, [
         username,
         password,
         first_name,

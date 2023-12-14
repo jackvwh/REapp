@@ -4,7 +4,8 @@ import '../../Styles/homepage.css';
 
 function CreateUserForm() {
   // 
-  const serverEndpoint = process.env.REACT_APP_API_URL || 'http://localhost:3001/';
+  const serverEndpoint =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
   const formRef = React.createRef();
 
   const createUser = async event => {
