@@ -1,18 +1,17 @@
 import React from 'react';
-import CreateUserForm from '../components/forms/CreateUserForm';
 import backgroundImage from '../assets/homePagePicture.jpg';
 import logoImage from '../assets/logo.png';
 import loveIcon from '../assets/love.png';
 import supportIcon from '../assets/support.png';
 import taskIcon from '../assets/task.png';
 import '../Styles/index.css';
+import CreateUserForm from '../Components/forms/CreateUserForm.jsx';
 
 function HomePage() {
   return (
     <div
       className="hero min-h-screen"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+      style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="home-page-container">

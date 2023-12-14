@@ -126,8 +126,7 @@ export default function UserUpdateForm({ userData }) {
         <label className="labelStyle">Fødselsdato:</label>
         <div
           tabIndex={0}
-          className="collapse collapse-arrow border border-base-300 mb-5"
-        >
+          className="collapse collapse-arrow border border-base-300 mb-5">
           <input type="checkbox" />
           <div className="collapse-title">
             <p>
@@ -172,15 +171,13 @@ export default function UserUpdateForm({ userData }) {
           <button
             className="btn btn-success text-white mt-5"
             onClick={onSubmit}
-            disabled={updating}
-          >
+            disabled={updating}>
             {updating ? <Spinner /> : 'Gem'}
           </button>
         </div>
         <button
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          onClick={() => document.getElementById('update-form').close()}
-        >
+          onClick={() => document.getElementById('update-form').close()}>
           X
         </button>
       </form>
