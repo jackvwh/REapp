@@ -28,6 +28,7 @@ function CreateUserForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials: 'include', // Include credentials for cookies
       });
 
       if (response.ok) {

@@ -84,7 +84,7 @@ export default class UserController {
       );
       //needs to work like a a login and set a token and cookie
       const token = jwt.sign(
-        { userId: newUser.profile_id, privilege: newUser.privilege },
+        { userId: newUser.profile_id, privilege: privilege },
         process.env.JWT_SECRET,
         {
           expiresIn: '8h',
