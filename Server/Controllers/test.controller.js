@@ -67,8 +67,8 @@ export default class testdataController {
 
 // TEST DATA SET
 const priviliges = [
-  { title: 'user', privilige: 'read, write' },
   { title: 'admin', privilige: 'read, write, delete' },
+  { title: 'user', privilige: 'read, write' },
 ];
 const questions = [
   {
