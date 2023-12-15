@@ -6,7 +6,15 @@ Application Api: https://reapp.dk/api
 
 - /surveys, /questions og /feedback er tilgængelige uden login
 
-Github repository: https://github.com/jackvwh/REapp
+```
+Site login with regular user:
+  username: user,
+  password: user
+
+Site login with admin user:
+  username: admin,
+  password: admin
+```
 
 ## Introduktion
 
@@ -189,11 +197,11 @@ from your browser or Postman. A message will be displayed if the data is success
 
 When this is done you can login with 2 different kind of users, which will allow for access to different pages.
 Admin User:
-username: admin
-password: admin
+username: user10
+password: abcde
 
 Regular User:
-Username: user
-password: user
+Username: user1
+password: abcde
 
 ```
