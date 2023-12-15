@@ -1,5 +1,13 @@
 # REapp: Et socialt netværk for afholdenhedspraktikere
 
+Deployed application: https://reapp.dk
+
+Application Api: https://reapp.dk/api
+
+- /surveys, /questions og /feedback er tilgængelige uden login
+
+Github repository: https://github.com/jackvwh/REapp
+
 ## Introduktion
 
 REapp er et helt unikt socialt netværk skabt til folk, der lever uden alkohol, rygning eller stoffer. Det kan være svært at finde et fællesskab, der støtter en, når man lever afholdende – men det er lige præcis, hvad REapp tilbyder.
@@ -169,7 +177,7 @@ Ensure the following are installed:
 
 #### Please before testing the application insert test data into the database with this GET request:
 
-````
+```
 
 http://localhost:3001/testdata
 
@@ -180,11 +188,12 @@ from your browser or Postman. A message will be displayed if the data is success
 
 
 When this is done you can login with 2 different kind of users, which will allow for access to different pages.
-Admin User: 
-username: admin 
+Admin User:
+username: admin
 password: admin
 
-Regular User: 
-Username: user 
+Regular User:
+Username: user
 password: user
 
+```
