@@ -67,7 +67,7 @@ Ensure the following are installed:
 
 1. **Prepare Database Directory:**
 
-   - Create `./test_data/data/db`.
+   - Create this filepath `./test_data/data/db`.
    - Include `DDL_schema.sql` in the `test_data` directory.
      - Download from:
        https://drive.google.com/file/d/1lpCQkcZeAcf69Y12LYRyKaNqtQfpMhXx/view?usp=drive_link
@@ -173,8 +173,18 @@ Ensure the following are installed:
 
 http://localhost:3001/testdata
 
-```
+
 
 from your browser or Postman. A message will be displayed if the data is successfully inserted.
-```
-````
+
+
+
+When this is done you can login with 2 different kind of users, which will allow for access to different pages.
+Admin User: 
+username: admin 
+password: admin
+
+Regular User: 
+Username: user 
+password: user
+
