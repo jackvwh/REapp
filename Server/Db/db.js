@@ -13,7 +13,7 @@ const mysqlconnection = mysql.createPool({
   queueLimit: 0,
 });
 
-async function checkDatabaseConnection(retries = 5, delay = 2000) {
+async function checkDatabaseConnection(retries = 10, delay = 2000) {
   while (retries) {
     try {
       const connection = await mysqlconnection.getConnection();
