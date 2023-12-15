@@ -51,9 +51,7 @@ services:
       - CLIENT_ORIGIN=$CLIENT_ORIGIN
       - NODE_DOCKER_PORT=$NODE_DOCKER_PORT
       - JWT_SECRET=$JWT_SECRET
-    ports:
-      - $NODE_LOCAL_HOST:$NODE_DOCKER_PORT
-
+ 
   client:
     stdin_open: true
     environment:
@@ -66,8 +64,6 @@ services:
     volumes:
       - /app/node_modules
       - ./Client:/app
-    ports:
-      - $CLIENT_LOCAL_HOST:$CLIENT_DOCKER_PORT
-
+   
 volumes:
   db:
