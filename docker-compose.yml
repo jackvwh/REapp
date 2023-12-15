@@ -52,7 +52,7 @@ services:
       - NODE_DOCKER_PORT=$NODE_DOCKER_PORT
       - JWT_SECRET=$JWT_SECRET
     ports:
-      - $NODE_DOCKER_HOST:$NODE_DOCKER_PORT
+      - $NODE_LOCAL_HOST:$NODE_DOCKER_PORT
 
   client:
     stdin_open: true
@@ -67,7 +67,7 @@ services:
       - /app/node_modules
       - ./Client:/app
     ports:
-      - $CLIENT_DOCKER_HOST:$CLIENT_DOCKER_PORT
+      - $CLIENT_LOCAL_HOST:$CLIENT_DOCKER_PORT
 
 volumes:
   db:
