@@ -20,42 +20,54 @@ services:
     ports:
       - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
 
-  # api:
-  #   depends_on:
-  #     - mysqldb
-  #   build:
-  #     dockerfile: Dockerfile.dev
-  #     context: './Server'
-  #   restart: always
-  #   env_file: ./.env
-  #   volumes:
-  #     - /app/node_modules
-  #     - ./Server:/app
-  #   ports:
-  #     - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-  #   environment:
-  #     - MYSQL_HOST=mysqldb
-  #     - MYSQL_USER=$MYSQL_USER
-  #     - MYSQL_PASSWORD=$MYSQL_PASSWORD
-  #     - MYSQL_DATABASE=$MYSQL_DATABASE
-  #     - MYSQL_PORT=$MYSQL_PORT
-  #     - CLIENT_ORIGIN=$CLIENT_ORIGIN
-  #     - JWT_SECRET=$JWT_SECRET
+  api:
+    depends_on:
+      - mysqldb
+    build:
+      dockerfile: Dockerfile.dev
+      context: './Server'
+    restart: always
+    env_file: ./.env
+    volumes:
+      - /app/node_modules
+      - ./Server:/app
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - MYSQL_HOST=mysqldb
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_PORT=$MYSQL_PORT
+      - CLIENT_ORIGIN=$CLIENT_ORIGIN
+      - JWT_SECRET=$JWT_SECRET
+      - NODE_DOCKER_PORT=$NODE_DOCKER_PORT
 
-  # client:
-  #   stdin_open: true
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #   build:
-  #     dockerfile: Dockerfile.dev
-  #     context: './Client'
-  #     args:
-  #       - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
-  #   volumes:
-  #     - /app/node_modules
-  #     - ./Client:/app
-  #   ports:
-  #     - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - $NGINX_HOST:$NGINX_PORT
+
+  client:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      dockerfile: Dockerfile.dev
+      context: './Client'
+      args:
+        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+    volumes:
+      - /app/node_modules
+      - ./Client:/app
+    ports:
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
 
 volumes:
   db:
